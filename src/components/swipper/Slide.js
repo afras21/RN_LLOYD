@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
     View,
     Image,
     Text,
@@ -9,11 +9,7 @@ import normalize from 'react-native-normalize';
 import { ON_BOARDING_IMAGE1 } from '../../constants/images';
 import { colors, fonts } from '../../theme';
 
-function Slide({
-    heading,
-    description,
-    src
-}) {
+const Slide = ({ heading, description, src }) => {
     return (
         <View style={styles.slide}>
             <Image

@@ -7,52 +7,48 @@ import {
     Text, 
     View 
 } from 'react-native';
-import { LOGO } from '../constants/icons';
 import { colors, fonts } from '../theme';
 import normalize from 'react-native-normalize';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { icons, strings } from '../constants'
+const SplashScreen = ({ navigation }) => {
 
-function SplashScreen({ navigation }) {
 
-    const tagline = 'TAGLINE';
-
-    const initialHelperFunction = async() => {
+    const initialHelperFunction = async () => {
         const token = await AsyncStorage.getItem('token');
-        if(token === null){
+        if (token === null) {
             navigation.navigate('LoginScreen');
-        }else{
-
+        } else {
+            // TODO: If User is Logged in navigate to the Home screen.
         }
     };
 
     useEffect(() => {
-        setTimeout(async() => {
+        setTimeout(async () => {
             initialHelperFunction();
         }, 2000);
         
     }, []);
 
     return (
-        <SafeAreaView
-            style={styles.container}
-        >
+        <SafeAreaView style={styles.container} >
 
-            <StatusBar barStyle={'light-content'} backgroundColor={colors.black} />
-
-            <View 
-                style={styles.logoHeaderSpace}
+            <StatusBar 
+                barStyle={strings.STATUS_BAR_STYLE} 
+                backgroundColor={colors.black} 
             />
+
+            <View style={styles.logoHeaderSpace} />
+            
             <Image
                 style={styles.logo}
-                source={LOGO}
+                source={icons.LOGO}
                 resizeMode='contain'
             />
-            <Text
-                style={styles.tagline}
-            >
-                {tagline}
+            
+            <Text style={styles.tagline} >
+                {strings.TAGLINE}
             </Text>
-
 
         </SafeAreaView>
     )

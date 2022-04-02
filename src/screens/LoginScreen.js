@@ -6,32 +6,25 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-import { colors, fonts } from '../theme';
+import { 
+    colors, 
+    fonts 
+} from '../theme';
 import normalize from 'react-native-normalize';
 import CustomSwiper from '../components/swipper/index'
 import FacebookButton from '../components/buttons/FacebookButton';
 import GoogleButton from '../components/buttons/GoogleButton';
 
-function LoginScreen({
-    navigation
-}) {
-
+const LoginScreen = ({navigation}) => {
 
     return (
-        <SafeAreaView
-            style={styles.container}
-        >
-            <View
-                style={{
-                    height: '60%' 
-                }}
-            >
+        <SafeAreaView style={styles.container}>
+            
+            <View style={styles.swiper}>
                 <CustomSwiper />
             </View>
         
-            <Text
-                style={styles.loginText}
-            >
+            <Text style={styles.loginText}>
                 Connect Us / Login  
             </Text>
         
@@ -43,20 +36,14 @@ function LoginScreen({
                 onPress={() => {}}
             />
 
-            <View
-                style={styles.servicePolicyView}
-            >
-                <Text
-                    style={styles.servicePolicyText}
-                >
+            <View style={styles.servicePolicyView}>
+                <Text style={styles.servicePolicyText}>
                     By joining, You agree to
                 </Text>
                 <TouchableOpacity
                     onPress={() => {}}
                 >
-                    <Text
-                        style={styles.servicePolicyLinkText}
-                    >
+                    <Text style={styles.servicePolicyLinkText}>
                         Terms of Service & Privacy policy
                     </Text>
                 </TouchableOpacity>
@@ -73,10 +60,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    wrapper:{
-        // flex: 1
+    swiper:{
+        height: '60%'
     },
-    
     loginText:{
         marginVertical: normalize(10),
         fontSize: fonts.size.font16,

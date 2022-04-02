@@ -1,49 +1,52 @@
 import React from 'react'
 import { 
     Image,
+    StyleSheet,
     Text, 
     TouchableOpacity 
 } from 'react-native';
 import normalize from 'react-native-normalize';
-import { FACEBOOK_LOGO } from '../../constants/icons';
+import { icons, strings } from '../../constants';
 import { colors, fonts } from '../../theme';
 
-function FacebookButton({
-    onPress
-}) {
+const FacebookButton = ({ onPress }) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={{
-                backgroundColor: '#3A589A',
-                width: '75%',
-                alignItems: 'center',
-                padding: normalize(12),
-                marginVertical: normalize(10),
-                flexDirection: 'row',
-                justifyContent: 'center'
-            }}
+            style={styles.button}
         >
             <Image
-                source={FACEBOOK_LOGO}
-                style={{
-                    height: normalize(22),
-                    width: normalize(22),
-                    marginRight: normalize(20)
-                }}
+                source={icons.FACEBOOK_LOGO}
+                style={styles.facebookLogo}
                 resizeMode='contain'
             />
-            <Text
-                style={{
-                    color: colors.white,
-                    fontSize: fonts.size.font14,
-                    fontWeight: fonts.weight.full
-                }}
-            >
-                Login with Facebook
+            <Text style={styles.buttonText}>
+                {strings.LOGIN_WITH_FACEBOOK}
             </Text>
         </TouchableOpacity>
     )
 }
+
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: '#3A589A',
+        width: '75%',
+        alignItems: 'center',
+        padding: normalize(12),
+        marginVertical: normalize(10),
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    facebookLogo: {
+        height: normalize(22),
+        width: normalize(22),
+        marginRight: normalize(20)
+    },
+    buttonText: {
+        color: colors.white,
+        fontSize: fonts.size.font14,
+        fontWeight: fonts.weight.semi
+    }
+});
 
 export default FacebookButton

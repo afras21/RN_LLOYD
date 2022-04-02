@@ -8,7 +8,7 @@ import {
 const MainStack = createStackNavigator();
 
 
-function MainStackNavigation() {
+const MainStackNavigation = () => {
     return (
         <MainStack.Navigator
             initialRouteName={'SplashScreen'}

@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { colors } from '../../theme';
 
-function ActiveDot() {
+const ActiveDot = () => {
     return (
         <View style={styles.activeDot} />
     )

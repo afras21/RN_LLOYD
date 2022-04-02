@@ -4,7 +4,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-function Dot() {
+const Dot = () => {
     return (
         <View style={styles.dot} />
     )
