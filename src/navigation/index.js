@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { 
     SplashScreen,
-    OnBoardingScreen
+    LoginScreen
 } from '../screens';
 
 const MainStack = createStackNavigator();
@@ -20,8 +20,8 @@ function MainStackNavigation() {
             />
             <MainStack.Screen
                 options={{ headerShown: false }}
-                name='OnBoardingScreen'
-                component={OnBoardingScreen}
+                name='LoginScreen'
+                component={LoginScreen}
             />
 
         </MainStack.Navigator>

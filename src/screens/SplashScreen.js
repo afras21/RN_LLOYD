@@ -20,7 +20,7 @@ function SplashScreen({ navigation }) {
         const token = await AsyncStorage.getItem('token');
         if(token === null){
             setTimeout
-            navigation.navigate('OnBoardingScreen');
+            navigation.navigate('LoginScreen');
         }else{
 
         }

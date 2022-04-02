@@ -1,7 +1,7 @@
 import SplashScreen from './SplashScreen';
-import OnBoardingScreen from './OnBoardingScreen';
+import LoginScreen from './LoginScreen';
 
 export {
     SplashScreen,
-    OnBoardingScreen
+    LoginScreen
 }
