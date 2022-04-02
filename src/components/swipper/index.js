@@ -4,12 +4,12 @@ import Dot from './Dot';
 import ActiveDot from './ActiveDot';
 import Slide from './Slide';
 import Swiper from 'react-native-swiper';
-import { images } from '../../constants';
+import { images, strings } from '../../constants';
 
 const index = () => {
     return (
             <Swiper
-                height={'100%'}
+                height={strings.SWIPER_HEIGHT}
                 width={metrics.screenWidth}
                 showsButtons={false}
                 dot={<Dot />}
@@ -17,13 +17,13 @@ const index = () => {
             >
                 <Slide 
                     src={images.ON_BOARDING_IMAGE1} 
-                    heading={'Lorem ipsum dolore'} 
-                    description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet mi elit pharetra, dignissim magna gravida lacus, viverra.'}
+                    heading={strings.ON_BOARDING_HEADING1} 
+                    description={strings.ON_BOARDING_DESCRIPTION1}
                 />
                 <Slide 
                     src={images.ON_BOARDING_IMAGE2} 
-                    heading={'Lorem ipsum dolore'} 
-                    description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet mi elit pharetra, dignissim magna gravida lacus, viverra.'}
+                    heading={strings.ON_BOARDING_HEADING2} 
+                    description={strings.ON_BOARDING_DESCRIPTION2}
                 />
             </Swiper>
     )

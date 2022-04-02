@@ -14,6 +14,7 @@ import normalize from 'react-native-normalize';
 import CustomSwiper from '../components/swipper/index'
 import FacebookButton from '../components/buttons/FacebookButton';
 import GoogleButton from '../components/buttons/GoogleButton';
+import { strings } from '../constants';
 
 const LoginScreen = ({navigation}) => {
 
@@ -25,7 +26,7 @@ const LoginScreen = ({navigation}) => {
             </View>
         
             <Text style={styles.loginText}>
-                Connect Us / Login  
+                {strings.LOGIN_TEXT}  
             </Text>
         
             <GoogleButton
@@ -38,13 +39,13 @@ const LoginScreen = ({navigation}) => {
 
             <View style={styles.servicePolicyView}>
                 <Text style={styles.servicePolicyText}>
-                    By joining, You agree to
+                    {strings.SERVICE_POLICY_TEXT}
                 </Text>
                 <TouchableOpacity
                     onPress={() => {}}
                 >
                     <Text style={styles.servicePolicyLinkText}>
-                        Terms of Service & Privacy policy
+                        {strings.SERVICE_POLICY_LINK}
                     </Text>
                 </TouchableOpacity>
             </View>
