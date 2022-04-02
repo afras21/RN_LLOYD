@@ -19,7 +19,6 @@ function SplashScreen({ navigation }) {
     const initialHelperFunction = async() => {
         const token = await AsyncStorage.getItem('token');
         if(token === null){
-            setTimeout
             navigation.navigate('LoginScreen');
         }else{
 
