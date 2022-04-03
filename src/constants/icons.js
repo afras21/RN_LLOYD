@@ -7,6 +7,11 @@ const LEADER_BOARD = require('../assets/icons/leaderBoard.png');
 const REFER_EARN = require('../assets/icons/referAndEarn.png');
 const NFT = require('../assets/icons/nft.png');
 
+const DASHBOARD = require('../assets/icons/dashboard.png');
+const NOTIFICATION = require('../assets/icons/notification.png');
+const WALLET = require('../assets/icons/wallet.png');
+const SEARCH = require('../assets/icons/search.png');
+
 export default {
     LOGO,
     GOOGLE_LOGO,
@@ -15,5 +20,9 @@ export default {
     ACTIVITY,
     LEADER_BOARD,
     REFER_EARN,
-    NFT
+    NFT,
+    DASHBOARD,
+    NOTIFICATION,
+    WALLET,
+    SEARCH
 }
