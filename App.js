@@ -1,16 +1,23 @@
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { LogBox } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import MainStackNavigation from './src/navigation'
+import { store, persistor } from './src/store/configStore';
 
 const App = () => {
   LogBox.ignoreLogs([
     "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
   ]);
   return (
-    <NavigationContainer>
-      <MainStackNavigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <MainStackNavigation />
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   )
 }
 
