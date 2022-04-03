@@ -19,7 +19,8 @@ const SplashScreen = ({ navigation }) => {
         if (token === null) {
             navigation.navigate('LoginScreen');
         } else {
-            // TODO: If User is Logged in navigate to the Home screen.
+            // TODO: Navigate to BottomTab
+            navigation.navigate('HomeScreen');
         }
     };
 

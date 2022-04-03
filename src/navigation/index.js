@@ -2,7 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { 
     SplashScreen,
-    LoginScreen
+    LoginScreen,
+    HomeScreen
 } from '../screens';
 
 const MainStack = createStackNavigator();
@@ -22,6 +23,12 @@ const MainStackNavigation = () => {
                 options={{ headerShown: false }}
                 name='LoginScreen'
                 component={LoginScreen}
+            />
+            {/* TODO: HomeScreen will be moved to Bottom Tab  */}
+            <MainStack.Screen
+                options={{ headerShown: false }}
+                name='HomeScreen'
+                component={HomeScreen}
             />
 
         </MainStack.Navigator>

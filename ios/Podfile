@@ -19,6 +19,10 @@ target 'base' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNGoogleSignin', :path => '../node_modules/@react-native-google-signin/google-signin'
+
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'baseTests' do
     inherit! :complete
     # Pods for testing
