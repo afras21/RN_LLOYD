@@ -20,6 +20,43 @@ import { colors } from '../theme';
 
 const BottomTab = createBottomTabNavigator();
 
+const TabBarLabel = ({ focused, label}) => {
+    return(
+        <Text style={focused === true ? styles.tabBarLabelStyleFocused : styles.tabBarLabelStyleUnFocused}>
+            {label}
+        </Text>
+    )
+}
+
+const TabBarIcon = ({ focused, src }) => {
+    return(
+        <Image
+            source={src}
+            resizeMode='contain'
+            style={focused === true ? styles.tabBarIconStyleFocussed : styles.tabBarIconStyleUnFocussed}
+        />
+    )
+}
+
+const HomeTabBarIcon = ({ focused, src, onPress }) => {
+    return (
+        <View style={styles.homeButtonWrapper}>
+            <View style={styles.homeButtonInnerWrapper}>
+                <TouchableOpacity
+                    style={[styles.homeButton, focused === true ? styles.homeButtonFocused : styles.homeButtonUnFocused]}
+                    onPress={onPress}
+                >
+                    <Image
+                        source={src}
+                        resizeMode='contain'
+                        style={styles.homeButton, focused === true ? [styles.tabBarIconStyleFocussed, styles.tabBarIconStyleFocussedHomeButton] : [styles.tabBarIconStyleUnFocussed, styles.tabBarIconStyleUnFocussedHomeButton]}
+                    />
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
+}
+
 const BottomTabNavigationStack = () => {
     return (
         <BottomTab.Navigator
@@ -32,20 +69,8 @@ const BottomTabNavigationStack = () => {
                 name='ActivityScreen'
                 component={ActivityScreen}
                 options={{
-                    tabBarIcon: ({ focused }) => (
-
-                        <Image
-                            source={icons.ACTIVITY}
-                            resizeMode='contain'
-                            style={focused === true ? styles.tabBarIconStyleFocussed : styles.tabBarIconStyleUnFocussed}
-                        />
-                    ),
-                    tabBarLabel: ({ focused }) => (
-
-                        <Text style={focused === true ? styles.tabBarLabelStyleFocused : styles.tabBarLabelStyleUnFocused}>
-                            Activity
-                        </Text>
-                    ),
+                    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} src={icons.ACTIVITY} />,
+                    tabBarLabel: ({ focused }) => <TabBarLabel focused={focused} label={'Activity'} /> ,
                     headerShown: false
                 }}
             />
@@ -53,18 +78,8 @@ const BottomTabNavigationStack = () => {
                 name='LeaderBoardScreen'
                 component={LeaderBoardScreen}
                 options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={icons.LEADER_BOARD}
-                            resizeMode='contain'
-                            style={focused === true ? styles.tabBarIconStyleFocussed : styles.tabBarIconStyleUnFocussed}
-                        />
-                    ),
-                    tabBarLabel: ({ focused }) => (
-                        <Text style={focused === true ? styles.tabBarLabelStyleFocused : styles.tabBarLabelStyleUnFocused}>
-                            Leaderboard
-                        </Text>
-                    ),
+                    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} src={icons.LEADER_BOARD} />,
+                    tabBarLabel: ({ focused }) => <TabBarLabel focused={focused} label={'Leaderboard'} /> ,
                     headerShown: false
                 }}
             />
@@ -72,25 +87,8 @@ const BottomTabNavigationStack = () => {
                 name='HomeScreen'
                 component={HomeScreen}
                 options={{
-                    tabBarButton: (props) => (
-                        <View style={styles.homeButtonWrapper}>
-                            <View style={styles.homeButtonInnerWrapper}>
-                                <TouchableOpacity
-                                    style={[styles.homeButton, props.accessibilityState.selected === true ? styles.homeButtonFocused : styles.homeButtonUnFocused]}
-                                    onPress={props.onPress}
-                                >
-                                    <Image
-                                        source={icons.HOME}
-                                        resizeMode='contain'
-                                        style={styles.homeButton, props.accessibilityState.selected === true ? [styles.tabBarIconStyleFocussed, styles.tabBarIconStyleFocussedHomeButton] : [styles.tabBarIconStyleUnFocussed, styles.tabBarIconStyleUnFocussedHomeButton]}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    ),
-                    tabBarLabel: () => (
-                        <></>
-                    ),
+                    tabBarButton: (props) => <HomeTabBarIcon focused={props.accessibilityState.selected} src={icons.HOME} onPress={props.onPress} />,
+                    tabBarLabel: () => <></>,
                     headerShown: false
                 }}
             />
@@ -98,18 +96,8 @@ const BottomTabNavigationStack = () => {
                 name='ReferAndEarnScreen'
                 component={ReferAndEarnScreen}
                 options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={icons.REFER_EARN}
-                            resizeMode='contain'
-                            style={focused === true ? styles.tabBarIconStyleFocussed : styles.tabBarIconStyleUnFocussed}
-                        />
-                    ),
-                    tabBarLabel: ({ focused }) => (
-                        <Text style={focused === true ? styles.tabBarLabelStyleFocused : styles.tabBarLabelStyleUnFocused}>
-                            Refer & Earn
-                        </Text>
-                    ),
+                    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} src={icons.REFER_EARN} />,
+                    tabBarLabel: ({ focused }) => <TabBarLabel focused={focused} label={'Refer & Earn'} /> ,
                     headerShown: false
                 }}
             />
@@ -117,18 +105,8 @@ const BottomTabNavigationStack = () => {
                 name='NFTScreen'
                 component={NftScreen}
                 options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={icons.NFT}
-                            resizeMode='contain'
-                            style={focused === true ? styles.tabBarIconStyleFocussed : styles.tabBarIconStyleUnFocussed}
-                        />
-                    ),
-                    tabBarLabel: ({ focused }) => (
-                        <Text style={focused === true ? styles.tabBarLabelStyleFocused : styles.tabBarLabelStyleUnFocused}>
-                            NFT
-                        </Text>
-                    ),
+                    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} src={icons.NFT} />,
+                    tabBarLabel: ({ focused }) => <TabBarLabel focused={focused} label={'NFT'} /> ,
                     headerShown: false
                 }}
             />
