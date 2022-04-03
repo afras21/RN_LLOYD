@@ -13,6 +13,13 @@ const LOGIN_TEXT = 'Contact Us / Login';
 const SERVICE_POLICY_TEXT = 'By joining, You agree to';
 const SERVICE_POLICY_LINK = 'Terms of Service & Privacy policy';
 
+const LOGIN_WITH_FACEBOOK_GRAPH_REQUEST_ROUTE = '/me'
+const LOGIN_WITH_FACEBOOK_PERMISSIONS = ['public_profile', 'email'];
+const LOGIN_WITH_FACEBOOK_PROFILE_REQUEST_PARAMS = 'id,email,name,first_name,last_name,picture';
+
+const LOGIN_WITH_GOOGLE_SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
+const LOGIN_WITH_GOOGLE_WEB_CLIENT_ID = '322501477862-0pqk97a5r8q614m2t2tvob307oqdjt21.apps.googleusercontent.com';
+
 export default{
     STATUS_BAR_STYLE,
     TAGLINE,
@@ -25,5 +32,10 @@ export default{
     ON_BOARDING_DESCRIPTION2,
     LOGIN_TEXT,
     SERVICE_POLICY_TEXT,
-    SERVICE_POLICY_LINK
+    SERVICE_POLICY_LINK,
+    LOGIN_WITH_FACEBOOK_GRAPH_REQUEST_ROUTE,
+    LOGIN_WITH_FACEBOOK_PERMISSIONS,
+    LOGIN_WITH_FACEBOOK_PROFILE_REQUEST_PARAMS,
+    LOGIN_WITH_GOOGLE_SCOPES,
+    LOGIN_WITH_GOOGLE_WEB_CLIENT_ID
 }
