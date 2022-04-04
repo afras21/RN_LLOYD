@@ -1,5 +1,8 @@
+import { linear } from "react-native/Libraries/Animated/Easing";
+
 const colors = {
-    primary: '#DE5727',
+
+    primary: '#F2B01C',
     secondary: '#7F78D2',
     textPrimaryDefault: '#0A2D4D',
     textPrimaryDark: '#FFFFFF',
@@ -10,9 +13,8 @@ const colors = {
     white: '#FFFFFF',
     black: '#000000',
     gray: '#F5F8F9',
-    progressGray: '#C1C1C1',
-    cardColorDefault: '#FFFFFF',
-    cardColorDark: '#212121'
+    progressGray: '#979797',
+    bottomTabBgColor: '#272B30'
 }
 
 export default colors;

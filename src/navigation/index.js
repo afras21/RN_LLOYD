@@ -5,6 +5,7 @@ import {
     LoginScreen,
     HomeScreen
 } from '../screens';
+import BottomTab from './BottomTabNavigationStack';
 
 const MainStack = createStackNavigator();
 
@@ -27,8 +28,8 @@ const MainStackNavigation = () => {
             {/* TODO: HomeScreen will be moved to Bottom Tab  */}
             <MainStack.Screen
                 options={{ headerShown: false }}
-                name='HomeScreen'
-                component={HomeScreen}
+                name='BottomTab'
+                component={BottomTab}
             />
 
         </MainStack.Navigator>

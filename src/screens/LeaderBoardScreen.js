@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { colors } from '../theme';
 
-const HomeScreen = () => {
+const LeaderBoardScreen = ({ }) => {
     return (
         <SafeAreaView style={styles.container} >
             <Text
@@ -16,7 +16,7 @@ const HomeScreen = () => {
                     fontSize: 10
                 }}
             >
-                Home Screen.
+                Leaderboard Screen.
             </Text>
         </SafeAreaView>
     )
@@ -33,4 +33,4 @@ const mapStateToProps = state => {
         user: state.user
     }
 }
-export default connect(mapStateToProps)(HomeScreen)
+export default connect(mapStateToProps)(LeaderBoardScreen)
