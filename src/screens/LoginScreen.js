@@ -37,7 +37,7 @@ const LoginScreen = ({ navigation, saveUser }) => {
     const storeUserDataToStore = async(userData) => {
         await AsyncStorage.setItem('token', userData.accessToken);
         saveUser(userData);
-        navigation.navigate('HomeScreen');
+        navigation.navigate('BottomTab');
     }
 
     const googleLoginHandler = async () => {
