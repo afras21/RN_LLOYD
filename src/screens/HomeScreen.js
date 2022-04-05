@@ -25,6 +25,10 @@ import {
 } from '../theme';
 import HeaderScreenTextInput from '../components/textInputs/HomeScreenTextInput';
 import Slider1 from '../components/homeScreenSlider/Slider1';
+import Slider2 from '../components/homeScreenSlider/Slider2';
+
+import { data } from '../mock/slider2'
+import Button from '../components/homeScreenSlider/Button';
 
 const Header = ({ user }) => {
     return (
@@ -97,6 +101,7 @@ const FooterText = ({ text }) => {
 const HomeScreen = ({ user }) => {
 
     const [activeIndex, setActiveIndex] = useState(1);
+    const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
     const onChangeSlider1 = (index) => {
         setActiveIndex(index)
@@ -189,6 +194,31 @@ const HomeScreen = ({ user }) => {
                     activeIndex={activeIndex}
                     changeIndex={onChangeSlider1}
                 />
+
+                <Slider2 data={data} />
+
+                <View style={styles.buttonWrapper}>
+                    <FlatList
+                        horizontal
+                        contentContainerStyle={{
+                            width: '100%',
+                            justifyContent: 'space-around'
+                        }}
+                        renderItem={({ index, item }) => {
+                            return (
+                                <Button
+                                    keyExtractor={item => item.text1}
+                                    src={item.src}
+                                    text1={item.text1}
+                                    text2={item.text2}
+                                    selected={activeButtonIndex === index}
+                                    onPress={() => setActiveButtonIndex(index)}
+                                />
+                            )
+                        }}
+                        data={strings.HOME_SCREEN_BUTTONS}
+                    />
+                </View>
 
                 <RenderQuizItems data={strings.HOME_SLIDER2} />
                 
@@ -350,6 +380,14 @@ const styles = StyleSheet.create({
     knowMoreText: {
         color: colors.primary,
         fontSize: fonts.size.font10
+    },
+    buttonWrapper: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        justifyContent: 'space-evenly',
+        marginVertical: normalize(10),
+        width: '90%',
+        alignSelf: 'center'
     }
 })
 const mapStateToProps = state => {

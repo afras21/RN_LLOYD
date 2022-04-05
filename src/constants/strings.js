@@ -1,3 +1,4 @@
+import icons from "./icons";
 import images from "./images";
 
 const STATUS_BAR_STYLE = 'light-content';
@@ -130,7 +131,34 @@ const HOME_SCREEN_QUIZ_LINEAR_GRADIENT_COLORS = ['#232323', '#232323', '#5B5B5B'
 const HOME_SCREEN_FOOTER_TEXT1 = '100% Safe';
 const HOME_SCREEN_FOOTER_TEXT2 = '100% Secure';
 const HOME_SCREEN_FOOTER_TEXT3 = '100% Trustable';
-const HOME_SCREEN_KNOW_MORE_TEXT = 'know more'
+const HOME_SCREEN_KNOW_MORE_TEXT = 'know more';
+
+const SLIDER2_IMAGE = 'https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg';
+const SLIDER2_HEADING = 'Trending Trivia Quiz';
+const SLIDER2_VIEW_MORE = 'View all';
+
+const HOME_SCREEN_BUTTONS = [
+    {
+        text1: 'All',
+        text2: 'Categories',
+        src: icons.CATEGORY
+    },
+    {
+        text1: 'Influence',
+        text2: 'Trivia',
+        src: icons.BATTLE
+    },
+    {
+        text1: 'Advance',
+        text2: 'Premium',
+        src: icons.CROWN
+    },
+    {
+        text1: 'Free',
+        text2: 'Trivia',
+        src: icons.GIFT
+    }
+];
 
 export default{
     STATUS_BAR_STYLE,
@@ -157,5 +185,9 @@ export default{
     HOME_SCREEN_FOOTER_TEXT1,
     HOME_SCREEN_FOOTER_TEXT2,
     HOME_SCREEN_FOOTER_TEXT3,
-    HOME_SCREEN_KNOW_MORE_TEXT
+    HOME_SCREEN_KNOW_MORE_TEXT,
+    SLIDER2_IMAGE,
+    SLIDER2_HEADING,
+    SLIDER2_VIEW_MORE,
+    HOME_SCREEN_BUTTONS
 }

@@ -52,7 +52,7 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
 
 const styles = StyleSheet.create({
     wrapper:{
-        marginVertical: normalize(15)
+        marginTop: normalize(15)
     },
     button: {
         flex: 1,
