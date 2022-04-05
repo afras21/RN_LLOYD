@@ -62,7 +62,7 @@ const Slider2 = ({ data }) => {
 const styles = StyleSheet.create({
     container: {
         marginTop: -5,
-        marginBottom: normalize(15),
+        marginBottom: normalize(10),
         width: '92%',
         alignSelf: 'center'
     },
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     absolute: {
         borderRadius: 15,
         width: '91.5%', 
-        height: normalize(60),
+        height: normalize(55),
         position: 'absolute', 
         zIndex: 1, 
         backgroundColor: rgbaColor(1,0,0,0.7),
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         bottom: 10
     },
     renderItemWrapper: {
-        height: normalize(140),
+        height: normalize(110),
         width: metrics.screenWidth - 100
     },
     headingWrapper: {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
     FlatList,
     Image,
+    ImageBackground,
     LogBox,
     SafeAreaView,
     ScrollView,
@@ -153,12 +154,17 @@ const HomeScreen = ({ user }) => {
             <>
                 <View style={styles.referAndEarnWrapper}>
                     {/* TODO: Image Fit Issue */}
-                    <Image
+                    <ImageBackground
                         source={images.REFER_AND_EARN}
                         style={styles.referAndEarnImage}
-                        // resizeMode='contain'
-                        borderRadius={10}
+                        // borderRadius={10}
                     />
+                    {/* <Image
+                        source={images.REFER_AND_EARN}
+                        style={}
+                        resizeMode='center'
+                        borderRadius={10}
+                    /> */}
                 </View>
                 <View style={styles.footerWrapper}>
                     <Image
@@ -220,6 +226,17 @@ const HomeScreen = ({ user }) => {
                     />
                 </View>
 
+                <Text
+                    style={{
+                        width: '90%',
+                        alignSelf: 'center',
+                        marginVertical: normalize(10),
+                        fontSize: fonts.size.font14,
+                        color: colors.white
+                    }}
+                >
+                    {`${strings.HOME_SCREEN_BUTTONS[activeButtonIndex].text1} ${strings.HOME_SCREEN_BUTTONS[activeButtonIndex].text2}`}
+                </Text>
                 <RenderQuizItems data={strings.HOME_SLIDER2} />
                 
                 <RenderFooter />
@@ -340,17 +357,16 @@ const styles = StyleSheet.create({
         color: colors.white
     },
     referAndEarnWrapper: {
-        width: '90%',
+        width: '94%',
         alignSelf: 'center',
         height: normalize(150),
         alignItems: 'center',
-        marginVertical: normalize(20)
+        marginTop: normalize(10),
+        borderRadius: 10
     },
     referAndEarnImage: {
         width: '100%',
-        flex: 1,
-        alignSelf: 'center',
-        borderRadius: normalize(5),
+        height: normalize(120)
     },
     footerWrapper: {
         backgroundColor: colors.footer,
@@ -361,6 +377,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     footerImage: {
+        
         height: normalize(95),
         width: normalize(95),
         marginRight: normalize(40)

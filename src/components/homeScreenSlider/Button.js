@@ -12,6 +12,7 @@ import { icons } from '../../constants';
 import { colors, fonts } from '../../theme';
 
 function Button({ selected, src, text1, text2, onPress }) {
+    
     return (
         selected === true ?
             <TouchableOpacity  
@@ -27,10 +28,10 @@ function Button({ selected, src, text1, text2, onPress }) {
                         style={[styles.icon, { tintColor: colors.primary }]}
                     />
                 </ImageBackground>
-                <Text numberOfLines={1} style={styles.text}>
+                <Text numberOfLines={1} style={[styles.text, { color: colors.primary }]}>
                     {text1}
                 </Text>
-                <Text numberOfLines={1} style={styles.text}>
+                <Text numberOfLines={1} style={[styles.text, { color: colors.primary }]}>
                     {text2}
                 </Text>
             </TouchableOpacity>
@@ -60,16 +61,16 @@ function Button({ selected, src, text1, text2, onPress }) {
 
 const styles = StyleSheet.create({
     buttonWrapper: { 
-        height: normalize(55), 
-        width: normalize(55), 
+        height: normalize(50), 
+        width: normalize(50), 
         display: 'flex', 
         justifyContent: "center", 
         alignItems: 'center',
         marginBottom: normalize(5)
     },
     icon: {
-        height: normalize(20),
-        width: normalize(20)
+        height: normalize(22),
+        width: normalize(24)
     },
     text: { 
         color: colors.white, 

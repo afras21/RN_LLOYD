@@ -23,7 +23,7 @@ const LOGIN_WITH_FACEBOOK_PROFILE_REQUEST_PARAMS = 'id,email,name,first_name,las
 const LOGIN_WITH_GOOGLE_SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 const LOGIN_WITH_GOOGLE_WEB_CLIENT_ID = '322501477862-0pqk97a5r8q614m2t2tvob307oqdjt21.apps.googleusercontent.com';
 
-const HOME_SLIDER1 = [{ src: images.SLIDER_IMAGE1 }, { src: images.SLIDER_IMAGE2 }, { src: images.SLIDER_IMAGE3 }]
+const HOME_SLIDER1 = [{ src: images.SLIDER_IMAGE1 }, { src: images.SLIDER_IMAGE2 }, { src: images.SLIDER_IMAGE3 }, { src: images.SLIDER_IMAGE4 }]
 
 const HOME_SLIDER2 = [  
     {   
@@ -140,7 +140,7 @@ const SLIDER2_VIEW_MORE = 'View all';
 const HOME_SCREEN_BUTTONS = [
     {
         text1: 'All',
-        text2: 'Categories',
+        text2: 'Trivia',
         src: icons.CATEGORY
     },
     {

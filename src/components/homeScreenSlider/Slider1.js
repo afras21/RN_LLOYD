@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
 import normalize from 'react-native-normalize';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { strings } from '../../constants';
 import { colors, metrics } from '../../theme';
 
 
@@ -20,24 +21,30 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
                             style={styles.button}
                         >
                             {/* TODO: Image Fit Issue */}
-                            <Image
+                            {/* <Image
                                 source={item.src}
                                 style={styles.buttonImage}
-                                // resizeMode={'contain'}
+                                // resizeMode={'stretch'}
                                 borderRadius={10}
+                            /> */}
+                            <ImageBackground
+                                source={item.src}
+                                style={styles.buttonImage}
+                                resizeMode={'stretch'}
+                                // borderRadius={10}
                             />
                         </TouchableOpacity>
                     )
                 }}
                 activeSlideAlignment={'center'}
                 layout={'default'}
-                sliderWidth={metrics.screenWidth}
-                itemWidth={metrics.screenWidth - 120}
+                sliderWidth={metrics.screenWidth - 0}
+                itemWidth={metrics.screenWidth - 90}
                 loop={true}
                 onSnapToItem={changeIndex}
             />
             <Pagination
-                dotsLength={3}
+                dotsLength={data.length}
                 activeDotIndex={activeIndex}
                 carouselRef={carousel}
                 dotStyle={styles.dotStyle}
@@ -45,6 +52,7 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
                 inactiveDotStyle={styles.inActiveDotStyle}
                 inactiveDotOpacity={.7}
                 inactiveDotScale={1}
+                
             />
         </View>
     )
@@ -58,19 +66,21 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     buttonImage: {
-        height: normalize(100),
-        width: '100%'
+        height: normalize(90),
+        width: '100%',
+        // width: metrics.screenWidth - 80
     },
     dotStyle: {
-        width: 24,
+        width: 30,
         height: 7,
         borderRadius: 5,
-        marginHorizontal: .1,
+        marginHorizontal: -5,
         backgroundColor: colors.white,
+        marginTop: -normalize(7)
     },
     inActiveDotStyle: {
         backgroundColor: colors.progressGray,
-        marginHorizontal: 0,
+        marginHorizontal: -5,
         width: 14
     }
 })
