@@ -1,22 +1,33 @@
-import React from 'react';
-import { 
+import React, { useState } from 'react';
+import {
+    FlatList,
     Image,
-    SafeAreaView, 
-    ScrollView, 
-    StatusBar, 
-    StyleSheet, 
-    Text, 
-    TextInput, 
+    LogBox,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
     View
 } from 'react-native';
 import normalize from 'react-native-normalize';
+import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
-import { icons } from '../constants';
-import { colors } from '../theme';
+import { 
+    icons, 
+    images, 
+    strings 
+} from '../constants';
+import { 
+    colors, 
+    fonts 
+} from '../theme';
 import HeaderScreenTextInput from '../components/textInputs/HomeScreenTextInput';
+import Slider1 from '../components/homeScreenSlider/Slider1';
 
 const Header = ({ user }) => {
-    return(
+    return (
         <View style={styles.headerWrapper}>
             <View style={styles.headerTop}>
 
@@ -75,12 +86,114 @@ const Header = ({ user }) => {
     )
 }
 
+const FooterText = ({ text }) => {
+    return(
+        <Text style={styles.footerText}>
+            {text}
+        </Text>
+    )
+}
+
 const HomeScreen = ({ user }) => {
+
+    const [activeIndex, setActiveIndex] = useState(1);
+
+    const onChangeSlider1 = (index) => {
+        setActiveIndex(index)
+    };
+
+    const renderQuizItem = ({ index, item }) => {
+        return (
+            <TouchableOpacity
+                style={styles.quizWrapper}
+                key={index}
+            >
+                <LinearGradient
+                    colors={strings.HOME_SCREEN_QUIZ_LINEAR_GRADIENT_COLORS}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 0, y: 1 }}
+                    style={styles.linearGradient}
+                >
+                    <Image
+                        source={{ uri: item.image }}
+                        style={styles.quizImage}
+                        resizeMode='contain'
+                    />
+                </LinearGradient>
+                <Text
+                    style={styles.quizTitle}
+                    numberOfLines={2}
+                >
+                    {item.name}
+                </Text>
+            </TouchableOpacity>
+        )
+    }
+
+    const RenderQuizItems = ({ data }) => {
+        return(
+            <View style={styles.quizListWrapper}>
+                <FlatList
+                    data={data}
+                    numColumns={strings.NO_OF_COLUMNS_FLATLIST_HOME_SCREEN}
+                    contentContainerStyle={styles.quizListWrapperContainer}
+                    renderItem={renderQuizItem}
+                />
+            </View>
+        )
+    }
+
+    const RenderFooter = () => {
+        return (
+            <>
+                <View style={styles.referAndEarnWrapper}>
+                    {/* TODO: Image Fit Issue */}
+                    <Image
+                        source={images.REFER_AND_EARN}
+                        style={styles.referAndEarnImage}
+                        // resizeMode='contain'
+                        borderRadius={10}
+                    />
+                </View>
+                <View style={styles.footerWrapper}>
+                    <Image
+                        source={icons.FOOTER}
+                        style={styles.footerImage}
+                    />
+                    <View>
+                        <FooterText text={strings.HOME_SCREEN_FOOTER_TEXT1} />
+                        <FooterText text={strings.HOME_SCREEN_FOOTER_TEXT2} />
+                        <View style={styles.knowMoreWrapper}>
+                            <FooterText text={strings.HOME_SCREEN_FOOTER_TEXT3} />
+                            <TouchableOpacity style={styles.knowMoreButton}>
+                                <Text style={styles.knowMoreText}>
+                                    {" "}{strings.HOME_SCREEN_KNOW_MORE_TEXT}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </>
+        )
+    }
+
+
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView  nestedScrollEnabled={true} style={styles.container}>
             <StatusBar backgroundColor={colors.bottomTabBgColor} />
-            <ScrollView style={styles.scrollContainer}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
                 <Header user={user} />
+                
+                <Slider1
+                    data={strings.HOME_SLIDER1}
+                    activeIndex={activeIndex}
+                    changeIndex={onChangeSlider1}
+                />
+
+                <RenderQuizItems data={strings.HOME_SLIDER2} />
+                
+                <RenderFooter />
+
             </ScrollView>
         </SafeAreaView>
     )
@@ -124,7 +237,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     logoImage: {
-        width:  normalize(110),
+        width: normalize(110),
         height: normalize(25),
         marginHorizontal: normalize(20)
     },
@@ -161,10 +274,86 @@ const styles = StyleSheet.create({
         zIndex: 1,
         top: normalize(11),
         left: 10
+    },
+    quizListWrapper: {
+        width: '100%',
+        alignItems: 'center',
+        marginLeft: normalize(5)
+    },
+    quizListWrapperContainer: {
+        width: '100%',
+        justifyContent: 'space-around'
+    },
+    quizWrapper: {
+        width: '28.33%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: normalize(10),
+        alignSelf: 'center',
+    },
+    linearGradient: {
+        width: '100%',
+        borderRadius: normalize(18),
+        borderWidth: 1,
+        borderColor: '#7D7D7E',
+        height: normalize(110)
+    },
+    quizImage: {
+        width: '90%',
+        height: normalize(110),
+        borderRadius: normalize(18),
+    },
+    quizTitle: {
+        width: '100%',
+        textAlign: 'center',
+        marginTop: normalize(10),
+        color: colors.white
+    },
+    referAndEarnWrapper: {
+        width: '90%',
+        alignSelf: 'center',
+        height: normalize(150),
+        alignItems: 'center',
+        marginVertical: normalize(20)
+    },
+    referAndEarnImage: {
+        width: '100%',
+        flex: 1,
+        alignSelf: 'center',
+        borderRadius: normalize(5),
+    },
+    footerWrapper: {
+        backgroundColor: colors.footer,
+        height: normalize(150),
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+        justifyContent: 'center'
+    },
+    footerImage: {
+        height: normalize(95),
+        width: normalize(95),
+        marginRight: normalize(40)
+    },
+    footerText: {
+        fontSize: fonts.size.font12,
+        marginTop: normalize(5)
+    },
+    knowMoreWrapper: {
+        flexDirection: 'row',
+        width: '100%'
+    },
+    knowMoreButton: {
+        marginTop: normalize(8),
+        marginLeft: normalize(5)
+    },
+    knowMoreText: {
+        color: colors.primary,
+        fontSize: fonts.size.font10
     }
 })
 const mapStateToProps = state => {
-    return{
+    return {
         user: state.user
     }
 }

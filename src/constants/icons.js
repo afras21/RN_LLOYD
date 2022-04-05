@@ -11,6 +11,7 @@ const DASHBOARD = require('../assets/icons/dashboard.png');
 const NOTIFICATION = require('../assets/icons/notification.png');
 const WALLET = require('../assets/icons/wallet.png');
 const SEARCH = require('../assets/icons/search.png');
+const FOOTER = require('../assets/icons/footer.png');
 
 export default {
     LOGO,
@@ -24,5 +25,6 @@ export default {
     DASHBOARD,
     NOTIFICATION,
     WALLET,
-    SEARCH
+    SEARCH,
+    FOOTER
 }

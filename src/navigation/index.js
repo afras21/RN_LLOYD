@@ -6,6 +6,7 @@ import {
     HomeScreen
 } from '../screens';
 import BottomTab from './BottomTabNavigationStack';
+import Drawer from './DrawerNavigationStack';
 
 const MainStack = createStackNavigator();
 
@@ -31,6 +32,11 @@ const MainStackNavigation = () => {
                 name='BottomTab'
                 component={BottomTab}
             />
+            {/* <MainStack.Screen
+                options={{ headerShown: false }}
+                name='Drawer'
+                component={Drawer}
+            /> */}
 
         </MainStack.Navigator>
     )

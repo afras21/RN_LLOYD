@@ -14,7 +14,8 @@ const colors = {
     black: '#000000',
     gray: '#F5F8F9',
     progressGray: '#979797',
-    bottomTabBgColor: '#272B30'
+    bottomTabBgColor: '#272B30',
+    footer: '#1C1C1C'
 }
 
 export default colors;
