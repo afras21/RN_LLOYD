@@ -27,19 +27,19 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
                                 // resizeMode={'stretch'}
                                 borderRadius={10}
                             /> */}
-                            <ImageBackground
-                                source={item.src}
-                                style={styles.buttonImage}
-                                resizeMode={'stretch'}
-                                // borderRadius={10}
-                            />
+                            <View style={styles.buttonImage}>
+                                <ImageBackground
+                                    source={item.src}
+                                    style={styles.image}
+                                />
+                            </View>
                         </TouchableOpacity>
                     )
                 }}
                 activeSlideAlignment={'center'}
                 layout={'default'}
                 sliderWidth={metrics.screenWidth - 0}
-                itemWidth={metrics.screenWidth - 90}
+                itemWidth={metrics.screenWidth - 110}
                 loop={true}
                 onSnapToItem={changeIndex}
             />
@@ -52,7 +52,6 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
                 inactiveDotStyle={styles.inActiveDotStyle}
                 inactiveDotOpacity={.7}
                 inactiveDotScale={1}
-                
             />
         </View>
     )
@@ -66,9 +65,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     buttonImage: {
-        height: normalize(90),
+        height: normalize(100),
         width: '100%',
-        // width: metrics.screenWidth - 80
+        borderRadius:15,
+        overflow: 'hidden'
     },
     dotStyle: {
         width: 30,
@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.progressGray,
         marginHorizontal: -5,
         width: 14
+    },
+    image: {
+        height: '100%',
+        width: '100%',
     }
 })
 
