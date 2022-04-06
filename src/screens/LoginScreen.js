@@ -26,6 +26,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { connect } from 'react-redux';
 import { saveUser } from '../store/actions/user.action';
 
+const TEMP_AUTH_TOKEN = 'LSIBFUWLIEUB19287BISFBWIUB29378BISC'; // REMOVABLE LATER
+
 GoogleSignin.configure({
     // Mandatory method to call before calling signIn()
     scopes: strings.LOGIN_WITH_GOOGLE_SCOPES,
@@ -40,64 +42,71 @@ const LoginScreen = ({ navigation, saveUser }) => {
         navigation.navigate('BottomTab');
     }
 
-    const googleLoginHandler = async () => {
-        try{
-            await GoogleSignin.hasPlayServices();
-            const data = await GoogleSignin.signIn();
-            const { user } = data;
-            const userData = {
-                id: user.id,
-                loginProvider: 'Google', // Google or Facebook
-                name: user.name,
-                email: user.email,
-                avatar: user.photo,
-                accessToken: data.idToken
-            }
-            storeUserDataToStore(userData);
-        }catch(error){  
-            console.log(error.toString())
-        }
+    /**
+     * @todo remove later - using to skip google and fb login
+     */
+    const tempLoginHandler = () => {
+        storeUserDataToStore({accessToken: TEMP_AUTH_TOKEN})
     }
 
-    const facebookLoginHandler = async() => {
-        try{
-            const login = await LoginManager.logInWithPermissions(strings.LOGIN_WITH_FACEBOOK_PERMISSIONS);
-            if (login.isCancelled === true) {
-                console.log('Login cancelled');
-                return;
-            }
-            const data = await AccessToken.getCurrentAccessToken();
-            const accessToken = data.accessToken.toString();
-            const PROFILE_REQUEST_PARAMS = {
-                fields: {
-                    string: strings.LOGIN_WITH_FACEBOOK_PROFILE_REQUEST_PARAMS,
-                }
-            };
-            const profileRequest = new GraphRequest(
-                strings.LOGIN_WITH_FACEBOOK_GRAPH_REQUEST_ROUTE,
-                { accessToken, parameters: PROFILE_REQUEST_PARAMS },
-                (error, user) => {
-                    if (error) {
-                        console.log('login info has error: ' + error);
-                    } else {
-                        const userData = {
-                            id: user.id,
-                            loginProvider: 'Facebook', // Google or Facebook
-                            name: user.name,
-                            email: user.email,
-                            avatar: user?.picture?.data?.url,
-                            accessToken
-                        }
-                        storeUserDataToStore(userData);
-                    }
-                },
-            );
-            new GraphRequestManager().addRequest(profileRequest).start();
+    // const googleLoginHandler = async () => {
+    //     try{
+    //         await GoogleSignin.hasPlayServices();
+    //         const data = await GoogleSignin.signIn();
+    //         const { user } = data;
+    //         const userData = {
+    //             id: user.id,
+    //             loginProvider: 'Google', // Google or Facebook
+    //             name: user.name,
+    //             email: user.email,
+    //             avatar: user.photo,
+    //             accessToken: data.idToken
+    //         }
+    //         storeUserDataToStore(userData);
+    //     }catch(error){  
+    //         console.log(error.toString())
+    //     }
+    // }
+
+    // const facebookLoginHandler = async() => {
+    //     try{
+    //         const login = await LoginManager.logInWithPermissions(strings.LOGIN_WITH_FACEBOOK_PERMISSIONS);
+    //         if (login.isCancelled === true) {
+    //             console.log('Login cancelled');
+    //             return;
+    //         }
+    //         const data = await AccessToken.getCurrentAccessToken();
+    //         const accessToken = data.accessToken.toString();
+    //         const PROFILE_REQUEST_PARAMS = {
+    //             fields: {
+    //                 string: strings.LOGIN_WITH_FACEBOOK_PROFILE_REQUEST_PARAMS,
+    //             }
+    //         };
+    //         const profileRequest = new GraphRequest(
+    //             strings.LOGIN_WITH_FACEBOOK_GRAPH_REQUEST_ROUTE,
+    //             { accessToken, parameters: PROFILE_REQUEST_PARAMS },
+    //             (error, user) => {
+    //                 if (error) {
+    //                     console.log('login info has error: ' + error);
+    //                 } else {
+    //                     const userData = {
+    //                         id: user.id,
+    //                         loginProvider: 'Facebook', // Google or Facebook
+    //                         name: user.name,
+    //                         email: user.email,
+    //                         avatar: user?.picture?.data?.url,
+    //                         accessToken
+    //                     }
+    //                     storeUserDataToStore(userData);
+    //                 }
+    //             },
+    //         );
+    //         new GraphRequestManager().addRequest(profileRequest).start();
             
-        }catch(error){
-            console.log('Login fail with error: ' + error);
-        }
-    }
+    //     }catch(error){
+    //         console.log('Login fail with error: ' + error);
+    //     }
+    // }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -111,11 +120,11 @@ const LoginScreen = ({ navigation, saveUser }) => {
             </Text>
         
             <GoogleButton
-                onPress={googleLoginHandler}
+                onPress={tempLoginHandler}
             />
 
             <FacebookButton
-                onPress={facebookLoginHandler}
+                onPress={tempLoginHandler}
             />
 
             <View style={styles.servicePolicyView}>
