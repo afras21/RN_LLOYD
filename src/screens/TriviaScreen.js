@@ -3,18 +3,18 @@ import React from 'react-native'
 import { SafeAreaView, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 const TriviaScreen = (props) => {
-    const navigation = useNavigation();
-    const { triviaDetails } = props.route.params;
+    // const navigation = useNavigation();
+    const { item } = props.route.params;
     return (
         <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
-            <Header navigation={navigation}/>
+            <Header navigation={props.navigation}/>
         </SafeAreaView>
     )
 }
 
 const Header = ({navigation}) => {
 
-    retun (
+    return (
         <Text>Header</Text>
     )
 }
