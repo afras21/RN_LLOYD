@@ -104,6 +104,9 @@ const HomeScreen = ({ user }) => {
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
+    const { text1, text2 } = strings.HOME_SCREEN_BUTTONS[activeButtonIndex]
+    const allTriviaHeaderText = `${text1} ${text2}`
+
     const onChangeSlider1 = (index) => {
         setActiveIndex(index)
     };
@@ -112,7 +115,7 @@ const HomeScreen = ({ user }) => {
         return (
             <TouchableOpacity
                 style={styles.quizWrapper}
-                key={index}
+                key={item.id}
             >
                 <LinearGradient
                     colors={strings.HOME_SCREEN_QUIZ_LINEAR_GRADIENT_COLORS}
@@ -140,6 +143,7 @@ const HomeScreen = ({ user }) => {
         return(
             <View style={styles.quizListWrapper}>
                 <FlatList
+                    keyExtractor={(item) => item.id}
                     data={data}
                     numColumns={strings.NO_OF_COLUMNS_FLATLIST_HOME_SCREEN}
                     contentContainerStyle={styles.quizListWrapperContainer}
@@ -203,46 +207,42 @@ const HomeScreen = ({ user }) => {
 
                 <Slider2 data={data} />
 
-                <View style={styles.buttonWrapper}>
-                    <FlatList
-                        horizontal
-                        contentContainerStyle={{
-                            width: '100%',
-                            justifyContent: 'space-around'
-                        }}
-                        renderItem={({ index, item }) => {
-                            return (
-                                <Button
-                                    keyExtractor={item => item.text1}
-                                    src={item.src}
-                                    text1={item.text1}
-                                    text2={item.text2}
-                                    selected={activeButtonIndex === index}
-                                    onPress={() => setActiveButtonIndex(index)}
-                                />
-                            )
-                        }}
-                        data={strings.HOME_SCREEN_BUTTONS}
-                    />
-                </View>
+                <TriviaCategory
+                    data={strings.HOME_SCREEN_BUTTONS}
+                    setActiveButtonIndex={setActiveButtonIndex}
+                    activeButtonIndex={activeButtonIndex}
+                />
 
-                <Text
-                    style={{
-                        width: '90%',
-                        alignSelf: 'center',
-                        marginVertical: normalize(10),
-                        fontSize: fonts.size.font14,
-                        color: colors.white
-                    }}
-                >
-                    {`${strings.HOME_SCREEN_BUTTONS[activeButtonIndex].text1} ${strings.HOME_SCREEN_BUTTONS[activeButtonIndex].text2}`}
-                </Text>
+                <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
                 <RenderQuizItems data={strings.HOME_SLIDER2} />
                 
                 <RenderFooter />
 
             </ScrollView>
         </SafeAreaView>
+    )
+}
+
+const TriviaCategory = ({data, setActiveButtonIndex, activeButtonIndex}) => {
+    const renderItem = ({ item, index }) => (
+        <Button
+            keyExtractor={item => item.text1}
+            src={item.src}
+            text1={item.text1}
+            text2={item.text2}
+            selected={activeButtonIndex === index}
+            onPress={() => setActiveButtonIndex(index)}
+        />
+    )
+    return (
+        <View style={styles.buttonWrapper}>
+            <FlatList
+                horizontal
+                contentContainerStyle={styles.triviaCategoryContent}
+                renderItem={renderItem}
+                data={data}
+            />
+        </View>
     )
 }
 
@@ -405,6 +405,17 @@ const styles = StyleSheet.create({
         marginVertical: normalize(10),
         width: '90%',
         alignSelf: 'center'
+    },
+    allTriviaHeader: {
+        width: '90%',
+        alignSelf: 'center',
+        marginVertical: normalize(10),
+        fontSize: fonts.size.font14,
+        color: colors.white
+    },
+    triviaCategoryContent: {
+        width: '100%',
+        justifyContent: 'space-around'
     }
 })
 const mapStateToProps = state => {

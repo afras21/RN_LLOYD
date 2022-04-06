@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { 
     FlatList,
@@ -12,31 +13,31 @@ import { rgbaColor } from 'react-native-reanimated/src/reanimated2/Colors';
 import { strings } from '../../constants';
 import { colors, fonts, metrics } from '../../theme';
 
-const renderItem = ({ item }) => {
-    return(
-        <TouchableOpacity
-            key={item.id}
-            style={styles.renderItemWrapper}
-            onPress={() => {}}
-        >
-                <Image 
-                    style={{ flex:1 }} 
-                    borderRadius={15}
-                    blurRadius={6}
-                    source={{ uri: strings.SLIDER2_IMAGE }} 
-                    resizeMode={'cover'} 
-                />
-                <View style={styles.absolute}>
-                    <View style={styles.innerWrapper}>
-                        <Text style={styles.title}>{item?.name}</Text>
-                        <Text style={styles.plays}>{item?.plays} Plays</Text>
-                    </View>
-                </View>
-        </TouchableOpacity>
-    )
-}
-
 const Slider2 = ({ data }) => {
+    const navigation = useNavigation();
+    const renderItem = ({ item }) => {
+        return(
+            <TouchableOpacity
+                key={item.id}
+                style={styles.renderItemWrapper}
+                onPress={() => handleSelection(item, navigation)}
+            >
+                    <Image 
+                        style={{ flex:1 }} 
+                        borderRadius={15}
+                        blurRadius={6}
+                        source={{ uri: item.image }} 
+                        resizeMode={'cover'} 
+                    />
+                    <View style={styles.absolute}>
+                        <View style={styles.innerWrapper}>
+                            <Text style={styles.title}>{item?.name}</Text>
+                            <Text style={styles.plays}>{item?.plays} Plays</Text>
+                        </View>
+                    </View>
+            </TouchableOpacity>
+        )
+    }
     return (
         <View style={styles.container}>
             <View style={styles.headingWrapper}>
@@ -57,6 +58,13 @@ const Slider2 = ({ data }) => {
             />
         </View>
     )
+}
+
+
+
+const handleSelection = (item, navigation) => {
+    alert(JSON.stringify(navigation))
+    // navigation.navigate('TriviaScreen', { item, navigation })
 }
 
 const styles = StyleSheet.create({
