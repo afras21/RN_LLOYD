@@ -16,9 +16,7 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <NativeBaseProvider>
             <MainStackNavigation />
-          </NativeBaseProvider>
         </NavigationContainer>
       </PersistGate>
     </Provider>
