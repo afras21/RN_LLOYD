@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     FlatList,
     Image,
@@ -99,7 +99,11 @@ const FooterText = ({ text }) => {
     )
 }
 
-const HomeScreen = ({ user }) => {
+const HomeScreen = ({ user, navigation }) => {
+
+    useEffect(() => {
+        alert(JSON.stringify(navigation));
+    })
 
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
@@ -205,7 +209,7 @@ const HomeScreen = ({ user }) => {
                     changeIndex={onChangeSlider1}
                 />
 
-                <Slider2 data={data} />
+                <Slider2 data={data} navigation={navigation}/>
 
                 <TriviaCategory
                     data={strings.HOME_SCREEN_BUTTONS}

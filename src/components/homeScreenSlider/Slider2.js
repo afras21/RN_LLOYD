@@ -13,8 +13,7 @@ import { rgbaColor } from 'react-native-reanimated/src/reanimated2/Colors';
 import { strings } from '../../constants';
 import { colors, fonts, metrics } from '../../theme';
 
-const Slider2 = ({ data }) => {
-    const navigation = useNavigation();
+const Slider2 = ({ data, navigation }) => {
     const renderItem = ({ item }) => {
         return(
             <TouchableOpacity
