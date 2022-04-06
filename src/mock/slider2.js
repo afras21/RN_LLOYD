@@ -2,25 +2,25 @@ export const data = [
         {
           "id": "TQ1",
           "name": "Basketball Trivia",
-          "plays": 82,
+          "plays": 123482,
           "image": "https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg"
         },
         {
           "id": "TQ2",
           "name": "Football Trivia",
-          "plays": 100,
+          "plays": 102300,
           "image": "https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg"
         },
         {
           "id": "TQ3",
           "name": "Tennis Trivia",
-          "plays": 95,
+          "plays": 98723685,
           "image": "https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg"
         },
         {
           "id": "TQ4",
           "name": "Baseball Trivia",
-          "plays": 54,
+          "plays": 523764,
           "image": "https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg"
         },
         // {

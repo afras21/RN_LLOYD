@@ -19,6 +19,7 @@ const BATTLE = require('../assets/icons/battle.png')
 const CROWN = require('../assets/icons/crown.png')
 const GIFT = require('../assets/icons/gift.png')
 const FOOTER = require('../assets/icons/footer.png');
+const BACK_BUTTON = require('../assets/icons/backButton.png');
 
 
 export default {
@@ -40,5 +41,6 @@ export default {
     BATTLE,
     CROWN,
     GIFT,
-    FOOTER
+    FOOTER,
+    BACK_BUTTON
 }

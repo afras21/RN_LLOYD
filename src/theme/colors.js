@@ -15,7 +15,11 @@ const colors = {
     gray: '#F5F8F9',
     progressGray: '#979797',
     bottomTabBgColor: '#272B30',
-    footer: '#1C1C1C'
+    footer: '#1C1C1C',
+    greenDark: '#0F4F2A',
+    darkGrey: '#282827',
+    yellow: '#FFD220',
+    blue: '#384369'
 }
 
 export default colors;

@@ -13,13 +13,13 @@ import { rgbaColor } from 'react-native-reanimated/src/reanimated2/Colors';
 import { strings } from '../../constants';
 import { colors, fonts, metrics } from '../../theme';
 
-const Slider2 = ({ data, navigation }) => {
+const Slider2 = ({ data, handleTrendTriviaSelection }) => {
     const renderItem = ({ item }) => {
         return(
             <TouchableOpacity
                 key={item.id}
                 style={styles.renderItemWrapper}
-                onPress={() => handleSelection(item, navigation)}
+                onPress={() => handleTrendTriviaSelection(item)}
             >
                     <Image 
                         style={{ flex:1 }} 
@@ -57,13 +57,6 @@ const Slider2 = ({ data, navigation }) => {
             />
         </View>
     )
-}
-
-
-
-const handleSelection = (item, navigation) => {
-    alert(JSON.stringify(navigation))
-    // navigation.navigate('TriviaScreen', { item, navigation })
 }
 
 const styles = StyleSheet.create({

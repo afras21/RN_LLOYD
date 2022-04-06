@@ -30,6 +30,12 @@ import Slider2 from '../components/homeScreenSlider/Slider2';
 
 import { data } from '../mock/slider2'
 import Button from '../components/homeScreenSlider/Button';
+import TriviaScreen from './TriviaScreen';
+
+const allPages = {
+    TREND_TRIVIA: 'trivia',
+    HOME: 'home'
+}
 
 const Header = ({ user }) => {
     return (
@@ -101,15 +107,14 @@ const FooterText = ({ text }) => {
 
 const HomeScreen = ({ user, navigation }) => {
 
-    useEffect(() => {
-        alert(JSON.stringify(navigation));
-    })
-
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
     const { text1, text2 } = strings.HOME_SCREEN_BUTTONS[activeButtonIndex]
     const allTriviaHeaderText = `${text1} ${text2}`
+
+    const [pageState, setPageState] = useState(allPages.HOME);
+    const [selectedTrivia, setSelectedTrivia] = useState('');
 
     const onChangeSlider1 = (index) => {
         setActiveIndex(index)
@@ -196,31 +201,43 @@ const HomeScreen = ({ user, navigation }) => {
         )
     }
 
+    const handleTrendTriviaSelection = (item) => {
+        // alert(JSON.stringify(item))
+        setSelectedTrivia(item)
+        setPageState(allPages.TREND_TRIVIA)
+    }
+
 
     return (
         <SafeAreaView  nestedScrollEnabled={true} style={styles.container}>
             <StatusBar backgroundColor={colors.bottomTabBgColor} />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
-                <Header user={user} />
-                
-                <Slider1
-                    data={strings.HOME_SLIDER1}
-                    activeIndex={activeIndex}
-                    changeIndex={onChangeSlider1}
-                />
+            {
+                pageState === allPages.TREND_TRIVIA ? <TriviaScreen item={selectedTrivia}/>
+                :
+                <>
+                        <Header user={user} />
 
-                <Slider2 data={data} navigation={navigation}/>
+                        <Slider1
+                            data={strings.HOME_SLIDER1}
+                            activeIndex={activeIndex}
+                            changeIndex={onChangeSlider1}
+                        />
 
-                <TriviaCategory
-                    data={strings.HOME_SCREEN_BUTTONS}
-                    setActiveButtonIndex={setActiveButtonIndex}
-                    activeButtonIndex={activeButtonIndex}
-                />
+                        <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
 
-                <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
-                <RenderQuizItems data={strings.HOME_SLIDER2} />
-                
-                <RenderFooter />
+                        <TriviaCategory
+                            data={strings.HOME_SCREEN_BUTTONS}
+                            setActiveButtonIndex={setActiveButtonIndex}
+                            activeButtonIndex={activeButtonIndex}
+                        />
+
+                        <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
+                        <RenderQuizItems data={strings.HOME_SLIDER2} />
+
+                        <RenderFooter />
+                </>
+            }
 
             </ScrollView>
         </SafeAreaView>
