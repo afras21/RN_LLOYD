@@ -132,6 +132,9 @@ const HomeScreen = ({ user }) => {
                 >
                     {item.name}
                 </Text>
+                <Text  style={styles.quizPlays}>
+                    {item.plays} Plays
+                </Text>
             </TouchableOpacity>
         )
     }
@@ -145,6 +148,11 @@ const HomeScreen = ({ user }) => {
                     contentContainerStyle={styles.quizListWrapperContainer}
                     renderItem={renderQuizItem}
                 />
+                <TouchableOpacity style={styles.quizViewAll}>
+                    <Text style={styles.viewAllText}>
+                        View All
+                    </Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -342,13 +350,15 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: normalize(18),
         borderWidth: 1,
-        borderColor: '#7D7D7E',
+        borderColor: '#505050',
         height: normalize(110)
     },
     quizImage: {
-        width: '90%',
+        width: '100%',
         height: normalize(110),
         borderRadius: normalize(18),
+        borderColor: '#505050',
+        borderWidth: 1
     },
     quizTitle: {
         width: '100%',
@@ -405,6 +415,24 @@ const styles = StyleSheet.create({
         marginVertical: normalize(10),
         width: '90%',
         alignSelf: 'center'
+    },
+    quizViewAll: {
+        width: '96%',
+        alignSelf: 'center',
+        marginVertical: normalize(10),
+        marginBottom: normalize(15)
+    },
+    viewAllText: {
+        fontSize: fonts.size.font14,
+        color: colors.white,
+        fontWeight: fonts.weight.bold,
+        textAlign: 'center'
+    },
+    quizPlays: {
+        marginTop: normalize(5),
+        fontWeight: fonts.weight.semi,
+        fontSize: fonts.size.font10,
+        color: '#999999'
     }
 })
 const mapStateToProps = state => {
