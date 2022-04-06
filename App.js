@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import MainStackNavigation from './src/navigation'
 import { store, persistor } from './src/store/configStore';
+import { NativeBaseProvider, Text, Box } from 'native-base';
+
 
 const App = () => {
   LogBox.ignoreLogs([
@@ -14,7 +16,9 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <MainStackNavigation />
+          <NativeBaseProvider>
+            <MainStackNavigation />
+          </NativeBaseProvider>
         </NavigationContainer>
       </PersistGate>
     </Provider>
