@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { 
     Image, 
+    LogBox, 
     SafeAreaView, 
     StatusBar, 
     StyleSheet, 
@@ -29,6 +30,8 @@ const SplashScreen = ({ navigation }) => {
         }, 2000);
         
     }, []);
+
+    LogBox.ignoreAllLogs();
 
     return (
         <SafeAreaView style={styles.container} >

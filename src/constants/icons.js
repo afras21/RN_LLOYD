@@ -7,6 +7,20 @@ const LEADER_BOARD = require('../assets/icons/leaderBoard.png');
 const REFER_EARN = require('../assets/icons/referAndEarn.png');
 const NFT = require('../assets/icons/nft.png');
 
+const DASHBOARD = require('../assets/icons/dashboard.png');
+const NOTIFICATION = require('../assets/icons/notification.png');
+const WALLET = require('../assets/icons/wallet.png');
+const SEARCH = require('../assets/icons/search.png');
+
+const ELLIPSE = require('../assets/icons/ellipse.png')
+const ELLIPSE_DEFAULT = require('../assets/icons/ellipse_default.png')
+const CATEGORY = require('../assets/icons/category.png')
+const BATTLE = require('../assets/icons/battle.png')
+const CROWN = require('../assets/icons/crown.png')
+const GIFT = require('../assets/icons/gift.png')
+const FOOTER = require('../assets/icons/footer.png');
+
+
 export default {
     LOGO,
     GOOGLE_LOGO,
@@ -15,5 +29,16 @@ export default {
     ACTIVITY,
     LEADER_BOARD,
     REFER_EARN,
-    NFT
+    NFT,
+    DASHBOARD,
+    NOTIFICATION,
+    WALLET,
+    SEARCH,
+    CATEGORY,
+    ELLIPSE,
+    ELLIPSE_DEFAULT,
+    BATTLE,
+    CROWN,
+    GIFT,
+    FOOTER
 }

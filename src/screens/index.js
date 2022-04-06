@@ -5,6 +5,7 @@ import LeaderBoardScreen from './LeaderBoardScreen';
 import HomeScreen from './HomeScreen';
 import ReferAndEarnScreen from './ReferAndEarnScreen';
 import NftScreen from './NftScreen';
+import HelpScreen from './HelpScreen';
 
 export {
     SplashScreen,
@@ -13,5 +14,6 @@ export {
     LeaderBoardScreen,
     HomeScreen,
     ReferAndEarnScreen,
-    NftScreen
+    NftScreen,
+    HelpScreen
 }

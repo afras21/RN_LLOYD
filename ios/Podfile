@@ -23,6 +23,8 @@ target 'base' do
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'baseTests' do
     inherit! :complete
     # Pods for testing
