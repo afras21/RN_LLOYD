@@ -99,8 +99,7 @@ const FooterText = ({ text }) => {
     )
 }
 
-const HomeScreen = ({ user }) => {
-
+const HomeScreen = ({ user, navigation }) => {
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
@@ -113,6 +112,9 @@ const HomeScreen = ({ user }) => {
             <TouchableOpacity
                 style={styles.quizWrapper}
                 key={index}
+                onPress={() => { 
+                    navigation.navigate('TriviaScreen',{ trivia: item });
+                }}
             >
                 <LinearGradient
                     colors={strings.HOME_SCREEN_QUIZ_LINEAR_GRADIENT_COLORS}
