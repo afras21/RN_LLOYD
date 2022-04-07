@@ -41,6 +41,7 @@ const TabBarIcon = ({ focused, src }) => {
 const HomeTabBarIcon = ({ focused, src, onPress }) => {
     return (
         <View style={styles.homeButtonWrapper}>
+            <View  style={styles.curveBottomTab}/>
             <View style={styles.homeButtonInnerWrapper}>
                 <TouchableOpacity
                     style={[styles.homeButton, focused === true ? styles.homeButtonFocused : styles.homeButtonUnFocused]}
@@ -115,6 +116,16 @@ const BottomTabNavigationStack = () => {
 }
 
 const styles = StyleSheet.create({
+    curveBottomTab: {
+        height: normalize(70),
+        width: normalize(70),
+        backgroundColor: colors.bottomTabBgColor,
+        transform: [{ rotate: '45deg' }], bottom: 34,
+        borderTopLeftRadius: 40,
+        borderBottomLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 40,
+    },
     tabBarStyle: {
         backgroundColor: colors.bottomTabBgColor,
         borderTopColor: colors.bottomTabBgColor,

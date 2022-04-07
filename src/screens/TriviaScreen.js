@@ -1,18 +1,20 @@
 import React from 'react'
-import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground, Image, FlatList } from 'react-native'
+import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground, Image, FlatList, ScrollView } from 'react-native'
 import normalize from 'react-native-normalize';
 import { icons } from '../constants';
 import { data } from '../mock/basketBallTrivia';
 import { colors } from '../theme';
 
-const TriviaScreen = (props) => {
-    const { item, onClose } = props;
+const TriviaScreen = ({ navigation, route }) => {
+    const { item } = route.params;
     const { plays, image, name } = item || {};
     return (
-        <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
-            <Header bg={image} plays={plays} name={name} onClose={onClose}/>
-            <ListContainer data={data} />
-        </SafeAreaView>
+        <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+            <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
+                <Header bg={image} plays={plays} name={name} onClose={()=>{navigation.goBack()}}/>
+                <ListContainer data={data} />
+            </SafeAreaView>
+        </ScrollView>
     )
 }
 
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "center"
     },
     headerContainer: {
         flex: 1,

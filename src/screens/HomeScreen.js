@@ -106,7 +106,6 @@ const FooterText = ({ text }) => {
 }
 
 const HomeScreen = ({ user, navigation }) => {
-
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
@@ -124,7 +123,10 @@ const HomeScreen = ({ user, navigation }) => {
         return (
             <TouchableOpacity
                 style={styles.quizWrapper}
-                key={item.id}
+                key={index}
+                onPress={() => { 
+                    navigation.navigate('JoinTriviaScreen',{ trivia: item });
+                }}
             >
                 <LinearGradient
                     colors={strings.HOME_SCREEN_QUIZ_LINEAR_GRADIENT_COLORS}
@@ -144,6 +146,9 @@ const HomeScreen = ({ user, navigation }) => {
                 >
                     {item.name}
                 </Text>
+                <Text  style={styles.quizPlays}>
+                    {item.plays} Plays
+                </Text>
             </TouchableOpacity>
         )
     }
@@ -158,6 +163,11 @@ const HomeScreen = ({ user, navigation }) => {
                     contentContainerStyle={styles.quizListWrapperContainer}
                     renderItem={renderQuizItem}
                 />
+                <TouchableOpacity style={styles.quizViewAll}>
+                    <Text style={styles.viewAllText}>
+                        View All
+                    </Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -203,15 +213,16 @@ const HomeScreen = ({ user, navigation }) => {
 
     
     const handleTrendTriviaSelection = (item) => {
-        setSelectedTrivia(item)
-        setPageState(allPages.TREND_TRIVIA)
+        // setSelectedTrivia(item)
+        // setPageState(allPages.TREND_TRIVIA)
+        navigation.navigate('TriviaScreen', {item: item});
     }
 
     /**
      * on Clicking back button in trivia page
      */
     const handleTriviaClose = () => {
-        setPageState(allPages.HOME)
+        // setPageState(allPages.HOME)
         // setSelectedTrivia('');
     }
 
@@ -220,33 +231,26 @@ const HomeScreen = ({ user, navigation }) => {
         <SafeAreaView  nestedScrollEnabled={true} style={styles.container}>
             <StatusBar backgroundColor={colors.bottomTabBgColor} />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
-            {
-                pageState === allPages.TREND_TRIVIA ? <TriviaScreen item={selectedTrivia} onClose={handleTriviaClose}/>
-                :
-                <>
-                        <Header user={user} />
+                <Header user={user} />
 
-                        <Slider1
-                            data={strings.HOME_SLIDER1}
-                            activeIndex={activeIndex}
-                            changeIndex={onChangeSlider1}
-                        />
+                <Slider1
+                    data={strings.HOME_SLIDER1}
+                    activeIndex={activeIndex}
+                    changeIndex={onChangeSlider1}
+                />
 
-                        <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
+                <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
 
-                        <TriviaCategory
-                            data={strings.HOME_SCREEN_BUTTONS}
-                            setActiveButtonIndex={setActiveButtonIndex}
-                            activeButtonIndex={activeButtonIndex}
-                        />
+                <TriviaCategory
+                    data={strings.HOME_SCREEN_BUTTONS}
+                    setActiveButtonIndex={setActiveButtonIndex}
+                    activeButtonIndex={activeButtonIndex}
+                />
 
-                        <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
-                        <RenderQuizItems data={strings.HOME_SLIDER2} />
+                <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
+                <RenderQuizItems data={strings.HOME_SLIDER2} />
 
-                        <RenderFooter />
-                </>
-            }
-
+                <RenderFooter />
             </ScrollView>
         </SafeAreaView>
     )
@@ -371,13 +375,15 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: normalize(18),
         borderWidth: 1,
-        borderColor: '#7D7D7E',
+        borderColor: '#505050',
         height: normalize(110)
     },
     quizImage: {
-        width: '90%',
+        width: '100%',
         height: normalize(110),
         borderRadius: normalize(18),
+        borderColor: '#505050',
+        borderWidth: 1
     },
     quizTitle: {
         width: '100%',
@@ -445,6 +451,24 @@ const styles = StyleSheet.create({
     triviaCategoryContent: {
         width: '100%',
         justifyContent: 'space-around'
+    },
+    quizViewAll: {
+        width: '96%',
+        alignSelf: 'center',
+        marginVertical: normalize(10),
+        marginBottom: normalize(15)
+    },
+    viewAllText: {
+        fontSize: fonts.size.font14,
+        color: colors.white,
+        fontWeight: fonts.weight.bold,
+        textAlign: 'center'
+    },
+    quizPlays: {
+        marginTop: normalize(5),
+        fontWeight: fonts.weight.semi,
+        fontSize: fonts.size.font10,
+        color: '#999999'
     }
 })
 const mapStateToProps = state => {

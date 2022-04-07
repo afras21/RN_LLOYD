@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { 
     SplashScreen,
     LoginScreen,
-    HomeScreen,
-    TriviaScreen
+    TriviaScreen,
+    JoinTriviaScreen
 } from '../screens';
 import BottomTab from './BottomTabNavigationStack';
 import Drawer from './DrawerNavigationStack';
@@ -27,7 +27,6 @@ const MainStackNavigation = () => {
                 name='LoginScreen'
                 component={LoginScreen}
             />
-            {/* TODO: HomeScreen will be moved to Bottom Tab  */}
             <MainStack.Screen
                 options={{ headerShown: false }}
                 name='BottomTab'
@@ -37,6 +36,11 @@ const MainStackNavigation = () => {
                 options={{ headerShown: false }}
                 name='TriviaScreen'
                 component={TriviaScreen}
+            />
+            <MainStack.Screen
+                options={{ headerShown: false }}
+                name='JoinTriviaScreen'
+                component={JoinTriviaScreen}
             />
             {/* <MainStack.Screen
                 options={{ headerShown: false }}
