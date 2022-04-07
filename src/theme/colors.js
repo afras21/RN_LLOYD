@@ -18,8 +18,12 @@ const colors = {
     footer: '#1C1C1C',
     greenDark: '#0F4F2A',
     darkGrey: '#282827',
+    lightGrey: '#6B6B6B',
     yellow: '#FFD220',
-    blue: '#384369'
+    blue: '#384369',
+    darkBlue: '1B223E',
+    lightGreen: '#007230',
+    semiGrey: '#616161'
 }
 
 export default colors;

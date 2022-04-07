@@ -20,6 +20,9 @@ const CROWN = require('../assets/icons/crown.png')
 const GIFT = require('../assets/icons/gift.png')
 const FOOTER = require('../assets/icons/footer.png');
 const BACK_BUTTON = require('../assets/icons/backButton.png');
+const SWORD = require('../assets/icons/sword.png');
+const TROPHY = require('../assets/icons/trophy.png');
+const PLAYS = require('../assets/icons/plays.png');
 
 
 export default {
@@ -42,5 +45,8 @@ export default {
     CROWN,
     GIFT,
     FOOTER,
-    BACK_BUTTON
+    BACK_BUTTON,
+    SWORD,
+    TROPHY,
+    PLAYS
 }

@@ -46,7 +46,7 @@ export const data = [
         "name": "American Basketball ",
         "joined": "",
         "winningAmount": "Winnings $25",
-        "entryFee": "$5",
+        "entryFee": "Free",
         "maxPlayers": "5 Players",
         "totalWinner": "3 Winners",
         "plays": "456 Plays",
