@@ -201,10 +201,18 @@ const HomeScreen = ({ user, navigation }) => {
         )
     }
 
+    
     const handleTrendTriviaSelection = (item) => {
-        // alert(JSON.stringify(item))
         setSelectedTrivia(item)
         setPageState(allPages.TREND_TRIVIA)
+    }
+
+    /**
+     * on Clicking back button in trivia page
+     */
+    const handleTriviaClose = () => {
+        setPageState(allPages.HOME)
+        // setSelectedTrivia('');
     }
 
 
@@ -213,7 +221,7 @@ const HomeScreen = ({ user, navigation }) => {
             <StatusBar backgroundColor={colors.bottomTabBgColor} />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
             {
-                pageState === allPages.TREND_TRIVIA ? <TriviaScreen item={selectedTrivia}/>
+                pageState === allPages.TREND_TRIVIA ? <TriviaScreen item={selectedTrivia} onClose={handleTriviaClose}/>
                 :
                 <>
                         <Header user={user} />

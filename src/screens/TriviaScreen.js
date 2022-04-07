@@ -6,17 +6,17 @@ import { data } from '../mock/basketBallTrivia';
 import { colors } from '../theme';
 
 const TriviaScreen = (props) => {
-    const { item } = props;
+    const { item, onClose } = props;
     const { plays, image, name } = item || {};
     return (
         <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
-            <Header bg={image} plays={plays} name={name} />
+            <Header bg={image} plays={plays} name={name} onClose={onClose}/>
             <ListContainer data={data} />
         </SafeAreaView>
     )
 }
 
-const Header = ({ bg, plays, name }) => {
+const Header = ({ bg, plays, name, onClose }) => {
     const imgSource = { uri: bg }
 
     return (
@@ -24,7 +24,7 @@ const Header = ({ bg, plays, name }) => {
             <View style={styles.headerContainer}>
                 <View style={styles.backContainer}>
                     <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity onPress={() => alert('clicked')}>
+                        <TouchableOpacity onPress={onClose}>
                             <Image source={icons.BACK_BUTTON} style={styles.backButtonIconStyles} />
                         </TouchableOpacity>
                         <Text style={styles.triviNameStyle}>{name}</Text>
