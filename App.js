@@ -1,4 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native'
+import { NativeBaseProvider } from 'native-base';
 import React from 'react'
 import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
@@ -11,13 +12,15 @@ const App = () => {
     "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
   ]);
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <NavigationContainer>
-          <MainStackNavigation />
-        </NavigationContainer>
-      </PersistGate>
-    </Provider>
+    <NativeBaseProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <MainStackNavigation />
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
+    </NativeBaseProvider>
   )
 }
 

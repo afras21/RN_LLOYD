@@ -1,3 +1,4 @@
+import { Actionsheet } from 'native-base';
 import React, { useState } from 'react';
 import {
     SafeAreaView,
@@ -7,12 +8,13 @@ import {
     StyleSheet,
     StatusBar,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    TextInput
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import { icons, strings } from '../constants';
-import { colors, fonts } from '../theme';
+import { colors, fonts, metrics } from '../theme';
 
 const data = {
     users: [
@@ -60,9 +62,9 @@ const TriviaScreen = ({ navigation, route }) => {
 
     const { trivia } = route.params;
     const NameCard = ({ user, backgroundColor }) => (
-        <View style={[styles.nameCard,  { backgroundColor: backgroundColor }]}>
-            <Image 
-                source={{uri: user.avatar}}
+        <View style={[styles.nameCard, { backgroundColor: backgroundColor }]}>
+            <Image
+                source={{ uri: user.avatar }}
                 style={styles.userIcon}
             />
             <Text style={styles.nameCardName}> {user?.name}</Text>
@@ -83,6 +85,22 @@ const TriviaScreen = ({ navigation, route }) => {
             </View>
         )
     }
+
+    const [actionSheet, setActionSheet] = useState({
+        isOpen: false,
+    });
+
+    const [coupon, setCoupon] = useState({
+        value: '',
+        isApplied: false
+    });
+
+    const joinContestHandler = () => {
+        setActionSheet({
+            isOpen: true
+        })
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -165,26 +183,26 @@ const TriviaScreen = ({ navigation, route }) => {
                         />
                     </View>
                 </View>
-                <View style={styles.separatorLine}/>
+                <View style={styles.separatorLine} />
                 <View style={styles.tabHeaderWrapper}>
                     <View style={styles.tabHeaderButtonWrapper}>
                         <TouchableOpacity
-                            style={[styles.tabHeaderButton, {borderBottomWidth: selected === 'details' ? 4 : 0,}]}
+                            style={[styles.tabHeaderButton, { borderBottomWidth: selected === 'details' ? 4 : 0, }]}
                             onPress={() => {
                                 setSelected('details');
                             }}
                         >
-                            <Text style={[styles.tabHeaderText, {color: selected === 'details' ? 'white' : 'gray'}]}>
+                            <Text style={[styles.tabHeaderText, { color: selected === 'details' ? 'white' : 'gray' }]}>
                                 Details
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={[styles.tabHeaderButton, {borderBottomWidth: selected === 'leaderBoard' ? 4 : 0,}]}
+                            style={[styles.tabHeaderButton, { borderBottomWidth: selected === 'leaderBoard' ? 4 : 0, }]}
                             onPress={() => {
                                 setSelected('leaderBoard');
                             }}
                         >
-                            <Text style={[styles.tabHeaderText, {color: selected === 'leaderBoard' ? 'white' : 'gray'}]}>
+                            <Text style={[styles.tabHeaderText, { color: selected === 'leaderBoard' ? 'white' : 'gray' }]}>
                                 Leaderboard
                             </Text>
                         </TouchableOpacity>
@@ -237,7 +255,7 @@ const TriviaScreen = ({ navigation, route }) => {
                                         Game Rules
                                     </Text>
                                     {
-                                        data?.gameRules.map(item => 
+                                        data?.gameRules.map(item =>
                                             <View style={styles.bulletPoint}>
                                                 <Image
                                                     source={icons.BULLET_POINT}
@@ -250,7 +268,7 @@ const TriviaScreen = ({ navigation, route }) => {
                                         )
 
                                     }
-                                    
+
                                 </View>
                             </ScrollView>
                             :
@@ -262,56 +280,321 @@ const TriviaScreen = ({ navigation, route }) => {
                                 </View>
 
                                 <View style={styles.nameCardWrapper}>
-                                
+
                                     {data?.users?.map((item, index) => <NameCard backgroundColor={index % 2 === 0 ? '#1C1C1C' : '#272727'} user={item} />)}
                                 </View>
 
                                 <View style={styles.footerWrapper}>
-                                    <Image 
-                                        resizeMode='contain' 
-                                        style={styles.footerImage} 
-                                        source={icons.SECURE} 
+                                    <Image
+                                        resizeMode='contain'
+                                        style={styles.footerImage}
+                                        source={icons.SECURE}
                                     />
                                 </View>
                             </View>
                     }
                 </View>
                 <View style={styles.joinUsButtonWrapper}>
-                    <TouchableOpacity style={styles.joinUsButton}>
+                    <TouchableOpacity
+                        style={styles.joinUsButton}
+                        onPress={joinContestHandler}
+                    >
                         <Text style={styles.joinUsText}>
                             Join Contest ${data.entryFee}
                         </Text>
                     </TouchableOpacity>
                 </View>
+
+                <Actionsheet
+                    isOpen={actionSheet.isOpen}
+                    onClose={() => {
+                        setActionSheet({
+                            isOpen: false
+                        });
+                        setCoupon({
+                            isApplied: false
+                        })
+                    }}
+                    hideDragIndicator={true}
+                >
+                    <Actionsheet.Content style={styles.actionSheetWrapper}>
+                        <View style={styles.actionSheetInnerWrapper}>
+                            <View style={styles.actionSheetHeaderWrapper}> 
+                                <Text style={styles.actionSheetHeaderConfirmation}>
+                                    Confirmation
+                                </Text>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        setActionSheet({
+                                            isOpen: false
+                                        })
+                                        setCoupon({
+                                            isApplied: false
+                                        })
+                                    }}
+                                >
+                                <Image
+                                    source={icons.CLOSE}
+                                    style={styles.closeIcon}
+                                />
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles.subHeadingText}>
+                                Balance : Deposit + Winnings = $75
+                            </Text>
+                            <View style={styles.subHeadingWrapper}>
+                                <Text style={styles.subHeaderText}>
+                                    Entry
+                                </Text>
+                                <Text style={styles.toPayText}>
+                                    ${data.entryFee}
+                                </Text>
+                            </View>
+                            <View style={styles.subHeadingWrapper}>
+                                <Text style={styles.subHeaderText}>
+                                    Useable cash bonus
+                                </Text>
+                                <Text style={styles.toPayText}>
+                                    -$1
+                                </Text>
+                            </View>
+                            <Text style={styles.applyCouponTitle}>
+                                Apply an offer
+                            </Text>
+                            <View style={styles.applyCouponTextInputWrapper}>
+                                <TextInput
+                                    style={styles.textInput}
+                                />
+                                <TouchableOpacity
+                                    style={styles.checkButton}
+                                    onPress={()=>{
+                                        setCoupon({
+                                            isApplied: true
+                                        })
+                                    }}
+                                    disabled={coupon.isApplied}
+                                >
+                                    {coupon.isApplied ?
+                                        <Image
+                                            source={icons.CHECKED}
+                                            style={[styles.closeIcon, {alignSelf: 'center'}]}
+                                        />
+                                        :
+                                        <Text style={styles.checkButtonText}>
+                                            CHECK
+                                        </Text>
+                                    }
+                                </TouchableOpacity>
+                            </View>
+                            {
+                                coupon.isApplied === true ?
+                                    <Text style={styles.offerAppliedText}>
+                                        Offer applied
+                                    </Text>
+                                :
+                                    <></>
+                            }
+                            
+                            <View
+                                style={{
+                                    height: coupon.isApplied ? normalize(10) : normalize(30),
+                                    width: '100%'
+                                }}
+                            />
+                            {
+                                coupon.isApplied === true ?
+                                    <View style={styles.subHeadingWrapper}>
+                                        <Text style={styles.subHeaderText}>
+                                            Applied offer
+                                        </Text>
+                                        <Text style={styles.toPayAmount}>
+                                            -$0.5
+                                        </Text>
+                                    </View>
+                                    :
+                                    <></>
+                            }
+                            
+                            <View style={styles.separatorLineActionSheet}/>
+                            <View style={styles.toPayWrapper}>
+                                <Text style={styles.toPayText}>
+                                    To Pay
+                                </Text>
+                                <Text style={styles.toPayAmount}>
+                                    {coupon.isApplied ? `$3.5` :`$4` }
+                                </Text>
+                            </View>
+                            <Text style={styles.helperText}>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Congue vitae dignissim quis nibh fermentum urna.
+                            </Text>
+
+                            <TouchableOpacity style={styles.joinNowWrapper}>
+                                <Text style={styles.joinNowText}>
+                                    Join Now
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </Actionsheet.Content>
+                </Actionsheet>
+
             </LinearGradient>
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    closeIcon: {
+        height: normalize(28),
+        width: normalize(28)
+    },
+    subHeadingText: {
+        marginVertical: normalize(1),
+        width: '92%',
+        alignSelf: 'center',
+        color: colors.white,
+        fontSize: fonts.size.font12,
+        fontWeight: '200'
+    },
+    applyCouponTitle: {
+        marginTop: normalize(5),
+        color: colors.primary,
+        width: '93%',
+        alignSelf: 'center',
+        fontWeight: 'bolder'
+    },
+    applyCouponTextInputWrapper: {
+        flexDirection: 'row',
+        width: '94%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        borderColor: colors.primary,
+        borderWidth: 1,
+        marginTop: normalize(10),
+        borderRadius: normalize(3)
+    },
+    textInput: {
+        backgroundColor: '#303030',
+        width: '83%',
+        padding: normalize(10)
+    },
+    checkButton: {
+        flex: 1
+    },
+    checkButtonText: {
+        color: colors.primary,
+        textAlign: 'center',
+        fontSize: fonts.size.font12,
+        marginRight: normalize(10)
+    },
+    separatorLineActionSheet: {
+        height: normalize(3),
+        backgroundColor: '#C4C4C4',
+        width: '94%',
+        alignSelf: 'center'
+    },
+    offerAppliedText: {
+        width: '92%',
+        alignSelf: 'center',
+        textAlign: 'right',
+        marginTop: normalize(10)
+    },
+    subHeadingWrapper: {
+        marginVertical: normalize(10),
+        width: '92%',
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    subHeaderText: {
+        color: colors.white,
+        fontSize: fonts.size.font14
+    },
+    toPayWrapper: {
+        marginVertical: normalize(10),
+        width: '92%',
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    toPayText: {
+        color: colors.primary,
+        fontSize: fonts.size.font14
+    },
+    toPayAmount: {
+        color: colors.white,
+        fontSize: fonts.size.font14
+    },
+    helperText: {
+        color: colors.white,
+        fontSize: fonts.size.font12,
+        width: '93%',
+        alignSelf: 'center'
+    },
+    joinNowWrapper: {
+        backgroundColor: colors.primary,
+        width: '92%',
+        alignSelf: 'center',
+        padding: normalize(13),
+        borderRadius: normalize(7),
+        position: 'absolute',
+        bottom: normalize(20)
+    },
+    joinNowText: {
+        color: colors.black,
+        textAlign: 'center',
+        fontSize: fonts.size.font14
+    },
+    actionSheetHeaderConfirmation: {
+        color: colors.white,
+        fontSize: fonts.size.font16
+    },
+    actionSheetHeaderWrapper: {
+        flexDirection: 'row',
+        width: '96%',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: normalize(10),
+        alignSelf: 'center',
+        marginVertical: normalize(10)
+    },
+    actionSheetInnerWrapper: { 
+        borderColor: '#4D4D4D',
+        padding: 1,
+        borderWidth: 1,
+        height: '97%',
+        width: '99%',
+        borderStyle: 'dashed',
+        borderTopStartRadius: normalize(30),
+        borderTopRightRadius: normalize(30)
+    },
+    actionSheetWrapper: {
+        height: metrics.screenHeight / 1.6,
+        backgroundColor: '#303030'
+    },
     container: {
         flex: 1,
         backgroundColor: colors.backgroundColor
     },
-    nameCard: { 
-        width: '98%', 
-        alignSelf: 'center', 
+    nameCard: {
+        width: '98%',
+        alignSelf: 'center',
         marginVertical: normalize(4),
-        padding: normalize(10), 
-        borderRadius: normalize(10), 
-        display: 'flex', 
-        flexDirection: 'row', 
-        alignItems: 'center' 
+        padding: normalize(10),
+        borderRadius: normalize(10),
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
     },
-    nameCardName: { 
-        marginLeft: normalize(15), 
+    nameCardName: {
+        marginLeft: normalize(15),
         color: colors.white
     },
-    userIcon: { 
-        width: normalize(32), 
-        height: normalize(32), 
-        backgroundColor: colors.gray, 
-        borderRadius: normalize(20) 
+    userIcon: {
+        width: normalize(32),
+        height: normalize(32),
+        backgroundColor: colors.gray,
+        borderRadius: normalize(20)
     },
     badgeWrapper: {
         flexDirection: 'row'
@@ -503,30 +786,30 @@ const styles = StyleSheet.create({
     leaderBoardTabWrapper: {
         marginTop: normalize(15)
     },
-    leaderBoardTab: { 
-        width: '93%', 
-        alignSelf: 'center' 
+    leaderBoardTab: {
+        width: '93%',
+        alignSelf: 'center'
     },
     leaderBoardTabText: {
         fontSize: fonts.size.font12,
         color: colors.white
     },
-    nameCardWrapper: {  
-        width: '93%', 
-        alignSelf: 'center', 
-        marginVertical: normalize(20), 
-        backgroundColor: '#4F5255', 
-        padding: normalize(5), 
-        borderRadius: normalize(10) 
+    nameCardWrapper: {
+        width: '93%',
+        alignSelf: 'center',
+        marginVertical: normalize(20),
+        backgroundColor: '#4F5255',
+        padding: normalize(5),
+        borderRadius: normalize(10)
     },
-    footerWrapper: { 
-        marginTop: normalize(100), 
-        width: '90%', 
-        alignSelf: 'center' 
+    footerWrapper: {
+        marginTop: normalize(100),
+        width: '90%',
+        alignSelf: 'center'
     },
-    footerImage: { 
-        height: 50, 
-        width: '100%' 
+    footerImage: {
+        height: 50,
+        width: '100%'
     },
     joinUsButtonWrapper: {
         backgroundColor: '#272B30',

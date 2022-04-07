@@ -25,6 +25,8 @@ const WINNERS = require('../assets/icons/winners.png');
 const PLAYS = require('../assets/icons/plays.png');
 const BULLET_POINT = require('../assets/icons/bulletPoint.png');
 const SECURE = require('../assets/icons/secure.png');
+const CLOSE = require('../assets/icons/close.png');
+const CHECKED = require('../assets/icons/checked.png');
 
 export default {
     LOGO,
@@ -51,5 +53,7 @@ export default {
     WINNERS,
     PLAYS,
     BULLET_POINT,
-    SECURE
+    SECURE,
+    CLOSE,
+    CHECKED
 }
