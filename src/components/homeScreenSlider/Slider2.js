@@ -92,25 +92,27 @@ const styles = StyleSheet.create({
     },
     heading: {
         color: colors.white,
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraMedium
     },
     viewMoreText: {
-        fontSize: fonts.size.font12
+        fontSize: fonts.size.font12,
+        fontFamily: fonts.type.soraRegular
     },
     innerWrapper: {
         flex: 1,
         paddingHorizontal: normalize(15),
-        paddingVertical: normalize(10)
+        paddingVertical: normalize(5)
     },
     title: { 
         color: colors.white, 
-        fontWeight: '800', 
-        fontSize: fonts.size.font14 
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraMedium
     },
     plays: { 
         color: colors.progressGray, 
         fontSize: fonts.size.font10, 
-        fontWeight: fonts.weight.low 
+        fontFamily: fonts.type.soraLight
     }
 })
 

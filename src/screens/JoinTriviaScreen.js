@@ -130,7 +130,7 @@ const JoinTriviaScreen = ({ navigation, route }) => {
                             style={styles.walletIcon}
                             resizeMode={'contain'}
                         />
-                        <Text>
+                        <Text style={styles.text}>
                             500
                         </Text>
                     </View>
@@ -226,26 +226,26 @@ const JoinTriviaScreen = ({ navigation, route }) => {
                                         </Text>
                                     </View>
                                     <View style={styles.prices}>
-                                        <Text>
+                                        <Text style={styles.text}>
                                             1st
                                         </Text>
-                                        <Text>
+                                        <Text style={styles.text}>
                                             ${data.winnings.firstPlace}
                                         </Text>
                                     </View>
                                     <View style={[styles.prices, { backgroundColor: '#272727' }]}>
-                                        <Text>
+                                        <Text style={styles.text}>
                                             2nd
                                         </Text>
-                                        <Text>
+                                        <Text style={styles.text}>
                                             ${data.winnings.secondPlace}
                                         </Text>
                                     </View>
                                     <View style={styles.prices}>
-                                        <Text>
+                                        <Text style={styles.text}>
                                             3rd
                                         </Text>
-                                        <Text>
+                                        <Text style={styles.text}>
                                             ${data.winnings.thirdPlace}
                                         </Text>
                                     </View>
@@ -444,6 +444,9 @@ const JoinTriviaScreen = ({ navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
+    text: {
+        fontFamily: fonts.type.soraRegular
+    },
     closeIcon: {
         height: normalize(28),
         width: normalize(28)
@@ -454,18 +457,20 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: colors.white,
         fontSize: fonts.size.font12,
-        fontWeight: '200'
+        fontWeight: '200',
+        fontFamily: fonts.type.soraLight
     },
     applyCouponTitle: {
         marginTop: normalize(5),
         color: colors.primary,
-        width: '93%',
+        width: '92%',
         alignSelf: 'center',
-        fontWeight: 'bolder'
+        fontWeight: 'bolder',
+        fontFamily: fonts.type.soraRegular
     },
     applyCouponTextInputWrapper: {
         flexDirection: 'row',
-        width: '94%',
+        width: '91%',
         alignSelf: 'center',
         alignItems: 'center',
         borderColor: colors.primary,
@@ -476,7 +481,8 @@ const styles = StyleSheet.create({
     textInput: {
         backgroundColor: '#303030',
         width: '83%',
-        padding: normalize(10)
+        padding: normalize(10),
+        fontFamily: fonts.type.soraRegular
     },
     checkButton: {
         flex: 1
@@ -484,8 +490,9 @@ const styles = StyleSheet.create({
     checkButtonText: {
         color: colors.primary,
         textAlign: 'center',
-        fontSize: fonts.size.font12,
-        marginRight: normalize(10)
+        fontSize: fonts.size.font10,
+        marginRight: normalize(10),
+        fontFamily: fonts.type.soraRegular
     },
     separatorLineActionSheet: {
         height: normalize(3),
@@ -497,7 +504,8 @@ const styles = StyleSheet.create({
         width: '92%',
         alignSelf: 'center',
         textAlign: 'right',
-        marginTop: normalize(10)
+        marginTop: normalize(10),
+        fontFamily: fonts.type.soraRegular
     },
     subHeadingWrapper: {
         marginVertical: normalize(10),
@@ -508,7 +516,8 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         color: colors.white,
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font12,
+        fontFamily: fonts.type.soraRegular
     },
     toPayWrapper: {
         marginVertical: normalize(10),
@@ -519,17 +528,20 @@ const styles = StyleSheet.create({
     },
     toPayText: {
         color: colors.primary,
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font12,
+        fontFamily: fonts.type.soraRegular
     },
     toPayAmount: {
         color: colors.white,
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font12,
+        fontFamily: fonts.type.soraRegular
     },
     helperText: {
         color: colors.white,
-        fontSize: fonts.size.font12,
+        fontSize: fonts.size.font10,
         width: '93%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontFamily: fonts.type.soraRegular
     },
     joinNowWrapper: {
         backgroundColor: colors.primary,
@@ -543,11 +555,13 @@ const styles = StyleSheet.create({
     joinNowText: {
         color: colors.black,
         textAlign: 'center',
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraRegular
     },
     actionSheetHeaderConfirmation: {
         color: colors.white,
-        fontSize: fonts.size.font16
+        fontSize: fonts.size.font16,
+        fontFamily: fonts.type.soraMedium
     },
     actionSheetHeaderWrapper: {
         flexDirection: 'row',
@@ -588,7 +602,8 @@ const styles = StyleSheet.create({
     },
     nameCardName: {
         marginLeft: normalize(15),
-        color: colors.white
+        color: colors.white,
+        fontFamily: fonts.type.soraRegular
     },
     userIcon: {
         width: normalize(32),
@@ -603,7 +618,8 @@ const styles = StyleSheet.create({
         color: '#E5BEC7',
         marginLeft: normalize(2),
         fontSize: fonts.size.font10,
-        marginTop: normalize(2.4)
+        marginTop: normalize(2.4),
+        fontFamily: fonts.type.soraRegular
     },
     badgeIcon: {
         height: 22,
@@ -664,19 +680,21 @@ const styles = StyleSheet.create({
     },
     winningAmountTitle: {
         fontSize: fonts.size.font18,
-        color: colors.white
+        color: colors.white,
+        fontFamily: fonts.type.soraRegular
     },
     winningAmountText: {
         fontSize: fonts.size.font14,
         color: colors.white,
-        marginTop: normalize(10)
+        marginTop: normalize(10),
+        fontFamily: fonts.type.soraLight
     },
     entryFeeText: {
         fontSize: fonts.size.font10,
-        fontWeight: '200',
         color: colors.white,
         textAlign: 'right',
-        marginBottom: normalize(10)
+        marginBottom: normalize(10),
+        fontFamily: fonts.type.soraLight
     },
     entryAmountWrapper: {
         backgroundColor: colors.primary,
@@ -686,9 +704,9 @@ const styles = StyleSheet.create({
     },
     entryAmountText: {
         color: colors.black,
-        fontSize: fonts.size.font14,
-        fontWeight: fonts.weight.bold,
-        textAlign: 'center'
+        fontSize: fonts.size.font12,
+        textAlign: 'center',
+        fontFamily: fonts.type.soraRegular
     },
     badgesWrapper: {
         flexDirection: 'row',
@@ -717,8 +735,9 @@ const styles = StyleSheet.create({
         borderBottomColor: '#FA5075'
     },
     tabHeaderText: {
-        fontSize: fonts.size.font16,
-        textAlign: 'center'
+        fontSize: fonts.size.font14,
+        textAlign: 'center',
+        fontFamily: fonts.type.soraRegular
     },
     pricesWrapper: {
         flex: 1
@@ -734,7 +753,8 @@ const styles = StyleSheet.create({
     pricesHeadingTitle: {
         color: colors.white,
         fontSize: fonts.size.font14,
-        marginBottom: normalize(15)
+        marginBottom: normalize(15),
+        fontFamily: fonts.type.soraRegular
     },
     pricesHeading: {
         flexDirection: 'row',
@@ -744,7 +764,7 @@ const styles = StyleSheet.create({
     },
     pricesHeadingText: {
         color: colors.white,
-        fontWeight: fonts.weight.low
+        fontFamily: fonts.type.soraLight
     },
     prices: {
         backgroundColor: '#1C1C1C',
@@ -757,14 +777,14 @@ const styles = StyleSheet.create({
         marginVertical: normalize(4)
     },
     bulletPointWrapper: {
-        width: '93%',
+        width: '92%',
         alignSelf: 'center'
     },
     gameRulesText: {
         color: colors.white,
         fontSize: fonts.size.font16,
-        fontWeight: '700',
-        marginBottom: normalize(10)
+        marginBottom: normalize(10),
+        fontFamily: fonts.type.soraRegular
     },
     bulletPoint: {
         flexDirection: 'row',
@@ -781,7 +801,8 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: fonts.size.font14,
         lineHeight: normalize(22.4),
-        width: '92%'
+        width: '92%',
+        fontFamily: fonts.type.soraLight
     },
     leaderBoardTabWrapper: {
         marginTop: normalize(15)
@@ -792,7 +813,8 @@ const styles = StyleSheet.create({
     },
     leaderBoardTabText: {
         fontSize: fonts.size.font12,
-        color: colors.white
+        color: colors.white,
+        fontFamily: fonts.type.soraRegular
     },
     nameCardWrapper: {
         width: '93%',
@@ -829,7 +851,8 @@ const styles = StyleSheet.create({
     joinUsText: {
         color: colors.black,
         textAlign: 'center',
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraRegular
     }
 })
 

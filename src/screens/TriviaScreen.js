@@ -3,7 +3,7 @@ import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground
 import normalize from 'react-native-normalize';
 import { icons } from '../constants';
 import { data } from '../mock/basketBallTrivia';
-import { colors } from '../theme';
+import { colors, fonts } from '../theme';
 
 const TriviaScreen = ({ navigation, route }) => {
     const { item } = route.params;
@@ -66,9 +66,9 @@ const renderTriviaCard = ({ item }) => (
         {
             !(item.isExpired) &&
             <View style={styles.gameStatusContainer}>
-                <Text>{item.joined}</Text>
-                <Text>{item.timeRemaining}</Text>
-                <Text>{item.slotsLeft}</Text>
+                <Text style={styles.text}>{item.joined}</Text>
+                <Text style={styles.text}>{item.timeRemaining}</Text>
+                <Text style={styles.text}>{item.slotsLeft}</Text>
             </View>
         }
         <View
@@ -115,6 +115,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center"
     },
+    text: {
+        color: colors.progressGray,
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraRegular
+    },  
     headerContainer: {
         flex: 1,
         backgroundColor: 'rgba(52, 52, 52, 0.6)',
@@ -132,18 +137,19 @@ const styles = StyleSheet.create({
     },
     triviNameStyle: {
         color: colors.white,
-        fontWeight: '800',
-        fontSize: 20,
-        lineHeight: 20.5
+        fontSize: fonts.size.font18,
+        marginTop: -normalize(10),
+        fontFamily: fonts.type.soraMedium
     },
     playStyles: {
         color: colors.white,
         fontWeight: '400',
-        fontSize: 14,
+        fontSize: fonts.size.font10,
         lineHeight: 18,
         opacity: 0.8,
-        marginLeft: 35,
-        marginTop: 5
+        marginLeft: normalize(35),
+        marginTop: normalize(5),
+        fontFamily: fonts.type.soraRegular
     },
     walletWrapper: {
         flexDirection: 'row',
@@ -155,8 +161,9 @@ const styles = StyleSheet.create({
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: normalize(15),
-        color: colors.white
+        fontSize: fonts.size.font12,
+        color: colors.white,
+        fontFamily: fonts.type.soraLight
     },
     listContainerStyle: {
         left: 0,
@@ -192,7 +199,11 @@ const styles = StyleSheet.create({
         backgroundColor: colors.lightGreen
     },
     footerElementImg: { height: 12, width: 12 },
-    footerElementTxt: { color: colors.white },
+    footerElementTxt: { 
+        color: colors.white, 
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraRegular
+    },
     gameStatusContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -205,22 +216,22 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     triviaPaymentText: {
-        fontWeight: 'bold',
-        fontSize: 19,
+        fontSize: fonts.size.font16,
         lineHeight: 23,
-        color: colors.greenDark
+        color: colors.greenDark,
+        fontFamily: fonts.type.soraRegular
     },
     payButton: {
         backgroundColor: colors.yellow,
         padding: 5,
-        paddingHorizontal: 40,
+        paddingHorizontal: normalize(30),
         borderRadius: 10
     },
     payButtonText: {
         color: colors.darkGrey,
-        fontWeight: '600',
-        fontSize: 18,
-        lineHeight: 19.64
+        fontSize: fonts.size.font12,
+        lineHeight: 19.64,
+        fontFamily: fonts.type.soraRegular
     },
     triviaCardHeader: {
         flexDirection: 'row',
@@ -229,14 +240,12 @@ const styles = StyleSheet.create({
     },
     entryFee: {
         color: colors.semiGrey,
-        fontSize: 14,
-        lineHeight: 24,
-        fontWeight: '400'
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraLight
     },
     triviaName: {
         color: colors.darkGrey,
-        fontWeight: '600',
-        fontSize: 14,
-        lineHeight: 24
+        fontSize: fonts.size.font12,
+        fontFamily: fonts.type.soraRegular
     }
 })

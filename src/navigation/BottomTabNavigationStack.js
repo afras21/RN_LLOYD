@@ -16,7 +16,7 @@ import {
 } from '../screens/';
 import { icons } from '../constants';
 import normalize from 'react-native-normalize';
-import { colors } from '../theme';
+import { colors, fonts } from '../theme';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -145,12 +145,14 @@ const styles = StyleSheet.create({
 
         marginBottom: normalize(10),
         fontSize: normalize(12),
-        color: colors.primary
+        color: colors.primary,
+        fontFamily: fonts.type.soraRegular
     },
     tabBarLabelStyleUnFocused: {
         marginBottom: normalize(10),
         fontSize: normalize(12),
-        color: colors.progressGray
+        color: colors.progressGray,
+        fontFamily: fonts.type.soraRegular
     },
     homeButtonWrapper: {
         flex: 1,

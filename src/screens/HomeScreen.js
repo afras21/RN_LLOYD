@@ -340,8 +340,9 @@ const styles = StyleSheet.create({
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: normalize(15),
-        color: colors.white
+        fontSize: fonts.size.font12,
+        color: colors.white,
+        fontFamily: fonts.type.soraLight
     },
     headerBottom: {
         width: '100%',
@@ -419,7 +420,8 @@ const styles = StyleSheet.create({
     },
     footerText: {
         fontSize: fonts.size.font12,
-        marginTop: normalize(5)
+        marginTop: normalize(5),
+        fontFamily: fonts.type.soraRegular
     },
     knowMoreWrapper: {
         flexDirection: 'row',
@@ -431,7 +433,8 @@ const styles = StyleSheet.create({
     },
     knowMoreText: {
         color: colors.primary,
-        fontSize: fonts.size.font10
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraRegular
     },
     buttonWrapper: {
         display: 'flex', 
@@ -446,7 +449,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginVertical: normalize(10),
         fontSize: fonts.size.font14,
-        color: colors.white
+        fontFamily: fonts.type.soraMedium
     },
     triviaCategoryContent: {
         width: '100%',
@@ -461,14 +464,14 @@ const styles = StyleSheet.create({
     viewAllText: {
         fontSize: fonts.size.font14,
         color: colors.white,
-        fontWeight: fonts.weight.bold,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: fonts.type.soraMedium
     },
     quizPlays: {
         marginTop: normalize(5),
-        fontWeight: fonts.weight.semi,
         fontSize: fonts.size.font10,
-        color: '#999999'
+        color: '#999999',
+        fontFamily: fonts.type.soraMedium
     }
 })
 const mapStateToProps = state => {
