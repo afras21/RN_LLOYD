@@ -31,7 +31,7 @@ const type = {
     soraMedium: 'Sora-Medium',
     soraRegular: 'Sora-Regular',
     soraBold: 'Sora-Bold',
-    soraLight: 'Sora-Thin',
+    soraLight: 'Sora-Light',
     soraSemiBold: 'Sora-SemiBold'
 }
 

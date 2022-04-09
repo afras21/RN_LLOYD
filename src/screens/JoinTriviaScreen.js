@@ -445,7 +445,8 @@ const JoinTriviaScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        color: colors.white
     },
     closeIcon: {
         height: normalize(28),
@@ -752,9 +753,9 @@ const styles = StyleSheet.create({
     },
     pricesHeadingTitle: {
         color: colors.white,
-        fontSize: fonts.size.font14,
+        fontSize: fonts.size.font16,
         marginBottom: normalize(15),
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraMedium
     },
     pricesHeading: {
         flexDirection: 'row',
@@ -764,7 +765,7 @@ const styles = StyleSheet.create({
     },
     pricesHeadingText: {
         color: colors.white,
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraMedium
     },
     prices: {
         backgroundColor: '#1C1C1C',
@@ -784,7 +785,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: fonts.size.font16,
         marginBottom: normalize(10),
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraMedium
     },
     bulletPoint: {
         flexDirection: 'row',
@@ -802,7 +803,7 @@ const styles = StyleSheet.create({
         fontSize: fonts.size.font14,
         lineHeight: normalize(22.4),
         width: '92%',
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraRegular
     },
     leaderBoardTabWrapper: {
         marginTop: normalize(15)

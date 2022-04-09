@@ -1,5 +1,6 @@
 import React from 'react'
 import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground, Image, FlatList, ScrollView } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import { icons } from '../constants';
 import { data } from '../mock/basketBallTrivia';
@@ -11,8 +12,15 @@ const TriviaScreen = ({ navigation, route }) => {
     return (
         <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
             <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
+                <LinearGradient
+                    style={{
+                        flex: 1
+                    }}
+                    colors={['#383838','#2F2F2F']}
+                >
                 <Header bg={image} plays={plays} name={name} onClose={()=>{navigation.goBack()}}/>
                 <ListContainer data={data} />
+                </LinearGradient>
             </SafeAreaView>
         </ScrollView>
     )
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     text: {
-        color: colors.progressGray,
+        color: '#3B3B3A',
         fontSize: fonts.size.font10,
         fontFamily: fonts.type.soraRegular
     },  
@@ -139,12 +147,12 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: fonts.size.font18,
         marginTop: -normalize(10),
-        fontFamily: fonts.type.soraMedium
+        fontFamily: fonts.type.soraSemiBold
     },
     playStyles: {
         color: colors.white,
         fontWeight: '400',
-        fontSize: fonts.size.font10,
+        fontSize: fonts.size.font12,
         lineHeight: 18,
         opacity: 0.8,
         marginLeft: normalize(35),
@@ -170,8 +178,8 @@ const styles = StyleSheet.create({
         right: 0,
         backgroundColor: colors.footer,
         padding: 25,
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
+        borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
         marginTop: -20
     },
     triviaCardContainer: {
@@ -216,22 +224,24 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     triviaPaymentText: {
-        fontSize: fonts.size.font16,
+        fontSize: fonts.size.font14,
         lineHeight: 23,
         color: colors.greenDark,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     },
     payButton: {
         backgroundColor: colors.yellow,
-        padding: 5,
-        paddingHorizontal: normalize(30),
-        borderRadius: 10
+        padding: 4,
+        paddingHorizontal: normalize(26),
+        borderRadius: 8,
+        width: normalize(82),
+        alignItems: 'center'
     },
     payButtonText: {
         color: colors.darkGrey,
-        fontSize: fonts.size.font12,
+        fontSize: normalize(15),
         lineHeight: 19.64,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     },
     triviaCardHeader: {
         flexDirection: 'row',
@@ -241,11 +251,11 @@ const styles = StyleSheet.create({
     entryFee: {
         color: colors.semiGrey,
         fontSize: fonts.size.font10,
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraRegular
     },
     triviaName: {
         color: colors.darkGrey,
         fontSize: fonts.size.font12,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     }
 })

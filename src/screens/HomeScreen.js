@@ -3,14 +3,14 @@ import {
     FlatList,
     Image,
     ImageBackground,
-    LogBox,
     SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,
     Text,
     TouchableOpacity,
-    View
+    View,
+    Animated
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient';
@@ -30,7 +30,10 @@ import Slider2 from '../components/homeScreenSlider/Slider2';
 
 import { data } from '../mock/slider2'
 import Button from '../components/homeScreenSlider/Button';
-import TriviaScreen from './TriviaScreen';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRef } from 'react';
+
+const HEADER_HEIGHT = 150;
 
 const allPages = {
     TREND_TRIVIA: 'trivia',
@@ -38,13 +41,18 @@ const allPages = {
 }
 
 const Header = ({ user }) => {
+    const [viewHeight, setViewHeight] = useState(HEADER_HEIGHT);
+    const onLayout=(event)=> {
+        const { height } = event.nativeEvent.layout;
+        setViewHeight(height);
+    }
     return (
-        <View style={styles.headerWrapper}>
+        <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
 
                 {/* headerTopPart1 */}
                 <Image
-                    source={{ uri: user.avatar }}
+                    source={ user.avatar ? { uri: user.avatar } : icons.USER_ICON}
                     style={styles.headerUserAvatar}
                     resizeMode={'contain'}
                 />
@@ -73,7 +81,6 @@ const Header = ({ user }) => {
                         <Image
                             source={icons.WALLET}
                             style={styles.walletImage}
-                            resizeMode='contain'
                         />
                         <Text style={styles.walletAmount}>
                             500
@@ -81,21 +88,49 @@ const Header = ({ user }) => {
                     </View>
                 </View>
             </View>
-
-            <View style={styles.headerBottom}>
-                <Image
-                    source={icons.SEARCH}
-                    style={styles.searchImage}
-                    resizeMode='contain'
-                />
-                <HeaderScreenTextInput
-                    placeholder={'Search Games'}
-                    onChangeText={() => { }}
-                />
-            </View>
-        </View>
+            {
+                viewHeight >= 120 ?
+                    <View style={styles.headerBottom}>
+                        <Image
+                            source={icons.SEARCH}
+                            style={styles.searchImage}
+                            resizeMode='contain'
+                        />
+                        <HeaderScreenTextInput
+                            placeholder={'Search Games'}
+                            onChangeText={() => { }}
+                        />
+                    </View>
+                    : <></>
+            }
+            
+        </Animated.View>
     )
 }
+
+const AnimatedHeader = ({ animatedValue, user }) => {
+    const insets = useSafeAreaInsets();
+    const headerHeight = animatedValue.interpolate({
+        inputRange: [0, HEADER_HEIGHT + insets.top],
+        outputRange: [HEADER_HEIGHT + insets.top, insets.top + 70],
+        extrapolate: 'clamp'
+    });
+    return (
+        <Animated.View
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 10,
+                height: headerHeight
+            }}
+        >
+            <Header user={user} />   
+        </Animated.View>
+    )
+};
+  
 
 const FooterText = ({ text }) => {
     return(
@@ -106,6 +141,9 @@ const FooterText = ({ text }) => {
 }
 
 const HomeScreen = ({ user, navigation }) => {
+
+    const offset = useRef(new Animated.Value(0)).current;
+
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
@@ -226,33 +264,46 @@ const HomeScreen = ({ user, navigation }) => {
         // setSelectedTrivia('');
     }
 
+    console.log(offset)
 
     return (
-        <SafeAreaView  nestedScrollEnabled={true} style={styles.container}>
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
-                <Header user={user} />
+        <SafeAreaProvider>
+            <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
+                {/* <StatusBar backgroundColor={colors.bottomTabBgColor} /> */}
+                <AnimatedHeader animatedValue={offset} user={user} />
+                <ScrollView 
+                    nestedScrollEnabled={true} 
+                    showsVerticalScrollIndicator={false} 
+                    style={styles.scrollContainer}
+                    scrollEventThrottle={16}
+                    onScroll={Animated.event(
+                      [{ nativeEvent: { contentOffset: { y: offset } } }],
+                      { useNativeDriver: false }
+                    )}
+                >
+                    <Header user={user} />
 
-                <Slider1
-                    data={strings.HOME_SLIDER1}
-                    activeIndex={activeIndex}
-                    changeIndex={onChangeSlider1}
-                />
+                    <Slider1
+                        data={strings.HOME_SLIDER1}
+                        activeIndex={activeIndex}
+                        changeIndex={onChangeSlider1}
+                    />
 
-                <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
+                    <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
 
-                <TriviaCategory
-                    data={strings.HOME_SCREEN_BUTTONS}
-                    setActiveButtonIndex={setActiveButtonIndex}
-                    activeButtonIndex={activeButtonIndex}
-                />
+                    <TriviaCategory
+                        data={strings.HOME_SCREEN_BUTTONS}
+                        setActiveButtonIndex={setActiveButtonIndex}
+                        activeButtonIndex={activeButtonIndex}
+                    />
 
-                <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
-                <RenderQuizItems data={strings.HOME_SLIDER2} />
+                    <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
+                    <RenderQuizItems data={strings.HOME_SLIDER2} />
 
-                <RenderFooter />
-            </ScrollView>
-        </SafeAreaView>
+                    <RenderFooter />
+                </ScrollView>
+            </SafeAreaView>
+        </SafeAreaProvider>
     )
 }
 
@@ -303,7 +354,8 @@ const styles = StyleSheet.create({
     headerUserAvatar: {
         height: normalize(30),
         width: normalize(30),
-        borderRadius: normalize(30)
+        borderRadius: normalize(30),
+        backgroundColor: colors.white
     },
     headerDashBoardIcon: {
         width: 20,
@@ -336,7 +388,8 @@ const styles = StyleSheet.create({
     },
     walletImage: {
         width: normalize(23),
-        height: normalize(23)
+        height: normalize(23),
+        backgroundColor: colors.bottomTabBgColor
     },
     walletAmount: {
         marginLeft: normalize(10),
@@ -421,7 +474,8 @@ const styles = StyleSheet.create({
     footerText: {
         fontSize: fonts.size.font12,
         marginTop: normalize(5),
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        color: colors.white
     },
     knowMoreWrapper: {
         flexDirection: 'row',
@@ -449,7 +503,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginVertical: normalize(10),
         fontSize: fonts.size.font14,
-        fontFamily: fonts.type.soraMedium
+        fontFamily: fonts.type.soraSemiBold,
+        color: colors.white
     },
     triviaCategoryContent: {
         width: '100%',

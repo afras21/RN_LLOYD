@@ -33,6 +33,8 @@ const SECURE = require('../assets/icons/secure.png');
 const CLOSE = require('../assets/icons/close.png');
 const CHECKED = require('../assets/icons/checked.png');
 
+const USER_ICON = require('../assets/icons/user.png');
+
 export default {
     LOGO,
     GOOGLE_LOGO,
@@ -65,5 +67,6 @@ export default {
     BULLET_POINT,
     SECURE,
     CLOSE,
-    CHECKED
+    CHECKED,
+    USER_ICON
 }
