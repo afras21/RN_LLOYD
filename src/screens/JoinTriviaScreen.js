@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: fonts.size.font10,
         marginRight: normalize(10),
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     },
     separatorLineActionSheet: {
         height: normalize(3),
@@ -855,7 +855,7 @@ const styles = StyleSheet.create({
         color: colors.black,
         textAlign: 'center',
         fontSize: fonts.size.font14,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     }
 })
 
