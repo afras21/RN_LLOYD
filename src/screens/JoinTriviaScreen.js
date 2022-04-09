@@ -559,7 +559,7 @@ const styles = StyleSheet.create({
         color: colors.black,
         textAlign: 'center',
         fontSize: fonts.size.font14,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     },
     actionSheetHeaderConfirmation: {
         color: colors.white,
