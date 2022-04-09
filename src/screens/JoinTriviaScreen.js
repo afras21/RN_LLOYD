@@ -506,7 +506,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         textAlign: 'right',
         marginTop: normalize(10),
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        color: colors.white
     },
     subHeadingWrapper: {
         marginVertical: normalize(10),
@@ -538,8 +539,8 @@ const styles = StyleSheet.create({
         fontFamily: fonts.type.soraRegular
     },
     helperText: {
-        color: colors.white,
-        fontSize: fonts.size.font10,
+        color: '#C7C7C7',
+        fontSize: normalize(12),
         width: '93%',
         alignSelf: 'center',
         fontFamily: fonts.type.soraRegular
@@ -551,7 +552,7 @@ const styles = StyleSheet.create({
         padding: normalize(13),
         borderRadius: normalize(7),
         position: 'absolute',
-        bottom: normalize(20)
+        bottom: normalize(15)
     },
     joinNowText: {
         color: colors.black,
