@@ -507,10 +507,11 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         marginTop: normalize(10),
         fontFamily: fonts.type.soraRegular,
-        color: colors.white
+        color: colors.white,
+        fontSize: fonts.size.font10
     },
     subHeadingWrapper: {
-        marginVertical: normalize(10),
+        marginVertical: normalize(8.5),
         width: '92%',
         alignSelf: 'center',
         flexDirection: 'row',
@@ -518,8 +519,8 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         color: colors.white,
-        fontSize: fonts.size.font12,
-        fontFamily: fonts.type.soraRegular
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraSemiBold
     },
     toPayWrapper: {
         marginVertical: normalize(10),
@@ -530,13 +531,13 @@ const styles = StyleSheet.create({
     },
     toPayText: {
         color: colors.primary,
-        fontSize: fonts.size.font12,
-        fontFamily: fonts.type.soraRegular
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraSemiBold
     },
     toPayAmount: {
         color: colors.white,
-        fontSize: fonts.size.font12,
-        fontFamily: fonts.type.soraRegular
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraSemiBold
     },
     helperText: {
         color: '#C7C7C7',
@@ -562,8 +563,8 @@ const styles = StyleSheet.create({
     },
     actionSheetHeaderConfirmation: {
         color: colors.white,
-        fontSize: fonts.size.font16,
-        fontFamily: fonts.type.soraMedium
+        fontSize: fonts.size.font20,
+        fontFamily: fonts.type.soraBold
     },
     actionSheetHeaderWrapper: {
         flexDirection: 'row',
