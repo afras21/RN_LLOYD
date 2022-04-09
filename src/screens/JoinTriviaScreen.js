@@ -690,7 +690,7 @@ const styles = StyleSheet.create({
         fontSize: fonts.size.font14,
         color: colors.white,
         marginTop: normalize(10),
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraSemiBold
     },
     entryFeeText: {
         fontSize: fonts.size.font10,
@@ -709,7 +709,7 @@ const styles = StyleSheet.create({
         color: colors.black,
         fontSize: fonts.size.font12,
         textAlign: 'center',
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraSemiBold
     },
     badgesWrapper: {
         flexDirection: 'row',
