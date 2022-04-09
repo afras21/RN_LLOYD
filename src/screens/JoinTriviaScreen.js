@@ -483,7 +483,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#303030',
         width: '83%',
         padding: normalize(10),
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        color: colors.white
     },
     checkButton: {
         flex: 1

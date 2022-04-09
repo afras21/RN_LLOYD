@@ -9,7 +9,7 @@ const colors = {
     textSecondary: '#484848',
     textGrey: '#B4B4B4',
     borderColor: '#D4D4D4',
-    backgroundColor: '#000000',
+    backgroundColor: '#0F0F0F',
     white: '#FFFFFF',
     black: '#000000',
     gray: '#F5F8F9',

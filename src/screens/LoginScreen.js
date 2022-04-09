@@ -158,7 +158,8 @@ const styles = StyleSheet.create({
         marginVertical: normalize(10),
         fontSize: fonts.size.font16,
         lineHeight: normalize(20),
-        color: colors.white
+        color: colors.white,
+        fontFamily: fonts.type.soraRegular
     },
     servicePolicyView:{
         marginTop: normalize(15)
@@ -166,15 +167,15 @@ const styles = StyleSheet.create({
     servicePolicyText: {
         color: colors.white,
         fontSize: fonts.size.font12,
-        fontWeight: fonts.weight.full,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: fonts.type.soraRegular
     },
     servicePolicyLinkText: {
         color: '#FFC533',
         fontSize: fonts.size.font12,
-        fontWeight: fonts.weight.full,
         textDecorationLine: 'underline',
-        marginTop: normalize(5)
+        marginTop: normalize(5),
+        fontFamily: fonts.type.soraRegular
     }
 })
 

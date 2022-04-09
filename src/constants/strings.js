@@ -175,6 +175,8 @@ const SLIDER2_IMAGE = 'https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w
 const SLIDER2_HEADING = 'Trending Trivia Quiz';
 const SLIDER2_VIEW_MORE = 'View all';
 
+const SUGGESTIONS_SEARCH = ['', 'All', 'Influencer Trivia', 'Advance Premium', 'Free Trivia'];
+const HEADER_HEIGHT = 150;
 const HOME_SCREEN_BUTTONS = [
     {
         text1: 'All',
@@ -227,5 +229,7 @@ export default{
     SLIDER2_IMAGE,
     SLIDER2_HEADING,
     SLIDER2_VIEW_MORE,
-    HOME_SCREEN_BUTTONS
+    HOME_SCREEN_BUTTONS,
+    SUGGESTIONS_SEARCH,
+    HEADER_HEIGHT
 }

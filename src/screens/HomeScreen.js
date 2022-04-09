@@ -33,19 +33,14 @@ import Button from '../components/homeScreenSlider/Button';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRef } from 'react';
 
-const HEADER_HEIGHT = 150;
+const HEADER_HEIGHT = strings.HEADER_HEIGHT;
 
 const allPages = {
     TREND_TRIVIA: 'trivia',
     HOME: 'home'
 }
 
-const Header = ({ user }) => {
-    const [viewHeight, setViewHeight] = useState(HEADER_HEIGHT);
-    const onLayout=(event)=> {
-        const { height } = event.nativeEvent.layout;
-        setViewHeight(height);
-    }
+const Header = ({ user, onLayout }) => {
     return (
         <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
@@ -88,22 +83,100 @@ const Header = ({ user }) => {
                     </View>
                 </View>
             </View>
-            {
-                viewHeight >= 120 ?
-                    <View style={styles.headerBottom}>
+            <View style={styles.headerBottom}>
+                <Image
+                    source={icons.SEARCH}
+                    style={styles.searchImage}
+                    resizeMode='contain'
+                />
+                <HeaderScreenTextInput
+                    placeholder={'Search Games'}
+                    onChangeText={() => { }}
+                />
+            </View>
+
+        </Animated.View>
+    )
+}
+
+const StickyHeader = ({ onLayout, user }) => {
+    return (
+        <Animated.View onLayout={onLayout} style={[styles.stickyHeaderWrapper]}>
+            <View style={styles.stickHeaderInnerWrapper}>
+                <View style={styles.stickyHeaderInnerWrapperTop}>
+                    <View style={styles.headerTop}>
+
+                        {/* headerTopPart1 */}
                         <Image
-                            source={icons.SEARCH}
-                            style={styles.searchImage}
-                            resizeMode='contain'
+                            source={user.avatar ? { uri: user.avatar } : icons.USER_ICON}
+                            style={styles.headerUserAvatar}
+                            resizeMode={'contain'}
                         />
-                        <HeaderScreenTextInput
-                            placeholder={'Search Games'}
-                            onChangeText={() => { }}
+                        <Image
+                            source={icons.DASHBOARD}
+                            style={styles.headerDashBoardIcon}
                         />
+                        {/* headerTopPart2 */}
+
+                        <View style={styles.headerTopPart2}>
+                            <Image
+                                source={icons.LOGO}
+                                style={styles.logoImage}
+                                resizeMode='contain'
+                            />
+                        </View>
+                        {/* headerTopPart3 */}
+
+                        <View style={styles.headerTopPart3}>
+                            <Image
+                                source={icons.NOTIFICATION}
+                                style={styles.notificationImage}
+                                resizeMode='contain'
+                            />
+                            <View style={styles.walletWrapper}>
+                                <Image
+                                    source={icons.WALLET}
+                                    style={styles.walletImage}
+                                />
+                                <Text style={styles.walletAmount}>
+                                    500
+                                </Text>
+                            </View>
+                        </View>
                     </View>
-                    : <></>
-            }
-            
+                </View>
+                <View style={styles.chipWrapper}>
+                    <FlatList
+                        data={strings.SUGGESTIONS_SEARCH}
+                        horizontal
+                        style={styles.chipFlatlist}
+                        showsHorizontalScrollIndicator={false}
+                        renderItem={({ item }) => {
+                            if (item.length === 0) {
+                                return (
+                                    <View style={styles.searchChipWrapper}>
+                                        <Image
+                                            source={icons.SEARCH}
+                                            style={styles.searchIcon}
+                                        />
+                                    </View>
+                                )
+                            }
+                            return (
+                                <LinearGradient
+                                    colors={['#5B5B5B', '#232323']}
+                                    style={[styles.chip, { borderWidth: item === 'All' ? 2 : 0 }]}
+                                >
+                                    <Text style={[ styles.chipText, { color: item === 'All' ? colors.primary : colors.white} ]}>
+                                        {item}
+                                    </Text>
+                                </LinearGradient>
+                            )
+                        }}
+                    />
+                    <View style={styles.emptyHeight} />
+                </View>
+            </View>
         </Animated.View>
     )
 }
@@ -115,18 +188,22 @@ const AnimatedHeader = ({ animatedValue, user }) => {
         outputRange: [HEADER_HEIGHT + insets.top, insets.top + 70],
         extrapolate: 'clamp'
     });
+    const [viewHeight, setViewHeight] = useState(HEADER_HEIGHT);
+    const onLayout=(event)=> {
+        const { height } = event.nativeEvent.layout;
+        setViewHeight(height);
+    }
     return (
         <Animated.View
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                zIndex: 10,
-                height: headerHeight
-            }}
+            style={[styles.animatedHeader, { height: headerHeight }]}
         >
-            <Header user={user} />   
+            {
+                viewHeight >= 120 ? 
+                    <Header onLayout={onLayout} viewHeight={viewHeight} user={user} />   
+                :
+                    <StickyHeader onLayout={onLayout} user={user} />
+
+            } 
         </Animated.View>
     )
 };
@@ -335,6 +412,68 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundColor
     },
+    chipText: {
+        fontSize: fonts.size.font10,
+        padding: normalize(6),
+        paddingHorizontal: normalize(10),
+        fontFamily: fonts.type.soraMedium
+    },
+    searchChipWrapper: {
+        padding: 5,
+        backgroundColor: colors.white,
+        borderRadius: normalize(60),
+        justifyContent: 'center',
+        height: 30,
+        width: 30,
+        alignSelf: 'center',
+        marginRight: normalize(15)
+    },
+    emptyHeight: { 
+        height: 10, 
+        width: '10%' 
+    },
+    chip: {
+        padding: normalize(4),
+        alignSelf: 'center',
+        marginHorizontal: normalize(6),
+        borderColor: colors.primary,
+        borderRadius: normalize(20)
+    },
+    chipFlatlist: {
+        width: '95%',
+        alignSelf: 'center'
+    },
+    chipWrapper: {
+        width: '100%',
+        backgroundColor: colors.backgroundColor,
+        height: normalize(45),
+        borderBottomWidth: 3,
+        borderColor: colors.bottomTabBgColor,
+        marginTop: 10
+    },
+    searchIcon: {
+        width: 13,
+        height: 13,
+        tintColor: colors.bottomTabBgColor,
+        alignSelf: 'center',
+    },
+    stickyHeaderWrapper: { 
+        flex: 1, 
+        height: 130, 
+        width: '100%' 
+    },
+    stickyHeaderInnerWrapperTop: { 
+        height: normalize(60), 
+        borderBottomLeftRadius: 30, 
+        borderBottomRightRadius: 30,
+        width: '100%', 
+        backgroundColor: colors.bottomTabBgColor, 
+        paddingHorizontal: normalize(20), 
+        justifyContent: 'center' 
+    },
+    stickHeaderInnerWrapper: {
+        backgroundColor: colors.backgroundColor,
+    },
     scrollContainer: {
         flex: 1
     },
@@ -527,6 +666,13 @@ const styles = StyleSheet.create({
         fontSize: fonts.size.font10,
         color: '#999999',
         fontFamily: fonts.type.soraMedium
+    },
+    animatedHeader: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10
     }
 })
 const mapStateToProps = state => {
