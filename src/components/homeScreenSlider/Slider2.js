@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     View,
     Image,
-    Text
+    Text,
+    ImageBackground
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import { rgbaColor } from 'react-native-reanimated/src/reanimated2/Colors';
@@ -23,13 +24,20 @@ const Slider2 = ({ data, handleTrendTriviaSelection }) => {
             >
                     <Image 
                         style={{ flex:1 }} 
-                        borderRadius={15}
+                        borderRadius={12}
                         blurRadius={6}
                         source={{ uri: item.image }} 
                         resizeMode={'cover'} 
                     />
                     <View style={styles.absolute}>
-                        <View style={styles.innerWrapper}>
+                        <ImageBackground 
+                            imageStyle={styles.imageStyleInBg} 
+                            blurRadius={120} 
+                            source={{ uri: item.image }}  
+                            style={styles.innerWrapper}
+                        >
+                        </ImageBackground>
+                        <View style={styles.content}>
                             <Text style={styles.title}>{item?.name}</Text>
                             <Text style={styles.plays}>{item?.plays} Plays</Text>
                         </View>
@@ -66,19 +74,28 @@ const styles = StyleSheet.create({
         width: '92%',
         alignSelf: 'center'
     },
+    imageStyleInBg: {
+        backgroundColor: colors.black
+    },
+    content: {
+        position: 'absolute', 
+        left: normalize(10), 
+        top: normalize(6)
+    },
     itemSeparator: {
         width: normalize(10)
     },
     absolute: {
-        borderRadius: 15,
+        borderRadius: 12,
         width: '91.5%', 
         height: normalize(55),
         position: 'absolute', 
         zIndex: 1, 
-        backgroundColor: rgbaColor(1,0,0,0.7),
+        backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
         left: 15,
         right: 15,
-        bottom: 10
+        bottom: 10,
+        overflow: 'hidden'
     },
     renderItemWrapper: {
         height: normalize(110),
@@ -102,15 +119,19 @@ const styles = StyleSheet.create({
     innerWrapper: {
         flex: 1,
         paddingHorizontal: normalize(15),
-        paddingVertical: normalize(5)
+        paddingVertical: normalize(5),
+        opacity: .5,
+        backgroundColor: 'black'
+    
     },
     title: { 
         color: colors.white, 
         fontSize: fonts.size.font14,
-        fontFamily: fonts.type.soraMedium
+        fontFamily: fonts.type.soraMedium,
+        opacity: 1
     },
     plays: { 
-        color: colors.progressGray, 
+        color:  rgbaColor(255, 255, 255, 0.6), 
         fontSize: fonts.size.font10, 
         fontFamily: fonts.type.soraLight
     }

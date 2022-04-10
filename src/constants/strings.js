@@ -54,76 +54,91 @@ const HOME_SLIDER2 = [
         id: "SLD005",
         name: 'Jermy Hill Footbal',
         image: 'https://user-images.githubusercontent.com/54505967/161594543-4cc512d9-6106-4938-8198-1b93936efef5.png',
+        plays: '41,211'
     },
     {  
         id: "SLD006", 
         name: 'Terrence’s Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594531-4ed21dca-bd8b-4918-ad56-097c70262955.png',
+        plays: '41,211'
     },
     {   
         id: "SLD007",
         name: 'Kyle Prater Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594533-5042d84e-21f9-4f05-9c20-973738e7f78f.png',
+        plays: '41,211'
     },
     {   
         id: "SLD008",
         name: 'Jermy Hill Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594539-372ccd91-cdd8-40cb-809b-7b5aa58061e5.png',
+        plays: '41,211'
     },
     {   
         id: "SLD009",
         name: 'Mike Outlaw food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0010",
         name: 'Jermy Hill Footbal',
         image: 'https://user-images.githubusercontent.com/54505967/161594543-4cc512d9-6106-4938-8198-1b93936efef5.png',
+        plays: '41,211'
     },
     {  
         id: "SLD0011", 
         name: 'Terrence’s Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594531-4ed21dca-bd8b-4918-ad56-097c70262955.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0012",
         name: 'Kyle Prater Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594533-5042d84e-21f9-4f05-9c20-973738e7f78f.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0013",
         name: 'Jermy Hill Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594539-372ccd91-cdd8-40cb-809b-7b5aa58061e5.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0014",
         name: 'Mike Outlaw food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0015",
         name: 'Jermy Hill Footbal',
         image: 'https://user-images.githubusercontent.com/54505967/161594543-4cc512d9-6106-4938-8198-1b93936efef5.png',
+        plays: '41,211'
     },
     {
         id: "SLD0016",   
         name: 'Terrence’s Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594531-4ed21dca-bd8b-4918-ad56-097c70262955.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0017",
         name: 'Kyle Prater Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594533-5042d84e-21f9-4f05-9c20-973738e7f78f.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0018",
         name: 'Jermy Hill Football',
         image: 'https://user-images.githubusercontent.com/54505967/161594539-372ccd91-cdd8-40cb-809b-7b5aa58061e5.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0019",
         name: 'Mike Outlaw food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
+        plays: '41,211'
     },
     {   
         id: "SLD0020",
