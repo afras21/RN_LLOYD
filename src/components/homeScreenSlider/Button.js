@@ -21,7 +21,7 @@ function Button({ selected, src, text1, text2, onPress }) {
             >
                 <ImageBackground 
                     source={icons.ELLIPSE} 
-                    style={styles.buttonWrapper} 
+                    style={[styles.buttonWrapper, {marginLeft: 2}]} 
                 >
                     <Image 
                         source={src} 
@@ -42,7 +42,7 @@ function Button({ selected, src, text1, text2, onPress }) {
             >
                 <ImageBackground 
                     source={icons.ELLIPSE_DEFAULT} 
-                    style={styles.buttonWrapper} 
+                    style={[styles.buttonWrapper, {marginLeft: 2}]} 
                 >
                     <Image 
                         source={src} 
@@ -63,20 +63,23 @@ const styles = StyleSheet.create({
     buttonWrapper: { 
         height: normalize(50), 
         width: normalize(50), 
-        display: 'flex', 
         justifyContent: "center", 
         alignItems: 'center',
-        marginBottom: normalize(5)
+        marginBottom: normalize(5),
+        alignSelf: 'center'
     },
     icon: {
-        height: normalize(22),
-        width: normalize(24)
+        height: normalize(24),
+        width: normalize(24),
+        alignSelf: 'center'
     },
     text: { 
         color: colors.white, 
         fontSize: fonts.size.font10, 
-        // width: normalize(50),
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: fonts.type.soraRegular,
+        width: 80,
+        marginHorizontal: 2
     },
     wrapper: {
     }

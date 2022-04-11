@@ -16,7 +16,7 @@ import {
 } from '../screens/';
 import { icons } from '../constants';
 import normalize from 'react-native-normalize';
-import { colors } from '../theme';
+import { colors, fonts } from '../theme';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -41,6 +41,7 @@ const TabBarIcon = ({ focused, src }) => {
 const HomeTabBarIcon = ({ focused, src, onPress }) => {
     return (
         <View style={styles.homeButtonWrapper}>
+            <View  style={styles.curveBottomTab}/>
             <View style={styles.homeButtonInnerWrapper}>
                 <TouchableOpacity
                     style={[styles.homeButton, focused === true ? styles.homeButtonFocused : styles.homeButtonUnFocused]}
@@ -115,6 +116,16 @@ const BottomTabNavigationStack = () => {
 }
 
 const styles = StyleSheet.create({
+    curveBottomTab: {
+        height: normalize(70),
+        width: normalize(70),
+        backgroundColor: colors.bottomTabBgColor,
+        transform: [{ rotate: '45deg' }], bottom: 34,
+        borderTopLeftRadius: 40,
+        borderBottomLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 40,
+    },
     tabBarStyle: {
         backgroundColor: colors.bottomTabBgColor,
         borderTopColor: colors.bottomTabBgColor,
@@ -134,12 +145,14 @@ const styles = StyleSheet.create({
 
         marginBottom: normalize(10),
         fontSize: normalize(12),
-        color: colors.primary
+        color: colors.primary,
+        fontFamily: fonts.type.soraRegular
     },
     tabBarLabelStyleUnFocused: {
         marginBottom: normalize(10),
         fontSize: normalize(12),
-        color: colors.progressGray
+        color: colors.progressGray,
+        fontFamily: fonts.type.soraRegular
     },
     homeButtonWrapper: {
         flex: 1,

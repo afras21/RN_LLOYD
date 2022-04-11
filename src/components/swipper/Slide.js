@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
         fontSize: fonts.size.font22,
         lineHeight: normalize(33),
         color: colors.white,
-        marginVertical: normalize(5)
+        marginVertical: normalize(5),
+        fontFamily: fonts.type.soraSemiBold
     },
     slideDescriptionText:{
         textAlign: 'center',
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
         color: colors.white,
         marginTop: normalize(6),
         width: '80%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontFamily: fonts.type.soraRegular
     },
     slideImage: {
         width: normalize(302),

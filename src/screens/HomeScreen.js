@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     FlatList,
     Image,
     ImageBackground,
-    LogBox,
     SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,
     Text,
     TouchableOpacity,
-    View
+    View,
+    Animated
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient';
@@ -30,15 +30,24 @@ import Slider2 from '../components/homeScreenSlider/Slider2';
 
 import { data } from '../mock/slider2'
 import Button from '../components/homeScreenSlider/Button';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRef } from 'react';
 
-const Header = ({ user }) => {
+const HEADER_HEIGHT = strings.HEADER_HEIGHT;
+
+const allPages = {
+    TREND_TRIVIA: 'trivia',
+    HOME: 'home'
+}
+
+const Header = ({ user, onLayout }) => {
     return (
-        <View style={styles.headerWrapper}>
+        <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
 
                 {/* headerTopPart1 */}
                 <Image
-                    source={{ uri: user.avatar }}
+                    source={ user.avatar ? { uri: user.avatar } : icons.USER_ICON}
                     style={styles.headerUserAvatar}
                     resizeMode={'contain'}
                 />
@@ -67,7 +76,6 @@ const Header = ({ user }) => {
                         <Image
                             source={icons.WALLET}
                             style={styles.walletImage}
-                            resizeMode='contain'
                         />
                         <Text style={styles.walletAmount}>
                             500
@@ -75,7 +83,6 @@ const Header = ({ user }) => {
                     </View>
                 </View>
             </View>
-
             <View style={styles.headerBottom}>
                 <Image
                     source={icons.SEARCH}
@@ -87,9 +94,125 @@ const Header = ({ user }) => {
                     onChangeText={() => { }}
                 />
             </View>
-        </View>
+
+        </Animated.View>
     )
 }
+
+const StickyHeader = ({ onLayout, user }) => {
+    const [selectSuggestion, setSelectSuggestion] = useState('All');
+    return (
+        <Animated.View onLayout={onLayout} style={[styles.stickyHeaderWrapper]}>
+            <View style={styles.stickHeaderInnerWrapper}>
+                <View style={styles.stickyHeaderInnerWrapperTop}>
+                    <View style={styles.headerTop}>
+
+                        {/* headerTopPart1 */}
+                        <Image
+                            source={user.avatar ? { uri: user.avatar } : icons.USER_ICON}
+                            style={styles.headerUserAvatar}
+                            resizeMode={'contain'}
+                        />
+                        <Image
+                            source={icons.DASHBOARD}
+                            style={styles.headerDashBoardIcon}
+                        />
+                        {/* headerTopPart2 */}
+
+                        <View style={styles.headerTopPart2}>
+                            <Image
+                                source={icons.LOGO}
+                                style={styles.logoImage}
+                                resizeMode='contain'
+                            />
+                        </View>
+                        {/* headerTopPart3 */}
+
+                        <View style={styles.headerTopPart3}>
+                            <Image
+                                source={icons.NOTIFICATION}
+                                style={styles.notificationImage}
+                                resizeMode='contain'
+                            />
+                            <View style={styles.walletWrapper}>
+                                <Image
+                                    source={icons.WALLET}
+                                    style={styles.walletImage}
+                                />
+                                <Text style={styles.walletAmount}>
+                                    500
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.chipWrapper}>
+                    <FlatList
+                        data={strings.SUGGESTIONS_SEARCH}
+                        horizontal
+                        style={styles.chipFlatlist}
+                        showsHorizontalScrollIndicator={false}
+                        renderItem={({ item }) => {
+                            if (item.length === 0) {
+                                return (
+                                    <View style={styles.searchChipWrapper}>
+                                        <Image
+                                            source={icons.SEARCH}
+                                            style={styles.searchIcon}
+                                        />
+                                    </View>
+                                )
+                            }
+                            return (
+                                <TouchableOpacity
+                                    onPress={() => {setSelectSuggestion(item)}}
+                                >
+                                    <LinearGradient
+                                        colors={['#5B5B5B', '#232323']}
+                                        style={[styles.chip, { borderWidth: item === selectSuggestion ? 2 : 0 }]}
+                                    >
+                                        <Text style={[styles.chipText, { color: item === selectSuggestion ? colors.primary : colors.white }]}>
+                                            {item}
+                                        </Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            )
+                        }}
+                    />
+                    <View style={styles.emptyHeight} />
+                </View>
+            </View>
+        </Animated.View>
+    )
+}
+
+const AnimatedHeader = ({ animatedValue, user }) => {
+    const insets = useSafeAreaInsets();
+    const headerHeight = animatedValue.interpolate({
+        inputRange: [0, HEADER_HEIGHT + insets.top],
+        outputRange: [HEADER_HEIGHT + insets.top, insets.top + 70],
+        extrapolate: 'clamp'
+    });
+    const [viewHeight, setViewHeight] = useState(HEADER_HEIGHT);
+    const onLayout=(event)=> {
+        const { height } = event.nativeEvent.layout;
+        setViewHeight(height);
+    }
+    return (
+        <Animated.View
+            style={[styles.animatedHeader, { height: headerHeight }]}
+        >
+            {
+                viewHeight >= 120 ? 
+                    <Header onLayout={onLayout} viewHeight={viewHeight} user={user} />   
+                :
+                    <StickyHeader onLayout={onLayout} user={user} />
+
+            } 
+        </Animated.View>
+    )
+};
+  
 
 const FooterText = ({ text }) => {
     return(
@@ -99,10 +222,18 @@ const FooterText = ({ text }) => {
     )
 }
 
-const HomeScreen = ({ user }) => {
+const HomeScreen = ({ user, navigation }) => {
+
+    const offset = useRef(new Animated.Value(0)).current;
 
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
+
+    const { text1, text2 } = strings.HOME_SCREEN_BUTTONS[activeButtonIndex]
+    const allTriviaHeaderText = `${text1} ${text2}`
+
+    const [pageState, setPageState] = useState(allPages.HOME);
+    const [selectedTrivia, setSelectedTrivia] = useState('');
 
     const onChangeSlider1 = (index) => {
         setActiveIndex(index)
@@ -113,6 +244,9 @@ const HomeScreen = ({ user }) => {
             <TouchableOpacity
                 style={styles.quizWrapper}
                 key={index}
+                onPress={() => { 
+                    navigation.navigate('JoinTriviaScreen',{ trivia: item });
+                }}
             >
                 <LinearGradient
                     colors={strings.HOME_SCREEN_QUIZ_LINEAR_GRADIENT_COLORS}
@@ -132,6 +266,9 @@ const HomeScreen = ({ user }) => {
                 >
                     {item.name}
                 </Text>
+                <Text  style={styles.quizPlays}>
+                    {item.plays} Plays
+                </Text>
             </TouchableOpacity>
         )
     }
@@ -140,11 +277,17 @@ const HomeScreen = ({ user }) => {
         return(
             <View style={styles.quizListWrapper}>
                 <FlatList
+                    keyExtractor={(item) => item.id}
                     data={data}
                     numColumns={strings.NO_OF_COLUMNS_FLATLIST_HOME_SCREEN}
                     contentContainerStyle={styles.quizListWrapperContainer}
                     renderItem={renderQuizItem}
                 />
+                <TouchableOpacity style={styles.quizViewAll}>
+                    <Text style={styles.viewAllText}>
+                        View All
+                    </Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -188,61 +331,83 @@ const HomeScreen = ({ user }) => {
         )
     }
 
+    
+    const handleTrendTriviaSelection = (item) => {
+        // setSelectedTrivia(item)
+        // setPageState(allPages.TREND_TRIVIA)
+        navigation.navigate('TriviaScreen', {item: item});
+    }
+
+    /**
+     * on Clicking back button in trivia page
+     */
+    const handleTriviaClose = () => {
+        // setPageState(allPages.HOME)
+        // setSelectedTrivia('');
+    }
+
 
     return (
-        <SafeAreaView  nestedScrollEnabled={true} style={styles.container}>
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
-                <Header user={user} />
-                
-                <Slider1
-                    data={strings.HOME_SLIDER1}
-                    activeIndex={activeIndex}
-                    changeIndex={onChangeSlider1}
-                />
-
-                <Slider2 data={data} />
-
-                <View style={styles.buttonWrapper}>
-                    <FlatList
-                        horizontal
-                        contentContainerStyle={{
-                            width: '100%',
-                            justifyContent: 'space-around'
-                        }}
-                        renderItem={({ index, item }) => {
-                            return (
-                                <Button
-                                    keyExtractor={item => item.text1}
-                                    src={item.src}
-                                    text1={item.text1}
-                                    text2={item.text2}
-                                    selected={activeButtonIndex === index}
-                                    onPress={() => setActiveButtonIndex(index)}
-                                />
-                            )
-                        }}
-                        data={strings.HOME_SCREEN_BUTTONS}
-                    />
-                </View>
-
-                <Text
-                    style={{
-                        width: '90%',
-                        alignSelf: 'center',
-                        marginVertical: normalize(10),
-                        fontSize: fonts.size.font14,
-                        color: colors.white
-                    }}
+        <SafeAreaProvider>
+            <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
+                {/* <StatusBar backgroundColor={colors.bottomTabBgColor} /> */}
+                <AnimatedHeader animatedValue={offset} user={user} />
+                <ScrollView 
+                    nestedScrollEnabled={true} 
+                    showsVerticalScrollIndicator={false} 
+                    style={styles.scrollContainer}
+                    scrollEventThrottle={16}
+                    onScroll={Animated.event(
+                      [{ nativeEvent: { contentOffset: { y: offset } } }],
+                      { useNativeDriver: false }
+                    )}
                 >
-                    {`${strings.HOME_SCREEN_BUTTONS[activeButtonIndex].text1} ${strings.HOME_SCREEN_BUTTONS[activeButtonIndex].text2}`}
-                </Text>
-                <RenderQuizItems data={strings.HOME_SLIDER2} />
-                
-                <RenderFooter />
+                    <Header user={user} />
 
-            </ScrollView>
-        </SafeAreaView>
+                    <Slider1
+                        data={strings.HOME_SLIDER1}
+                        activeIndex={activeIndex}
+                        changeIndex={onChangeSlider1}
+                    />
+
+                    <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
+
+                    <TriviaCategory
+                        data={strings.HOME_SCREEN_BUTTONS}
+                        setActiveButtonIndex={setActiveButtonIndex}
+                        activeButtonIndex={activeButtonIndex}
+                    />
+
+                    <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
+                    <RenderQuizItems data={strings.HOME_SLIDER2} />
+
+                    <RenderFooter />
+                </ScrollView>
+            </SafeAreaView>
+        </SafeAreaProvider>
+    )
+}
+
+const TriviaCategory = ({data, setActiveButtonIndex, activeButtonIndex}) => {
+    const renderItem = ({ item, index }) => (
+        <Button
+            keyExtractor={item => item.text1}
+            src={item.src}
+            text1={item.text1}
+            text2={item.text2}
+            selected={activeButtonIndex === index}
+            onPress={() => setActiveButtonIndex(index)}
+        />
+    )
+    return (
+        <View style={styles.buttonWrapper}>
+            <FlatList
+                horizontal
+                contentContainerStyle={styles.triviaCategoryContent}
+                renderItem={renderItem}
+                data={data}
+            />
+        </View>
     )
 }
 
@@ -250,6 +415,68 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.backgroundColor
+    },
+    chipText: {
+        fontSize: fonts.size.font10,
+        padding: normalize(6),
+        paddingHorizontal: normalize(10),
+        fontFamily: fonts.type.soraMedium
+    },
+    searchChipWrapper: {
+        padding: 5,
+        backgroundColor: colors.white,
+        borderRadius: normalize(60),
+        justifyContent: 'center',
+        height: 30,
+        width: 30,
+        alignSelf: 'center',
+        marginRight: normalize(15)
+    },
+    emptyHeight: { 
+        height: 10, 
+        width: '10%' 
+    },
+    chip: {
+        padding: normalize(4),
+        alignSelf: 'center',
+        marginHorizontal: normalize(6),
+        borderColor: colors.primary,
+        borderRadius: normalize(20)
+    },
+    chipFlatlist: {
+        width: '95%',
+        alignSelf: 'center'
+    },
+    chipWrapper: {
+        width: '100%',
+        backgroundColor: colors.backgroundColor,
+        height: normalize(45),
+        borderBottomWidth: 3,
+        borderColor: colors.bottomTabBgColor,
+        marginTop: 10
+    },
+    searchIcon: {
+        width: 13,
+        height: 13,
+        tintColor: colors.bottomTabBgColor,
+        alignSelf: 'center',
+    },
+    stickyHeaderWrapper: { 
+        flex: 1, 
+        height: 130, 
+        width: '100%' 
+    },
+    stickyHeaderInnerWrapperTop: { 
+        height: normalize(60), 
+        borderBottomLeftRadius: 30, 
+        borderBottomRightRadius: 30,
+        width: '100%', 
+        backgroundColor: colors.bottomTabBgColor, 
+        paddingHorizontal: normalize(20), 
+        justifyContent: 'center' 
+    },
+    stickHeaderInnerWrapper: {
+        backgroundColor: colors.backgroundColor,
     },
     scrollContainer: {
         flex: 1
@@ -268,16 +495,17 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     headerUserAvatar: {
-        height: normalize(30),
-        width: normalize(30),
-        borderRadius: normalize(30)
+        height: normalize(35),
+        width: normalize(35),
+        // borderRadius: normalize(30),
+        // backgroundColor: colors.white
     },
     headerDashBoardIcon: {
-        width: 20,
-        height: 20,
+        width: 15,
+        height: 15,
         position: 'absolute',
-        left: 15,
-        top: 15,
+        left: 22,
+        top: 20,
         zIndex: 1
     },
     headerTopPart2: {
@@ -303,12 +531,14 @@ const styles = StyleSheet.create({
     },
     walletImage: {
         width: normalize(23),
-        height: normalize(23)
+        height: normalize(23),
+        backgroundColor: colors.bottomTabBgColor
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: normalize(15),
-        color: colors.white
+        fontSize: fonts.size.font12,
+        color: colors.white,
+        fontFamily: fonts.type.soraLight
     },
     headerBottom: {
         width: '100%',
@@ -342,13 +572,15 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: normalize(18),
         borderWidth: 1,
-        borderColor: '#7D7D7E',
+        borderColor: '#505050',
         height: normalize(110)
     },
     quizImage: {
-        width: '90%',
+        width: '100%',
         height: normalize(110),
         borderRadius: normalize(18),
+        borderColor: '#505050',
+        borderWidth: 1
     },
     quizTitle: {
         width: '100%',
@@ -384,7 +616,9 @@ const styles = StyleSheet.create({
     },
     footerText: {
         fontSize: fonts.size.font12,
-        marginTop: normalize(5)
+        marginTop: normalize(5),
+        fontFamily: fonts.type.soraRegular,
+        color: colors.white
     },
     knowMoreWrapper: {
         flexDirection: 'row',
@@ -396,7 +630,8 @@ const styles = StyleSheet.create({
     },
     knowMoreText: {
         color: colors.primary,
-        fontSize: fonts.size.font10
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraRegular
     },
     buttonWrapper: {
         display: 'flex', 
@@ -405,6 +640,43 @@ const styles = StyleSheet.create({
         marginVertical: normalize(10),
         width: '90%',
         alignSelf: 'center'
+    },
+    allTriviaHeader: {
+        width: '90%',
+        alignSelf: 'center',
+        marginVertical: normalize(10),
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraSemiBold,
+        color: colors.white
+    },
+    triviaCategoryContent: {
+        width: '100%',
+        justifyContent: 'space-around'
+    },
+    quizViewAll: {
+        width: '96%',
+        alignSelf: 'center',
+        marginVertical: normalize(10),
+        marginBottom: normalize(15)
+    },
+    viewAllText: {
+        fontSize: fonts.size.font14,
+        color: colors.white,
+        textAlign: 'center',
+        fontFamily: fonts.type.soraMedium
+    },
+    quizPlays: {
+        marginTop: normalize(5),
+        fontSize: fonts.size.font10,
+        color: '#999999',
+        fontFamily: fonts.type.soraMedium
+    },
+    animatedHeader: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10
     }
 })
 const mapStateToProps = state => {

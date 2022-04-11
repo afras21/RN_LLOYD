@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { 
     FlatList,
@@ -5,38 +6,43 @@ import {
     TouchableOpacity,
     View,
     Image,
-    Text
+    Text,
+    ImageBackground
 } from 'react-native';
 import normalize from 'react-native-normalize';
-import { rgbaColor } from 'react-native-reanimated/src/reanimated2/Colors';
 import { strings } from '../../constants';
 import { colors, fonts, metrics } from '../../theme';
 
-const renderItem = ({ item }) => {
-    return(
-        <TouchableOpacity
-            key={item.id}
-            style={styles.renderItemWrapper}
-            onPress={() => {}}
-        >
-                <Image 
-                    style={{ flex:1 }} 
-                    borderRadius={15}
-                    blurRadius={6}
-                    source={{ uri: strings.SLIDER2_IMAGE }} 
-                    resizeMode={'cover'} 
-                />
-                <View style={styles.absolute}>
-                    <View style={styles.innerWrapper}>
-                        <Text style={styles.title}>{item?.name}</Text>
-                        <Text style={styles.plays}>{item?.plays} Plays</Text>
+const Slider2 = ({ data, handleTrendTriviaSelection }) => {
+    const renderItem = ({ item }) => {
+        return(
+            <TouchableOpacity
+                key={item.id}
+                style={styles.renderItemWrapper}
+                onPress={() => handleTrendTriviaSelection(item)}
+            >
+                    <Image 
+                        style={{ flex:1 }} 
+                        borderRadius={12}
+                        source={{ uri: item.image }} 
+                        resizeMode={'cover'} 
+                    />
+                    <View style={styles.absolute}>
+                        <ImageBackground 
+                            imageStyle={styles.imageStyleInBg} 
+                            blurRadius={20} 
+                            source={{ uri: item.image }}  
+                            style={styles.innerWrapper}
+                        >
+                        </ImageBackground>
+                        <View style={styles.content}>
+                            <Text style={styles.title}>{item?.name}</Text>
+                            <Text style={styles.plays}>{item?.plays} Plays</Text>
+                        </View>
                     </View>
-                </View>
-        </TouchableOpacity>
-    )
-}
-
-const Slider2 = ({ data }) => {
+            </TouchableOpacity>
+        )
+    }
     return (
         <View style={styles.container}>
             <View style={styles.headingWrapper}>
@@ -66,19 +72,30 @@ const styles = StyleSheet.create({
         width: '92%',
         alignSelf: 'center'
     },
+    imageStyleInBg: {
+        backgroundColor: colors.black
+    },
+    content: {
+        position: 'absolute', 
+        left: normalize(10), 
+        top: normalize(6),
+        width: '100%',
+        alignSelf: 'center'
+    },
     itemSeparator: {
         width: normalize(10)
     },
     absolute: {
-        borderRadius: 15,
+        borderRadius: 12,
         width: '91.5%', 
         height: normalize(55),
         position: 'absolute', 
         zIndex: 1, 
-        backgroundColor: rgbaColor(1,0,0,0.7),
+        backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
         left: 15,
         right: 15,
-        bottom: 10
+        bottom: 10,
+        overflow: 'hidden'
     },
     renderItemWrapper: {
         height: normalize(110),
@@ -92,25 +109,32 @@ const styles = StyleSheet.create({
     },
     heading: {
         color: colors.white,
-        fontSize: fonts.size.font14
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraMedium
     },
     viewMoreText: {
-        fontSize: fonts.size.font12
+        fontSize: fonts.size.font12,
+        fontFamily: fonts.type.soraRegular
     },
     innerWrapper: {
         flex: 1,
         paddingHorizontal: normalize(15),
-        paddingVertical: normalize(10)
+        paddingVertical: normalize(5),
+        opacity: .5,
+        backgroundColor: 'black'
+    
     },
     title: { 
         color: colors.white, 
-        fontWeight: '800', 
-        fontSize: fonts.size.font14 
+        fontSize: fonts.size.font14,
+        fontFamily: fonts.type.soraMedium,
+        opacity: 1
     },
     plays: { 
-        color: colors.progressGray, 
-        fontSize: fonts.size.font10, 
-        fontWeight: fonts.weight.low 
+        color: colors.white, 
+        fontSize: normalize(13), 
+        fontFamily: fonts.type.soraLight,
+        marginTop: normalize(2)
     }
 })
 

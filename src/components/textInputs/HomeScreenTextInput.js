@@ -14,7 +14,8 @@ const HomeScreenTextInput = ({ placeholder, onChangeText }) => {
                 borderRadius: normalize(10),
                 color: colors.progressGray,
                 paddingLeft: normalize(35),
-                fontSize: fonts.size.font12
+                fontSize: fonts.size.font12,
+                fontFamily: fonts.type.soraRegular
             }}
             placeholder={placeholder}
             onChangeText={onChangeText}
