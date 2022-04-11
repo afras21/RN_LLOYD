@@ -10,7 +10,6 @@ import {
     ImageBackground
 } from 'react-native';
 import normalize from 'react-native-normalize';
-import { rgbaColor } from 'react-native-reanimated/src/reanimated2/Colors';
 import { strings } from '../../constants';
 import { colors, fonts, metrics } from '../../theme';
 
@@ -25,14 +24,13 @@ const Slider2 = ({ data, handleTrendTriviaSelection }) => {
                     <Image 
                         style={{ flex:1 }} 
                         borderRadius={12}
-                        blurRadius={6}
                         source={{ uri: item.image }} 
                         resizeMode={'cover'} 
                     />
                     <View style={styles.absolute}>
                         <ImageBackground 
                             imageStyle={styles.imageStyleInBg} 
-                            blurRadius={120} 
+                            blurRadius={20} 
                             source={{ uri: item.image }}  
                             style={styles.innerWrapper}
                         >
@@ -80,7 +78,9 @@ const styles = StyleSheet.create({
     content: {
         position: 'absolute', 
         left: normalize(10), 
-        top: normalize(6)
+        top: normalize(6),
+        width: '100%',
+        alignSelf: 'center'
     },
     itemSeparator: {
         width: normalize(10)
@@ -131,9 +131,10 @@ const styles = StyleSheet.create({
         opacity: 1
     },
     plays: { 
-        color:  rgbaColor(255, 255, 255, 0.6), 
-        fontSize: fonts.size.font10, 
-        fontFamily: fonts.type.soraLight
+        color: colors.white, 
+        fontSize: normalize(13), 
+        fontFamily: fonts.type.soraLight,
+        marginTop: normalize(2)
     }
 })
 

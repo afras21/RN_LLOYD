@@ -100,6 +100,7 @@ const Header = ({ user, onLayout }) => {
 }
 
 const StickyHeader = ({ onLayout, user }) => {
+    const [selectSuggestion, setSelectSuggestion] = useState('All');
     return (
         <Animated.View onLayout={onLayout} style={[styles.stickyHeaderWrapper]}>
             <View style={styles.stickHeaderInnerWrapper}>
@@ -163,14 +164,18 @@ const StickyHeader = ({ onLayout, user }) => {
                                 )
                             }
                             return (
-                                <LinearGradient
-                                    colors={['#5B5B5B', '#232323']}
-                                    style={[styles.chip, { borderWidth: item === 'All' ? 2 : 0 }]}
+                                <TouchableOpacity
+                                    onPress={() => {setSelectSuggestion(item)}}
                                 >
-                                    <Text style={[ styles.chipText, { color: item === 'All' ? colors.primary : colors.white} ]}>
-                                        {item}
-                                    </Text>
-                                </LinearGradient>
+                                    <LinearGradient
+                                        colors={['#5B5B5B', '#232323']}
+                                        style={[styles.chip, { borderWidth: item === selectSuggestion ? 2 : 0 }]}
+                                    >
+                                        <Text style={[styles.chipText, { color: item === selectSuggestion ? colors.primary : colors.white }]}>
+                                            {item}
+                                        </Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
                             )
                         }}
                     />
@@ -341,7 +346,6 @@ const HomeScreen = ({ user, navigation }) => {
         // setSelectedTrivia('');
     }
 
-    console.log(offset)
 
     return (
         <SafeAreaProvider>
@@ -491,17 +495,17 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     headerUserAvatar: {
-        height: normalize(30),
-        width: normalize(30),
-        borderRadius: normalize(30),
-        backgroundColor: colors.white
+        height: normalize(35),
+        width: normalize(35),
+        // borderRadius: normalize(30),
+        // backgroundColor: colors.white
     },
     headerDashBoardIcon: {
-        width: 20,
-        height: 20,
+        width: 15,
+        height: 15,
         position: 'absolute',
-        left: 15,
-        top: 15,
+        left: 22,
+        top: 20,
         zIndex: 1
     },
     headerTopPart2: {

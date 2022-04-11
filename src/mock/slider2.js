@@ -3,7 +3,7 @@ export const data = [
           "id": "TQ1",
           "name": "Basketball Trivia",
           "plays": 123482,
-          "image": "https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg"
+          "image": "https://user-images.githubusercontent.com/54505967/162625517-6aabd2b2-a584-4219-aa1e-aca4a6aacf8b.png"
         },
         {
           "id": "TQ2",
@@ -15,7 +15,7 @@ export const data = [
           "id": "TQ3",
           "name": "Tennis Trivia",
           "plays": 98723685,
-          "image": "https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w.jpeg"
+          "image": "https://user-images.githubusercontent.com/54505967/162625517-6aabd2b2-a584-4219-aa1e-aca4a6aacf8b.png"
         },
         {
           "id": "TQ4",
