@@ -46,7 +46,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD004",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,212'
     },
@@ -76,7 +76,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD009",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,211'
     },
@@ -106,7 +106,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD0014",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,211'
     },
@@ -136,7 +136,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD0019",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,211'
     },
@@ -165,7 +165,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD0024",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '36,271'
     },

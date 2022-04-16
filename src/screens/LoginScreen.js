@@ -15,7 +15,7 @@ import CustomSwiper from '../components/swipper/index'
 import FacebookButton from '../components/buttons/FacebookButton';
 import GoogleButton from '../components/buttons/GoogleButton';
 import { strings } from '../constants';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+// import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { 
     AccessToken,
     GraphRequest, 
@@ -28,11 +28,11 @@ import { saveUser } from '../store/actions/user.action';
 
 const TEMP_AUTH_TOKEN = 'LSIBFUWLIEUB19287BISFBWIUB29378BISC'; // REMOVABLE LATER
 
-GoogleSignin.configure({
-    // Mandatory method to call before calling signIn()
-    scopes: strings.LOGIN_WITH_GOOGLE_SCOPES,
-    webClientId: strings.LOGIN_WITH_GOOGLE_WEB_CLIENT_ID,
-});
+// GoogleSignin.configure({
+//     // Mandatory method to call before calling signIn()
+//     scopes: strings.LOGIN_WITH_GOOGLE_SCOPES,
+//     webClientId: strings.LOGIN_WITH_GOOGLE_WEB_CLIENT_ID,
+// });
 
 const LoginScreen = ({ navigation, saveUser }) => {
 
