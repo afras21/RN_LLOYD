@@ -14,6 +14,14 @@
 		3C3131031D38EA591A141838 /* libPods-base-baseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C477BA6B34EC2AC7D8112251 /* libPods-base-baseTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A7B433C64544A2A6CA650D1C /* libPods-base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DACD2A675705DC82BA74BD6 /* libPods-base.a */; };
+		CBC4A265F5F340BCA8E16053 /* Sora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52007FBB82764928937E8FD4 /* Sora-Bold.ttf */; };
+		62C682B26A994A2E9B0D0558 /* Sora-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA5AAA2634CB46578C4B2DC6 /* Sora-ExtraBold.ttf */; };
+		33B190F62B9B479F88F3A7CA /* Sora-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6E57C5D1BE2426FB6073E69 /* Sora-ExtraLight.ttf */; };
+		CECA9F8CB5824B978EF6536F /* Sora-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76D17540CFCD4A2B9AC81BD3 /* Sora-Light.ttf */; };
+		E7540E4164E04BFEB35F9E4F /* Sora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E619B6807AD648B4872F9238 /* Sora-Medium.ttf */; };
+		F7F020749F6B4571881FDB1F /* Sora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC2C050603485581D1F2A5 /* Sora-Regular.ttf */; };
+		1842144B438247FA944968E9 /* Sora-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D7950DB545744139BF8B067 /* Sora-SemiBold.ttf */; };
+		20ACCFC30B5A4AA4BC561591 /* Sora-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F88105CE454A4FA4021D9E /* Sora-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		DADD6B0F29590276CF8E062A /* Pods-base-baseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-base-baseTests.debug.xcconfig"; path = "Target Support Files/Pods-base-baseTests/Pods-base-baseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E9364EA10FA5ADBBD396C55B /* Pods-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-base.debug.xcconfig"; path = "Target Support Files/Pods-base/Pods-base.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		52007FBB82764928937E8FD4 /* Sora-Bold.ttf */ = {isa = PBXFileReference; name = "Sora-Bold.ttf"; path = "../src/assets/fonts/Sora-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA5AAA2634CB46578C4B2DC6 /* Sora-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Sora-ExtraBold.ttf"; path = "../src/assets/fonts/Sora-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B6E57C5D1BE2426FB6073E69 /* Sora-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Sora-ExtraLight.ttf"; path = "../src/assets/fonts/Sora-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		76D17540CFCD4A2B9AC81BD3 /* Sora-Light.ttf */ = {isa = PBXFileReference; name = "Sora-Light.ttf"; path = "../src/assets/fonts/Sora-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E619B6807AD648B4872F9238 /* Sora-Medium.ttf */ = {isa = PBXFileReference; name = "Sora-Medium.ttf"; path = "../src/assets/fonts/Sora-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4CAC2C050603485581D1F2A5 /* Sora-Regular.ttf */ = {isa = PBXFileReference; name = "Sora-Regular.ttf"; path = "../src/assets/fonts/Sora-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D7950DB545744139BF8B067 /* Sora-SemiBold.ttf */ = {isa = PBXFileReference; name = "Sora-SemiBold.ttf"; path = "../src/assets/fonts/Sora-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A5F88105CE454A4FA4021D9E /* Sora-Thin.ttf */ = {isa = PBXFileReference; name = "Sora-Thin.ttf"; path = "../src/assets/fonts/Sora-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +138,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				33EF545AF8E5456C8E68021D /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +164,22 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		33EF545AF8E5456C8E68021D /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				52007FBB82764928937E8FD4 /* Sora-Bold.ttf */,
+				CA5AAA2634CB46578C4B2DC6 /* Sora-ExtraBold.ttf */,
+				B6E57C5D1BE2426FB6073E69 /* Sora-ExtraLight.ttf */,
+				76D17540CFCD4A2B9AC81BD3 /* Sora-Light.ttf */,
+				E619B6807AD648B4872F9238 /* Sora-Medium.ttf */,
+				4CAC2C050603485581D1F2A5 /* Sora-Regular.ttf */,
+				9D7950DB545744139BF8B067 /* Sora-SemiBold.ttf */,
+				A5F88105CE454A4FA4021D9E /* Sora-Thin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +277,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				CBC4A265F5F340BCA8E16053 /* Sora-Bold.ttf in Resources */,
+				62C682B26A994A2E9B0D0558 /* Sora-ExtraBold.ttf in Resources */,
+				33B190F62B9B479F88F3A7CA /* Sora-ExtraLight.ttf in Resources */,
+				CECA9F8CB5824B978EF6536F /* Sora-Light.ttf in Resources */,
+				E7540E4164E04BFEB35F9E4F /* Sora-Medium.ttf in Resources */,
+				F7F020749F6B4571881FDB1F /* Sora-Regular.ttf in Resources */,
+				1842144B438247FA944968E9 /* Sora-SemiBold.ttf in Resources */,
+				20ACCFC30B5A4AA4BC561591 /* Sora-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: colors.white,
         fontSize: fonts.size.font14,
-        fontWeight: fonts.weight.semi
+        fontFamily: fonts.type.soraSemiBold
     }
 });
 

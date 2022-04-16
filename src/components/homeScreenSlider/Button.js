@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     buttonWrapper: { 
         height: normalize(50), 
         width: normalize(50), 
-        display: 'flex', 
         justifyContent: "center", 
         alignItems: 'center',
         marginBottom: normalize(5),
+        alignSelf: 'center'
     },
     icon: {
         height: normalize(24),
@@ -76,9 +76,10 @@ const styles = StyleSheet.create({
     text: { 
         color: colors.white, 
         fontSize: fonts.size.font10, 
-        // width: normalize(100),
-        textAlign: 'center'
-        // backgroundColor: 'red'
+        textAlign: 'center',
+        fontFamily: fonts.type.soraRegular,
+        width: 80,
+        marginHorizontal: 2
     },
     wrapper: {
     }

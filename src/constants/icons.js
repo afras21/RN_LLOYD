@@ -19,14 +19,21 @@ const BATTLE = require('../assets/icons/battle.png')
 const CROWN = require('../assets/icons/crown.png')
 const GIFT = require('../assets/icons/gift.png')
 const FOOTER = require('../assets/icons/footer.png');
+const BACK_BUTTON = require('../assets/icons/backButton.png');
+const SWORD = require('../assets/icons/sword.png');
+const TROPHY = require('../assets/icons/trophy.png');
+const PLAYS = require('../assets/icons/plays.png');
+
 const BACK = require('../assets/icons/back.png');
 const PLAYERS = require('../assets/icons/players.png');
 const WINNERS = require('../assets/icons/winners.png');
-const PLAYS = require('../assets/icons/plays.png');
+const PLAYS1 = require('../assets/icons/plays1.png');
 const BULLET_POINT = require('../assets/icons/bulletPoint.png');
 const SECURE = require('../assets/icons/secure.png');
 const CLOSE = require('../assets/icons/close.png');
 const CHECKED = require('../assets/icons/checked.png');
+
+const USER_ICON = require('../assets/icons/user.png');
 
 export default {
     LOGO,
@@ -48,6 +55,11 @@ export default {
     CROWN,
     GIFT,
     FOOTER,
+    BACK_BUTTON,
+    SWORD,
+    TROPHY,
+    PLAYS,
+    PLAYS1,
     BACK,
     PLAYERS,
     WINNERS,
@@ -55,5 +67,6 @@ export default {
     BULLET_POINT,
     SECURE,
     CLOSE,
-    CHECKED
+    CHECKED,
+    USER_ICON
 }

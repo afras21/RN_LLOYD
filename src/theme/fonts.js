@@ -28,9 +28,11 @@ const weight = {
 }
 
 const type = {
-    montserratMedium: 'Montserrat-Medium',
-    montserratRegular: 'Montserrat-Regular',
-    montserratBold: 'Montserrat-Bold'
+    soraMedium: 'Sora-Medium',
+    soraRegular: 'Sora-Regular',
+    soraBold: 'Sora-Bold',
+    soraLight: 'Sora-Light',
+    soraSemiBold: 'Sora-SemiBold'
 }
 
 export default {
