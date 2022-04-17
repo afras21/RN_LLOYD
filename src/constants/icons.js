@@ -34,6 +34,9 @@ const CLOSE = require('../assets/icons/close.png');
 const CHECKED = require('../assets/icons/checked.png');
 
 const USER_ICON = require('../assets/icons/user.png');
+const GOLD_MEDAL = require('../assets/icons/goldMedal.png');
+const SILVER_MEDAL = require('../assets/icons/silverMedal.png');
+const BRONZE_MEDAL = require('../assets/icons/bronzeMedal.png');
 
 export default {
     LOGO,
@@ -68,5 +71,8 @@ export default {
     SECURE,
     CLOSE,
     CHECKED,
-    USER_ICON
+    USER_ICON,
+    GOLD_MEDAL,
+    SILVER_MEDAL,
+    BRONZE_MEDAL
 }
