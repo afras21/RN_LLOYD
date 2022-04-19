@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: colors.white,
-        fontSize: fonts.size.font20,
+        fontSize: fonts.size.font18,
         fontFamily: fonts.type.soraSemiBold,
         flex: .6
     },
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
         marginRight: normalize(10)
     },
     notificationIcon: {
-        height: 22,
-        width: 22
+        height: normalize(20),
+        width: normalize(20)
     },
     walletWrapper: {
         flexDirection: 'row'

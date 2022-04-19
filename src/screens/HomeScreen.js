@@ -536,7 +536,7 @@ const styles = StyleSheet.create({
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: fonts.size.font12,
+        fontSize: fonts.size.font10,
         color: colors.white,
         fontFamily: fonts.type.soraLight
     },
