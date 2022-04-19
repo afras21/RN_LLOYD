@@ -215,6 +215,14 @@ const HOME_SCREEN_BUTTONS = [
     }
 ];
 
+const YOUR_REFERRAL = 'LOREMIPSUMU5436';
+
+const REFER_EARN_LIST_ACCORDION = [
+    { title: "First Element", content: "Lorem ipsum dolor sit amet" },
+    { title: "Second Element", content: "Lorem ipsum dolor sit amet" },
+    { title: "Third Element", content: "Lorem ipsum dolor sit amet" }
+];
+
 export default{
     STATUS_BAR_STYLE,
     TAGLINE,
@@ -246,5 +254,7 @@ export default{
     SLIDER2_VIEW_MORE,
     HOME_SCREEN_BUTTONS,
     SUGGESTIONS_SEARCH,
-    HEADER_HEIGHT
+    HEADER_HEIGHT,
+    YOUR_REFERRAL,
+    REFER_EARN_LIST_ACCORDION
 }

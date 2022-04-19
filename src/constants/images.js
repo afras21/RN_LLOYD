@@ -6,6 +6,10 @@ const SLIDER_IMAGE3 = require('../assets/images/sliderImage3.png');
 const SLIDER_IMAGE4 = require('../assets/images/sliderImage4.png');
 const REFER_AND_EARN = require('../assets/images/referAndEarn.png');
 const BASKET_BALL_TRIVIA = require('../assets/images/basketBallTrivia.png');
+const REFER_FRIEND = require('../assets/images/referFriend.png');
+const REFER_FRIEND_BG = require('../assets/images/referFriendBg.png');
+const LEADER_BOARD = require('../assets/images/leaderBoard.png'); 
+const LEADER_BOARD_3D = require('../assets/images/leaderBoard3D.png');
 
 export default{
     ON_BOARDING_IMAGE1,
@@ -15,5 +19,9 @@ export default{
     SLIDER_IMAGE3,
     SLIDER_IMAGE4,
     REFER_AND_EARN,
-    BASKET_BALL_TRIVIA
+    BASKET_BALL_TRIVIA,
+    REFER_FRIEND,
+    REFER_FRIEND_BG,
+    LEADER_BOARD,
+    LEADER_BOARD_3D
 }
