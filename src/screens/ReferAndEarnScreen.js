@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import { connect } from 'react-redux';
 import MainHeader from '../components/header/MainHeader';
+import ListAccordion from '../components/ListAccordion';
 import { icons, images, strings } from '../constants';
 import { leaderBoard } from '../mock/leaderboard';
 import { colors, fonts } from '../theme';
@@ -94,21 +95,6 @@ const LeaderBoardWinnerPosition = ({ position, color }) => {
     )
 }
 
-
-const ListAccordion = ({ item }) => {
-    return(
-        <TouchableOpacity style={styles.listAccordionButton}>
-            <Text style={styles.listAccordionText}>
-                {item}
-            </Text>
-            <Image
-                source={icons.RIGHT_ARROW}
-                style={styles.rightArrowIcon}
-                resizeMode={'contain'}
-            />  
-        </TouchableOpacity>
-    )
-}
 
 const ReferAndEarnScreen = ({ navigation, user }) => {
     return (
@@ -272,7 +258,7 @@ const ReferAndEarnScreen = ({ navigation, user }) => {
                     </TouchableOpacity>
                 </LinearGradient>
                 <TouchableOpacity
-                    onPress={()=>{}}
+                    onPress={()=>{ navigation.navigate('MyReferralScreen') }}
                     style={styles.myReferralsButton}
                 >
                     <Text style={styles.myReferralsText}>
@@ -280,8 +266,8 @@ const ReferAndEarnScreen = ({ navigation, user }) => {
                     </Text>
                 </TouchableOpacity>
 
-                <ListAccordion item={'How it works'} />
-                <ListAccordion item={'FAQ & Support'} />
+                <ListAccordion content={''} title={'How it works'} />
+                <ListAccordion content={''} title={'FAQ & Support'} />
                 <View style={{height: normalize(50)}} />
             </ScrollView>
         </SafeAreaView>
@@ -346,27 +332,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         marginTop: normalize(55),
         marginBottom: normalize(-85)
-    },
-    listAccordionButton: {
-        flexDirection: 'row',
-        marginVertical: normalize(10),
-        width: '99%',
-        alignSelf: 'center',
-        height: normalize(55),
-        paddingHorizontal: normalize(15),
-        borderRadius: normalize(15),
-        backgroundColor: '#434D54',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },  
-    rightArrowIcon: {
-        width: normalize(15),
-        height: normalize(15)
-    },
-    listAccordionText: {
-        color: '#C4C4C4',
-        fontSize: fonts.size.font12,
-        fontFamily: fonts.type.soraSemiBold
     },
     myReferralsButton: {
         marginVertical: normalize(20)

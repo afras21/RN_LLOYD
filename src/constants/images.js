@@ -10,6 +10,7 @@ const REFER_FRIEND = require('../assets/images/referFriend.png');
 const REFER_FRIEND_BG = require('../assets/images/referFriendBg.png');
 const LEADER_BOARD = require('../assets/images/leaderBoard.png'); 
 const LEADER_BOARD_3D = require('../assets/images/leaderBoard3D.png');
+const MY_REFERRAL = require('../assets/images/myReferral.png');
 
 export default{
     ON_BOARDING_IMAGE1,
@@ -23,5 +24,6 @@ export default{
     REFER_FRIEND,
     REFER_FRIEND_BG,
     LEADER_BOARD,
-    LEADER_BOARD_3D
+    LEADER_BOARD_3D,
+    MY_REFERRAL
 }

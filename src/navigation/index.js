@@ -4,7 +4,8 @@ import {
     SplashScreen,
     LoginScreen,
     TriviaScreen,
-    JoinTriviaScreen
+    JoinTriviaScreen,
+    MyReferralScreen
 } from '../screens';
 import BottomTab from './BottomTabNavigationStack';
 import Drawer from './DrawerNavigationStack';
@@ -41,6 +42,11 @@ const MainStackNavigation = () => {
                 options={{ headerShown: false }}
                 name='JoinTriviaScreen'
                 component={JoinTriviaScreen}
+            />
+            <MainStack.Screen
+                options={{ headerShown: false }}
+                name='MyReferralScreen'
+                component={MyReferralScreen}
             />
             {/* <MainStack.Screen
                 options={{ headerShown: false }}

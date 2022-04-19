@@ -20,29 +20,70 @@ import { colors, fonts } from '../theme';
 
 const LeaderBoardWinnerPosition = ({ position, color }) => {
     return(
+        <View style={[styles.leaderBoardWinnerPositionWrapper, { backgroundColor: color }]}>
+            <Text style={styles.leaderBoardWinnerPositionText}>
+                {position}
+            </Text>
+        </View>
+    )
+}
+
+const renderItemLeaderBoard = ({index, item}) => {
+    return(
         <View
-            style={{
-                width: normalize(33),
-                height: normalize(33),
-                backgroundColor: color,
-                borderRadius: normalize(40),
-                textAlign: 'center',
-                alignSelf: 'center',
-                marginTop: -normalize(22),
-                alignItems: 'center'
-            }}
+            style={[
+                styles.listItemWrapper,
+                {
+                    backgroundColor: index % 2 === 0 ? '#1C1C1C' : '#272727',
+                    marginTop: index === 0 ? normalize(7) : normalize(4),
+                    marginBottom: index === leaderBoard.length - 1 ? normalize(7): normalize(4)
+                }
+            ]}
         >
-        <Text
-            style={{
-                color: colors.white,
-                fontFamily: fonts.type.soraSemiBold,
-                fontSize: fonts.size.font14,
-                alignSelf: 'center',
-                marginTop: 3
-            }}
-        >
-            {position}
-        </Text>
+            <Text numberOfLines={1} style={styles.index}>
+                {index + 1}.
+            </Text>
+            <View style={styles.userInfoWrapper}>
+                {
+                    index === 0 ?
+                        <Image
+                            source={icons.GOLD_MEDAL}
+                            style={styles.medal}
+                        />
+                        : 
+                    index === 1 ?
+                         <Image
+                            source={icons.SILVER_MEDAL}
+                            style={styles.medal}
+                        />
+                    : index === 2 ?
+                        <Image
+                            source={icons.BRONZE_MEDAL}
+                            style={styles.medal}
+                        />            
+                    : 
+                        <></>
+                }
+
+            <Image
+                source={{ uri: item.avatar }}
+                style={styles.avatar}
+            />
+            <Text
+                style={styles.name}
+                numberOfLines={1}
+            >
+                {item.name}
+            </Text>
+            </View>
+            <View style={styles.amountWonWrapper}>
+                <Text style={styles.amountWonText}>
+                    {item.amountWon}
+                </Text>
+            </View>
+            <Text style={styles.ptsText}>
+                {item.pts} PTS
+            </Text>
         </View>
     )
 }
@@ -135,65 +176,8 @@ const LeaderBoardScreen = ({ navigation }) => {
                         <FlatList
                             data={leaderBoard}
                             keyExtractor={(item) => item.id}
-                            renderItem={({index, item}) => {
-                                return(
-                                    <View
-                                        style={[
-                                            styles.listItemWrapper,
-                                            {
-                                                backgroundColor: index % 2 === 0 ? '#1C1C1C' : '#272727',
-                                                marginTop: index === 0 ? normalize(7) : normalize(4),
-                                                marginBottom: index === leaderBoard.length - 1 ? normalize(7): normalize(4)
-                                            }
-                                        ]}
-                                    >
-                                        <Text style={styles.index}>
-                                            {index + 1}.
-                                        </Text>
-                                        <View style={styles.userInfoWrapper}>
-                                            {
-                                                index === 0 ?
-                                                    <Image
-                                                        source={icons.GOLD_MEDAL}
-                                                        style={styles.medal}
-                                                    />
-                                                    : 
-                                                index === 1 ?
-                                                     <Image
-                                                        source={icons.SILVER_MEDAL}
-                                                        style={styles.medal}
-                                                    />
-                                                : index === 2 ?
-                                                    <Image
-                                                        source={icons.BRONZE_MEDAL}
-                                                        style={styles.medal}
-                                                    />            
-                                                : 
-                                                    <></>
-                                            }
-
-                                        <Image
-                                            source={{ uri: item.avatar }}
-                                            style={styles.avatar}
-                                        />
-                                        <Text
-                                            style={styles.name}
-                                            numberOfLines={1}
-                                        >
-                                            {item.name}
-                                        </Text>
-                                        </View>
-                                        <View style={styles.amountWonWrapper}>
-                                            <Text style={styles.amountWonText}>
-                                                {item.amountWon}
-                                            </Text>
-                                        </View>
-                                        <Text style={styles.ptsText}>
-                                            {item.pts} PTS
-                                        </Text>
-                                    </View>
-                                )
-                            }}
+                            renderItem={renderItemLeaderBoard}
+                            showsVerticalScrollIndicator={false}
                         />
                     </View>
 
@@ -209,11 +193,27 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundColor
     },
+    leaderBoardWinnerPositionText: {
+        color: colors.white,
+        fontFamily: fonts.type.soraSemiBold,
+        fontSize: fonts.size.font14,
+        alignSelf: 'center',
+        marginTop: 3
+    },
+    leaderBoardWinnerPositionWrapper: {
+        width: normalize(33),
+        height: normalize(33),
+        borderRadius: normalize(40),
+        textAlign: 'center',
+        alignSelf: 'center',
+        marginTop: -normalize(22),
+        alignItems: 'center'
+    },
     index: {
         color: colors.white,
         fontFamily: fonts.type.soraRegular,
         fontSize: fonts.size.font12,
-        width: 20
+        width: 30
     },
     medal: {
         height: normalize(17),
