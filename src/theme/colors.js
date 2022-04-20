@@ -26,7 +26,11 @@ const colors = {
     semiGrey: '#616161',
     firstPlace: '#F2B01C',
     secondPlace: '#24B26C',
-    thirdPlace: '#364994'
+    thirdPlace: '#364994',
+    activeGreen: '#A4D6A3',
+    disabledGreen: '#374137',
+    activeGreenText: '#136111',
+    disabledGreenText: '#1B2A1A'
 }
 
 export default colors;

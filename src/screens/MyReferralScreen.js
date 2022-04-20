@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { 
     SafeAreaView,
@@ -11,49 +11,24 @@ import {
 import normalize from 'react-native-normalize';
 import { connect } from 'react-redux';
 import MainHeader from '../components/header/MainHeader';
+import ListAccordion from '../components/ListAccordion';
 import { icons, images } from '../constants';
 import { myReferral } from '../mock/myReferral';
 import { colors, fonts } from '../theme';
 
 const renderItemMyReferrals = ({ index, item }) => {
     return(
-        <View style={[styles.myReferralWrapper]}>
-            <Image
-                source={{uri: item.avatar}}
-                style={styles.avatar}
-            />
-            <Text numberOfLines={1} style={styles.nameText}>
-                {item.name}
-            </Text>
-            <View style={styles.taskWrapper}>
-                <Text style={[styles.taskText, {backgroundColor: item.task >= 1 ? '#A4D6A3' : '#374137', color: item.task >= 1 ? '#136111' : '#1B2A1A' }]}>
-                    $1
-                </Text>
-                <Text style={[{ color: item.task >= 1 ? '#A5D6A3' : '#374137'}]}>- - -</Text>
-                <Text style={[styles.taskText, {backgroundColor: item.task >= 2 ? '#A4D6A3' : '#374137', color: item.task >= 2 ? '#136111' : '#1B2A1A' }]}>
-                    $2
-                </Text>
-                <Text style={[{color: item.task >= 3 ? '#A5D6A3' : '#374137'}]}>- - -</Text>
-                <Text style={[styles.taskText, {backgroundColor: item.task >= 3 ? '#A4D6A3' : '#374137', color: item.task >= 3 ? '#136111' : '#1B2A1A' }]}>
-                    $3
-                </Text>
-            </View>
-            <Text style={styles.earnedText}>
-                {item.earned}
-            </Text>
-            <TouchableOpacity
-                style={styles.bottomArrowButotn}
-            >
-                <Image
-                    style={styles.bottomArrow}
-                    source={icons.BOTTOM_ARROW}
-                />
-            </TouchableOpacity>
-        </View>
+       <ListAccordion
+            item={item}
+            index={index}
+            key={item.id || index}
+            isFromMyReferralScreen={true}
+       />
     )
 }
 
 const MyReferralScreen = ({ navigation, user }) => {
+    
     return (
         <SafeAreaView style={styles.container}>
             <MainHeader
@@ -99,7 +74,7 @@ const MyReferralScreen = ({ navigation, user }) => {
                     showsVerticalScrollIndicator={false}
                     renderItem={renderItemMyReferrals}
                     keyExtractor={item => item.id}
-                    ListFooterComponent={() => <View style={{height: normalize(70)}} />}
+                    ListFooterComponent={() => <View style={{height: normalize(35, 'height')}} />}
                 />
                 </View>
             </View>
@@ -121,14 +96,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundColor
     },
-    bottomArrowButotn: {
-        padding: normalize(8),
-        marginLeft: normalize(10)
-    },
-    bottomArrow: {
-        height: 10,
-        width: 15
-    },
     footerWrapper: {
         // borderTopWidth: 1,
         shadowColor: '#DADADA',
@@ -139,7 +106,7 @@ const styles = StyleSheet.create({
         width: '100%',
         bottom: 0,
         backgroundColor: colors.bottomTabBgColor,
-        height: normalize(85),
+        height: normalize(80),
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -156,45 +123,6 @@ const styles = StyleSheet.create({
         fontSize: fonts.size.font14,
         fontFamily: fonts.type.soraSemiBold,
         textAlign: 'center'
-    },
-    taskText: {
-        borderRadius: normalize(50),
-        fontFamily: fonts.type.soraBold,
-        fontSize: fonts.size.font10,
-        color: '#136111',
-        width: normalize(20),
-        height: normalize(20),
-        textAlign: 'center',
-        alignSelf: 'center'
-    },  
-    earnedText:{
-        color: colors.white,
-        fontFamily: fonts.type.soraBold,
-        fontSize: fonts.size.font10,
-        backgroundColor: '#136111',
-        width: normalize(40),
-        textAlign: 'center',
-        padding: normalize(5),
-        borderRadius: normalize(20)
-    },
-    nameText: {
-        color: colors.white,
-        fontSize: fonts.size.font10,
-        fontFamily: fonts.type.soraRegular,
-        marginLeft: normalize(10),
-        flex: 1
-    },  
-    taskWrapper: {
-        flexDirection: 'row',
-        marginHorizontal: normalize(20)
-    },
-    avatar: {
-        width: normalize(30),
-        height: normalize(30),
-        borderRadius: normalize(40),
-        borderWidth: 3,
-        borderColor: colors.white,
-        marginRight: normalize(5)
     },
     listHeadingWrapper: {
         flexDirection: 'row',
@@ -216,17 +144,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: '70%'
     },  
-    myReferralWrapper: {
-        backgroundColor: '#1C1C1C',
-        padding: normalize(10),
-        marginVertical: normalize(5),
-        width: '97%',
-        alignSelf: 'center',
-        borderRadius: normalize(7),
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
+    
     subHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
