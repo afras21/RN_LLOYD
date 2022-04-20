@@ -46,7 +46,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD004",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,212'
     },
@@ -76,7 +76,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD009",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,211'
     },
@@ -106,7 +106,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD0014",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,211'
     },
@@ -136,7 +136,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD0019",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '41,211'
     },
@@ -165,7 +165,7 @@ const HOME_SLIDER2 = [
     },
     {   
         id: "SLD0024",
-        name: 'Mike Outlaw food & Gaming',
+        name: 'Mike food & Gaming',
         image: 'https://user-images.githubusercontent.com/54505967/161594541-bfd4dc7f-3a22-43fc-94b7-f5ed1b04ff5d.png',
         plays: '36,271'
     },
@@ -215,6 +215,14 @@ const HOME_SCREEN_BUTTONS = [
     }
 ];
 
+const YOUR_REFERRAL = 'LOREMIPSUMU5436';
+
+const REFER_EARN_LIST_ACCORDION = [
+    { title: "First Element", content: "Lorem ipsum dolor sit amet" },
+    { title: "Second Element", content: "Lorem ipsum dolor sit amet" },
+    { title: "Third Element", content: "Lorem ipsum dolor sit amet" }
+];
+
 export default{
     STATUS_BAR_STYLE,
     TAGLINE,
@@ -246,5 +254,7 @@ export default{
     SLIDER2_VIEW_MORE,
     HOME_SCREEN_BUTTONS,
     SUGGESTIONS_SEARCH,
-    HEADER_HEIGHT
+    HEADER_HEIGHT,
+    YOUR_REFERRAL,
+    REFER_EARN_LIST_ACCORDION
 }

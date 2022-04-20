@@ -34,6 +34,24 @@ const CLOSE = require('../assets/icons/close.png');
 const CHECKED = require('../assets/icons/checked.png');
 
 const USER_ICON = require('../assets/icons/user.png');
+const GOLD_MEDAL = require('../assets/icons/goldMedal.png');
+const SILVER_MEDAL = require('../assets/icons/silverMedal.png');
+const BRONZE_MEDAL = require('../assets/icons/bronzeMedal.png');
+
+const WHATSAPP = require('../assets/icons/referAndEarn/whatsapp.png');
+const TWITTER = require('../assets/icons/referAndEarn/twitter.png');
+const FACEBOOK_BUTTON = require('../assets/icons/referAndEarn/facebookButton.png');
+const MESSANGER = require('../assets/icons/referAndEarn/messanger.png');
+const GOOGLE_PLUS = require('../assets/icons/referAndEarn/googlePlus.png');
+
+const REFER_AND_EARN_ONE = require('../assets/icons/referAndEarn/1.png');
+const REFER_AND_EARN_TWO = require('../assets/icons/referAndEarn/2.png');
+const REFER_AND_EARN_THREE = require('../assets/icons/referAndEarn/3.png');
+const REFER_AND_EARN_DOWNLOAD = require('../assets/icons/referAndEarn/download.png');
+const REFER_AND_EARN_GAME = require('../assets/icons/referAndEarn/game.png');
+const REFER_AND_EARN_WALLET = require('../assets/icons/referAndEarn/wallet.png');
+
+const RIGHT_ARROW = require('../assets/icons/rightArrow.png');
 
 export default {
     LOGO,
@@ -68,5 +86,20 @@ export default {
     SECURE,
     CLOSE,
     CHECKED,
-    USER_ICON
+    USER_ICON,
+    GOLD_MEDAL,
+    SILVER_MEDAL,
+    BRONZE_MEDAL,
+    WHATSAPP,
+    FACEBOOK_BUTTON,
+    TWITTER,
+    MESSANGER,
+    GOOGLE_PLUS,
+    REFER_AND_EARN_ONE,
+    REFER_AND_EARN_TWO,
+    REFER_AND_EARN_THREE,
+    REFER_AND_EARN_DOWNLOAD,
+    REFER_AND_EARN_GAME,
+    REFER_AND_EARN_WALLET,
+    RIGHT_ARROW
 }

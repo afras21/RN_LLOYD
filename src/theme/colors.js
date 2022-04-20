@@ -23,7 +23,10 @@ const colors = {
     blue: '#384369',
     darkBlue: '1B223E',
     lightGreen: '#007230',
-    semiGrey: '#616161'
+    semiGrey: '#616161',
+    firstPlace: '#F2B01C',
+    secondPlace: '#24B26C',
+    thirdPlace: '#364994'
 }
 
 export default colors;

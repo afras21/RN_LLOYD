@@ -2,6 +2,7 @@ import React from 'react'
 import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground, Image, FlatList, ScrollView } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
+import TriviaView from '../components/TriviaView';
 import { icons } from '../constants';
 import { data } from '../mock/basketBallTrivia';
 import { colors, fonts } from '../theme';
@@ -19,7 +20,7 @@ const TriviaScreen = ({ navigation, route }) => {
                     colors={['#383838','#2F2F2F']}
                 >
                 <Header bg={image} plays={plays} name={name} onClose={()=>{navigation.goBack()}}/>
-                <ListContainer data={data} />
+                <ListContainer data={data} navigation={navigation} />
                 </LinearGradient>
             </SafeAreaView>
         </ScrollView>
@@ -48,57 +49,17 @@ const Header = ({ bg, plays, name, onClose }) => {
     )
 }
 
-const ListContainer = ({ data }) => {
+const ListContainer = ({ data, navigation }) => {
     return (
         <View style={styles.listContainerStyle}>
             <FlatList
                 data={data}
-                renderItem={renderTriviaCard}
+                renderItem={({item}) => <TriviaView item={item} navigation={navigation} />}
                 keyExtractor={(item) => item.id}
             />
         </View>
     )
 }
-const renderTriviaCard = ({ item }) => (
-    <View style={styles.triviaCardContainer}>
-        <View style={styles.triviaCardHeader}>
-            <Text style={styles.triviaName}>{item.name}</Text>
-            <Text style={styles.entryFee}>Entry Fee</Text>
-        </View>
-        <View style={[styles.triviaPaymentContainer, item.isExpired && { marginBottom: 40 }]}>
-            <Text style={[styles.triviaPaymentText, item.isExpired && { color: colors.blue }]}>{item.winningAmount}</Text>
-            <TouchableOpacity style={styles.payButton}>
-                <Text style={styles.payButtonText}>{item.entryFee}</Text>
-            </TouchableOpacity>
-        </View>
-        {
-            !(item.isExpired) &&
-            <View style={styles.gameStatusContainer}>
-                <Text style={styles.text}>{item.joined}</Text>
-                <Text style={styles.text}>{item.timeRemaining}</Text>
-                <Text style={styles.text}>{item.slotsLeft}</Text>
-            </View>
-        }
-        <View
-            style={
-                [styles.triviaCardFooter, item.isExpired && { backgroundColor: colors.blue }]
-            }>
-            <FooterElement icon={icons.SWORD} text={item.maxPlayers} isExpired={item.isExpired} />
-            <FooterElement icon={icons.TROPHY} text={item.totalWinner} isExpired={item.isExpired} />
-            <FooterElement icon={icons.PLAYS} text={item.plays} isExpired={item.isExpired} />
-        </View>
-    </View>
-)
-
-const FooterElement = ({ icon, text, isExpired }) => (
-    <View style={styles.footerElementContainer}>
-        <View style={[styles.footerElementImgContainer, isExpired && { backgroundColor: colors.darkBlue }]}>
-            <Image source={icon} style={styles.footerElementImg} />
-        </View>
-        <Text style={styles.footerElementTxt}>{text}</Text>
-    </View>
-)
-
 
 const Wallet = () => (
     <View style={styles.walletWrapper}>
