@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { StatusBar } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { 
     SafeAreaView,
@@ -31,6 +32,7 @@ const MyReferralScreen = ({ navigation, user }) => {
     
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor={colors.bottomTabBgColor} />
             <MainHeader
                 navigation={navigation}
                 title={'My Referrals'}

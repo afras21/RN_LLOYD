@@ -59,11 +59,21 @@ const ListAccordion = ({
                         style={styles.bottomArrowButton}
                         onPress={toggleListAccordion}
                     >
-                        <Image
-                            style={styles.bottomArrow}
-                            source={icons.BOTTOM_ARROW}
-                            resizeMode={'contain'}
-                        />
+                        {
+                            isOpen === true ?
+                                <Image
+                                    style={styles.bottomArrow}
+                                    source={icons.TOP_ARROW}
+                                    resizeMode={'contain'}
+                                />
+                            :
+                                <Image
+                                    style={styles.bottomArrow}
+                                    source={icons.BOTTOM_ARROW}
+                                    resizeMode={'contain'}
+                                />
+                        }
+                       
                     </TouchableOpacity>
 
                 </View>

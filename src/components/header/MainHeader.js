@@ -14,6 +14,11 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
     const goBackHandler = () => {
         navigation.goBack();
     }
+
+    const walletHandler = () => {
+        navigation.navigate('WalletScreen');
+    }
+
     return (
         <View style={[styles.headerContainer, { marginBottom: normalize(marginBottom) }]}>
             <View style={styles.headerInnerContainer}>
@@ -44,7 +49,10 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
 
                     {
                         isWalletVisible &&
-                        <TouchableOpacity style={[styles.walletWrapper]}>
+                        <TouchableOpacity 
+                            style={[styles.walletWrapper]}
+                            onPress={walletHandler}
+                        >
                             <Image
                                 source={icons.WALLET}
                                 style={styles.notificationIcon}
@@ -63,7 +71,7 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
 
 const styles = StyleSheet.create({
     headerContainer: {
-        height: normalize(90),
+        height: normalize(80),
         backgroundColor: colors.bottomTabBgColor,
         paddingBottom: normalize(20),
         borderBottomLeftRadius: normalize(30),
