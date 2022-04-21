@@ -78,7 +78,7 @@ const Header = ({ user, onLayout }) => {
                             style={styles.walletImage}
                         />
                         <Text style={styles.walletAmount}>
-                            500
+                            {strings.WALLET_AMOUNT}
                         </Text>
                     </View>
                 </View>
@@ -140,7 +140,7 @@ const StickyHeader = ({ onLayout, user }) => {
                                     style={styles.walletImage}
                                 />
                                 <Text style={styles.walletAmount}>
-                                    500
+                                    {strings.WALLET_AMOUNT}
                                 </Text>
                             </View>
                         </View>

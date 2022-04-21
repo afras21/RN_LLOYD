@@ -223,6 +223,8 @@ const REFER_EARN_LIST_ACCORDION = [
     { title: "Third Element", content: "Lorem ipsum dolor sit amet" }
 ];
 
+const WALLET_AMOUNT = 500;
+
 export default{
     STATUS_BAR_STYLE,
     TAGLINE,
@@ -256,5 +258,6 @@ export default{
     SUGGESTIONS_SEARCH,
     HEADER_HEIGHT,
     YOUR_REFERRAL,
-    REFER_EARN_LIST_ACCORDION
+    REFER_EARN_LIST_ACCORDION,
+    WALLET_AMOUNT
 }
