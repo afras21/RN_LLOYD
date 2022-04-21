@@ -57,6 +57,12 @@ const TOP_ARROW = require('../assets/icons/topArrow.png');
 const WALLET_BONUS = require('../assets/icons/walletBonus.png');
 const WALLET_DEPOSIT_MONEY = require('../assets/icons/walletDepositeMoney.png');
 const WALLET_EARN_MONEY = require('../assets/icons/walletEarnMore.png');
+const USER_ROUND = require('../assets/icons/userRound.png');
+const STRIPE = require('../assets/icons/stripe.png');
+const META_MASK = require('../assets/icons/metaMask.png');
+const PORTIS = require('../assets/icons/portis.png');
+const COIN_BASE = require('../assets/icons/coinbase.png');
+
 export default {
     LOGO,
     GOOGLE_LOGO,
@@ -110,5 +116,10 @@ export default {
     TOP_ARROW,
     WALLET_BONUS,
     WALLET_DEPOSIT_MONEY,
-    WALLET_EARN_MONEY
+    WALLET_EARN_MONEY,
+    USER_ROUND,
+    STRIPE,
+    META_MASK,
+    PORTIS,
+    COIN_BASE
 }
