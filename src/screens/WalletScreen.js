@@ -148,7 +148,7 @@ const WalletScreen = ({ navigation }) => {
                         buttonText={'Withdraw'}
                         buttonColor={'#43C8FF'}
                         amount={'$168'}
-                        icon={icons.WALLET_EARN_MONEY}
+                        icon={icons.WALLET_BONUS}
                     />
                     <View
                         style={styles.separate}
@@ -157,7 +157,7 @@ const WalletScreen = ({ navigation }) => {
                         text={'Bonus'}
                         buttonText={'Earn more'}
                         amount={'$32'}
-                        icon={icons.WALLET_BONUS}
+                        icon={icons.WALLET_EARN_MONEY}
                     />
                 </LinearGradient>
                 {
