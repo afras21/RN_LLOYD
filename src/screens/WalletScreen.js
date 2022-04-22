@@ -1,5 +1,5 @@
 
-import { Actionsheet } from 'native-base';
+import { Actionsheet, FlatList } from 'native-base';
 import React, { useState } from 'react';
 import { 
     SafeAreaView, 
@@ -13,10 +13,36 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
+import PrimaryButton from '../components/buttons/PrimaryButton';
 import MainHeader from '../components/header/MainHeader';
 import ListAccordion from '../components/ListAccordion';
-import { icons } from '../constants';
+import { icons, strings } from '../constants';
 import { colors, fonts, metrics } from '../theme';
+
+
+const WALLETS = [
+    {
+        icon: icons.STRIPE,
+        wallet: 'Stripe',
+        id: 'STRIPE'
+    },
+    {
+        icon: icons.META_MASK,
+        wallet: 'Metamask',
+        id: 'META_MASK'    
+    },
+    {
+        icon: icons.COIN_BASE,
+        wallet: 'Coinbase',
+        id: 'COIN_BASE'
+    },
+    {
+        icon: icons.PORTIS,
+        wallet: 'Portis',
+        id: 'PORTIS'
+    }
+];
+
 
 const Helper = ({ icon, text, amount, buttonText, buttonColor }) => {
     return (
@@ -61,6 +87,9 @@ const Helper = ({ icon, text, amount, buttonText, buttonColor }) => {
 
 const WalletScreen = ({ navigation }) => {
 
+    
+    const[wallets, setWallets] = useState(WALLETS);
+    
     const[connectWalletIsOpen, setConnectWalletIsOpen] = useState(false);
 
     const connectWalletHandler  = () => {
@@ -80,6 +109,29 @@ const WalletScreen = ({ navigation }) => {
             walletId: 'userId123456789'
         });
         connectWalletHandler();
+    }
+
+    const renderWallet = ({ item }) => {
+        return (
+            <View style={styles.connectWrapper}>
+                <Image
+                    source={icons.STRIPE}
+                    style={styles.icon}
+                    resizeMode={'contain'}
+                />
+                <Text style={styles.connectTitle}>
+                    {item.wallet}
+                </Text>
+                <TouchableOpacity
+                    style={styles.connectButton}
+                    onPress={() => connectCrypto(item.wallet, item.icon)}
+                >
+                    <Text style={styles.connectText}>
+                        Connect
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        )
     }
 
 
@@ -162,19 +214,15 @@ const WalletScreen = ({ navigation }) => {
                 </LinearGradient>
                 {
                     walletSelected?.walletId === null ? 
-                        <TouchableOpacity
-                            style={styles.cryptoButton}
+                        <PrimaryButton
                             onPress={connectWalletHandler}
-                        >
-                            <Text style={styles.cryptoText}>
-                                Connect Crypto Wallet
-                            </Text>
-                        </TouchableOpacity>
+                            text={strings.CONNECT_CRYPTO_WALLETS}
+                        />
                     :
                         <View style={styles.walletSelectedContainer}>
                             <View style={styles.walletSelectedHeader}>
                                 <Text style={styles.myWalletText}>
-                                    My Wallet
+                                    {strings.MY_WALLET}
                                 </Text>
                                 <TouchableOpacity 
                                     style={styles.changeButton}
@@ -246,90 +294,22 @@ const WalletScreen = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
                         <Text style={styles.actionSheetTitleText}>
-                            Crypto Wallets
+                            {strings.CRYPTO_WALLETS}
                         </Text>
                         <View style={styles.connectContainer}>
-                            <View style={styles.connectWrapper}>
-                                <Image
-                                    source={icons.STRIPE}
-                                    style={styles.icon}
-                                    resizeMode={'contain'}
-                                />
-                                <Text style={styles.connectTitle}>
-                                    Stripe
-                                </Text>
-                                <TouchableOpacity
-                                    style={styles.connectButton}
-                                    onPress={() => connectCrypto('Stripe', icons.STRIPE)}
-                                >
-                                    <Text style={styles.connectText}>
-                                        Connect
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.connectWrapper}>
-                                <Image
-                                    source={icons.META_MASK}
-                                    style={styles.icon}
-                                    resizeMode={'contain'}
-                                />
-                                <Text style={styles.connectTitle}>
-                                    Metamask
-                                </Text>
-                                <TouchableOpacity
-                                    style={styles.connectButton}
-                                    onPress={() => connectCrypto('Metamask', icons.META_MASK)}
-                                >
-                                    <Text style={styles.connectText}>
-                                        Connect
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.connectWrapper}>
-                                <Image
-                                    source={icons.COIN_BASE}
-                                    style={styles.icon}
-                                    resizeMode={'contain'}
-                                />
-                                <Text style={styles.connectTitle}>
-                                    Coinbase Wallet
-                                </Text>
-                                <TouchableOpacity
-                                    style={styles.connectButton}
-                                    onPress={() => connectCrypto('Coinbase', icons.COIN_BASE)}
-                                >
-                                    <Text style={styles.connectText}>
-                                        Connect
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.connectWrapper}>
-                                <Image
-                                    source={icons.PORTIS}
-                                    style={styles.icon}
-                                    resizeMode={'contain'}
-                                />
-                                <Text style={styles.connectTitle}>
-                                    Portis
-                                </Text>
-                                <TouchableOpacity
-                                    style={styles.connectButton}
-                                    onPress={() => connectCrypto('Portis', icons.PORTIS)}
-                                >
-                                    <Text style={styles.connectText}>
-                                        Connect
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
+                            <FlatList
+                                data={wallets}
+                                keyExtractor={item => item.id}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={renderWallet}
+                            />
                         </View>
-                        <TouchableOpacity
-                            style={[styles.cryptoButton, { position: 'absolute', zIndex: 1, bottom: normalize(15) }]}
-                            onPress={connectWalletHandler}
-                        >
-                            <Text style={styles.cryptoText}>
-                                Connect Crypto Wallet
-                            </Text>
-                        </TouchableOpacity>
+                        <PrimaryButton
+                            disabled={false}
+                            customButtonStyle={styles.connectCryptoButton}
+                            text={strings.CONNECT_CRYPTO_WALLETS}
+                            onPress={() => {}}
+                        />
                     </View>
                     
                 </LinearGradient>
@@ -360,6 +340,11 @@ const styles = StyleSheet.create({
         color: colors.primary,
         fontFamily: fonts.type.soraSemiBold,
         fontSize: fonts.size.font12
+    },
+    connectCryptoButton: {
+        position: 'absolute', 
+        zIndex: 1, 
+        bottom: normalize(15)
     },
     connectContainer: {
         width: '90%',
@@ -462,22 +447,9 @@ const styles = StyleSheet.create({
         width: '93%',
         alignSelf: 'center',
         marginVertical: normalize(15)
-    },
-    cryptoButton: {
-        backgroundColor: colors.primary,
-        width: '92%',
-        alignSelf: 'center',
-        padding: normalize(14),
-        borderRadius: normalize(8)
-    },  
+    }, 
     scrollContainer: {
         flex: 1
-    },
-    cryptoText: {
-        color: colors.black,
-        fontFamily: fonts.type.soraSemiBold,
-        fontSize: fonts.size.font14,
-        textAlign: 'center'
     },
     helperInnerWrapper: {
         flexDirection: 'row'
