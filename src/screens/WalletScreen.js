@@ -9,7 +9,8 @@ import {
     Image,
     Text,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    ToastAndroid
 } from 'react-native';
 import { 
     Input, 
@@ -260,11 +261,25 @@ const WalletScreen = ({ navigation }) => {
     }
 
     const depositHandler = () => {
+        if(!walletSelected.wallet){
+            ToastAndroid.show('Please connect to your wallet', ToastAndroid.SHORT)
+            return;
+        }
         connectWalletHandler('deposit');
     }
 
     const withdrawerHandler = () => {
+        if(!walletSelected.wallet){
+            ToastAndroid.show('Please connect to your wallet', ToastAndroid.SHORT)
+            return;
+        }
         connectWalletHandler('withdraw');    
+    }
+
+    const closeActionSheet = () => {
+        setWithDrawIsOpen(false);
+        setDepositIsOpen(false);
+        setConnectWalletIsOpen(false);
     }
 
     
@@ -402,7 +417,7 @@ const WalletScreen = ({ navigation }) => {
             </ScrollView>
             <Actionsheet
                 isOpen={connectWalletIsOpen || depositIsOpen || withDrawIsOpen}
-                onClose={connectWalletHandler}
+                onClose={closeActionSheet}
                 hideDragIndicator={true}
             >
                 {
