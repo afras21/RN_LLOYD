@@ -81,7 +81,7 @@ const Header = ({ user, onLayout, walletHandler }) => {
                             style={styles.walletImage}
                         />
                         <Text style={styles.walletAmount}>
-                            500
+                            {user.walletAmount}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -137,15 +137,18 @@ const StickyHeader = ({ onLayout, user, walletHandler }) => {
                                 style={styles.notificationImage}
                                 resizeMode='contain'
                             />
-                            <View style={styles.walletWrapper}>
+                            <TouchableOpacity 
+                                style={styles.walletWrapper}
+                                onPress={walletHandler}
+                            >
                                 <Image
                                     source={icons.WALLET}
                                     style={styles.walletImage}
                                 />
                                 <Text style={styles.walletAmount}>
-                                    500
+                                    {user.walletAmount}
                                 </Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>

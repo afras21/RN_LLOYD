@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native';
 import normalize from 'react-native-normalize';
-import { icons } from '../../constants';
+import { icons, strings } from '../../constants';
 import { colors, fonts } from '../../theme';
 
 function MainHeader({ title, navigation, isNotificationVisible = true, isWalletVisible = true, marginBottom = 20  }) {
@@ -58,7 +58,7 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
                                 style={styles.notificationIcon}
                             />
                             <Text style={styles.walletNumber}>
-                                500
+                                {user.walletAmount}
                             </Text>
                         </TouchableOpacity>
                     }

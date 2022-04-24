@@ -230,6 +230,7 @@ const CRYPTO_WALLETS = 'Crypto Wallets';
 const MY_WALLET = 'My Wallet';
 const WITH_DRAW_MONEY = 'Withdraw';
 const DEPOSIT_MONEY = 'Deposit'
+const WALLET_AMOUNT = 500;
 
 export default{
     STATUS_BAR_STYLE,
@@ -269,5 +270,6 @@ export default{
     CRYPTO_WALLETS,
     MY_WALLET,
     WITH_DRAW_MONEY,
-    DEPOSIT_MONEY
+    DEPOSIT_MONEY,
+    WALLET_AMOUNT
 }
