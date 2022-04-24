@@ -101,6 +101,10 @@ const JoinTriviaScreen = ({ navigation, route }) => {
         })
     }
 
+    const walletHandler = () => {
+        navigation.navigate('WalletScreen')
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -124,7 +128,10 @@ const JoinTriviaScreen = ({ navigation, route }) => {
                         style={styles.notificationIcon}
                         resizeMode={'contain'}
                     />
-                    <View style={styles.walletWrapper}>
+                    <TouchableOpacity 
+                        style={styles.walletWrapper}
+                        onPress={walletHandler}
+                    >
                         <Image
                             source={icons.WALLET}
                             style={styles.walletIcon}
@@ -133,7 +140,7 @@ const JoinTriviaScreen = ({ navigation, route }) => {
                         <Text style={styles.text}>
                             500
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
 
