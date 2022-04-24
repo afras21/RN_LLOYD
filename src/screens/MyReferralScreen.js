@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import { connect } from 'react-redux';
+import PrimaryButton from '../components/buttons/PrimaryButton';
 import MainHeader from '../components/header/MainHeader';
 import ListAccordion from '../components/ListAccordion';
 import { icons, images } from '../constants';
@@ -26,6 +27,14 @@ const renderItemMyReferrals = ({ index, item }) => {
             isFromMyReferralScreen={true}
        />
     )
+}
+
+const totalReferralAmount = () => {
+    let sum = 0;
+    for(let i = 0; i < myReferral.length; i++){
+        sum += Number(myReferral[i].earned.substr(1));
+    }
+    return `$${sum}`
 }
 
 const MyReferralScreen = ({ navigation, user }) => {
@@ -46,7 +55,7 @@ const MyReferralScreen = ({ navigation, user }) => {
                         Total referral amount  ⓘ
                     </Text>
                     <Text style={styles.referralAmount}>
-                        $32
+                        {totalReferralAmount()}
                     </Text>
                 </View>
                 <Image
@@ -81,13 +90,10 @@ const MyReferralScreen = ({ navigation, user }) => {
                 </View>
             </View>
             <View style={styles.footerWrapper}>
-                <TouchableOpacity 
-                    style={styles.referMoreButton}
-                >
-                    <Text style={styles.referMoreText}>
-                        Refer More Friends
-                    </Text>
-                </TouchableOpacity>
+                <PrimaryButton
+                    text={'Refer More Friends'}
+                    onPress={() => {}}
+                />
             </View>
         </SafeAreaView>
     )

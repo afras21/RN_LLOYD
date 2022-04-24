@@ -231,6 +231,23 @@ const MY_WALLET = 'My Wallet';
 const WITH_DRAW_MONEY = 'Withdraw';
 const DEPOSIT_MONEY = 'Deposit'
 const WALLET_AMOUNT = 500;
+const MY_REFERRAL_TASKS = [
+    {
+        id: 1,
+        task: '$1',
+        title: 'Instal & Register'
+    },
+    {
+        id: 2,
+        task: '$2',
+        title: 'First added cash'
+    },
+    {
+        id: 3,
+        task: '$3',
+        title: 'Played 7 cash games'
+    }
+]
 
 export default{
     STATUS_BAR_STYLE,
@@ -271,5 +288,6 @@ export default{
     MY_WALLET,
     WITH_DRAW_MONEY,
     DEPOSIT_MONEY,
-    WALLET_AMOUNT
+    WALLET_AMOUNT,
+    MY_REFERRAL_TASKS
 }
