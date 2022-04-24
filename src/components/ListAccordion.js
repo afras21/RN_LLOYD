@@ -6,11 +6,96 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import { icons } from '../constants';
+import { icons, strings } from '../constants';
 import { colors, fonts } from '../theme';
 import normalize from 'react-native-normalize';
 import { Animated } from 'react-native';
+import { FlatList } from 'react-native';
 
+
+const getTaskColor = (currTask, totalTaskCompleted, type) => {
+    if(currTask <= totalTaskCompleted){
+        return type === 'text' ? colors.activeGreenText : colors.activeGreen;
+    }
+    return type === 'text' ? colors.disabledGreenText : colors.disabledGreen;
+}
+
+const renderTaskHorizontal = (item, totalTaskCompleted) => {
+    return(
+        <Text style={[styles.taskText, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg'), color: getTaskColor(item.id, totalTaskCompleted, 'text') }]}>
+                {item.task}
+        </Text>
+    )
+}
+
+const MyReferralTaskWrapper = ({ isOpen, totalTaskCompleted }) => {
+    if(isOpen === true)
+        return <></>;
+    return (
+        <View style={styles.taskWrapper}>
+             <FlatList
+                style={styles.taskWrapper}
+                data={strings.MY_REFERRAL_TASKS}
+                keyExtractor={item => item.task}
+                horizontal={true}
+                ItemSeparatorComponent={({leadingItem}) => <Text style={[{ marginTop: 2, color: getTaskColor(leadingItem.id - 1, totalTaskCompleted - 2, 'bg') }]}>- - -</Text>}
+                renderItem={({ item }) => renderTaskHorizontal(item, totalTaskCompleted)}
+            />
+        </View>
+    )
+}
+
+const ArrowButton = ({ isOpen }) => {
+    if (isOpen === true) {
+        return (
+            <Image
+                style={styles.bottomArrow}
+                source={icons.TOP_ARROW}
+                resizeMode={'contain'}
+            />
+        )
+    }
+    return (
+        <Image
+            style={styles.bottomArrow}
+            source={icons.BOTTOM_ARROW}
+            resizeMode={'contain'}
+        />
+    )
+}
+
+const renderTaskVertical = (item, totalTaskCompleted) => {
+    return(
+        <View style={styles.helperWrapper}>
+            <Text style={[styles.taskText, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg'), color: getTaskColor(item.id, totalTaskCompleted, 'text') }]}>
+                {item.task}
+            </Text>
+            <Text style={styles.helperText}>
+                {item.title}
+            </Text>
+        </View>
+    )
+}
+ 
+const AccordionContent = ({ isOpen, totalTaskCompleted }) => {
+    if(isOpen === false){
+        return <></>
+    }
+    return(
+        <Animated.View style={styles.helperContainer}>
+            <FlatList
+                style={styles.helperContainer}
+                data={strings.MY_REFERRAL_TASKS}
+                keyExtractor={item => item.task}
+                showsVerticalScrollIndicator={false}
+                ItemSeparatorComponent={({leadingItem}) => <View style={[styles.helperLine, {backgroundColor: getTaskColor(leadingItem.id - 1, totalTaskCompleted - 2, 'bg') }]} />}
+                renderItem={({ item }) => renderTaskVertical(item, totalTaskCompleted)}
+            />
+            
+
+        </Animated.View>
+    )
+}
 
 const ListAccordion = ({ 
     title, 
@@ -39,19 +124,11 @@ const ListAccordion = ({
                     <Text numberOfLines={1} style={styles.nameText}>
                         {item.name}
                     </Text>
-                    <View style={styles.taskWrapper}>
-                        <Text style={[styles.taskText, { backgroundColor: item.task >= 1 ? colors.activeGreen : colors.disabledGreen, color: item.task >= 1 ? colors.activeGreenText : colors.disabledGreenText }]}>
-                            $1
-                        </Text>
-                        <Text style={[{ color: item.task >= 1 ? colors.activeGreen : colors.disabledGreen }]}>- - -</Text>
-                        <Text style={[styles.taskText, { backgroundColor: item.task >= 2 ? colors.activeGreen : colors.disabledGreen, color: item.task >= 2 ? colors.activeGreenText : colors.disabledGreenText }]}>
-                            $2
-                        </Text>
-                        <Text style={[{ color: item.task >= 3 ? colors.activeGreen : colors.disabledGreen }]}>- - -</Text>
-                        <Text style={[styles.taskText, { backgroundColor: item.task >= 3 ? colors.activeGreen : colors.disabledGreen, color: item.task >= 3 ? colors.activeGreenText : colors.disabledGreenText }]}>
-                            $3
-                        </Text>
-                    </View>
+                    <MyReferralTaskWrapper 
+                        isOpen={isOpen}
+                        totalTaskCompleted={item.task}
+                    />
+                    
                     <Text style={styles.earnedText}>
                         {item.earned}
                     </Text>
@@ -59,57 +136,15 @@ const ListAccordion = ({
                         style={styles.bottomArrowButton}
                         onPress={toggleListAccordion}
                     >
-                        {
-                            isOpen === true ?
-                                <Image
-                                    style={styles.bottomArrow}
-                                    source={icons.TOP_ARROW}
-                                    resizeMode={'contain'}
-                                />
-                            :
-                                <Image
-                                    style={styles.bottomArrow}
-                                    source={icons.BOTTOM_ARROW}
-                                    resizeMode={'contain'}
-                                />
-                        }
-                       
+                        <ArrowButton isOpen={isOpen} />
                     </TouchableOpacity>
 
                 </View>
-                {
-                    isOpen === true ?
-                        <Animated.View style={styles.helperContainer}>
-                            <View style={styles.helperWrapper}>
-                                <Text style={[styles.taskText, { backgroundColor: item.task >= 1 ? colors.activeGreen : colors.disabledGreen, color: item.task >= 1 ? colors.activeGreenText : colors.disabledGreenText }]}>
-                                    $1
-                                </Text>
-                                <Text style={styles.helperText}>
-                                    Instal & Register
-                                </Text>
-                            </View>
-                            <View style={[styles.helperLine, {backgroundColor: item.task >= 1 ? colors.activeGreen : colors.disabledGreen }]}/>
-                            <View style={styles.helperWrapper}>
-                                <Text style={[styles.taskText, { backgroundColor: item.task >= 2 ? colors.activeGreen : colors.disabledGreen, color: item.task >= 2 ? colors.activeGreenText : colors.disabledGreenText }]}>
-                                    $2
-                                </Text>
-                                <Text style={styles.helperText}>
-                                    First added cash
-                                </Text>
-                            </View>
-                            <View style={[styles.helperLine, {backgroundColor: item.task >= 3 ? colors.activeGreen : colors.disabledGreen }]}/>
-                            <View style={styles.helperWrapper}>
-                                <Text style={[styles.taskText, { backgroundColor: item.task >= 3 ? colors.activeGreen : colors.disabledGreen, color: item.task >= 3 ? colors.activeGreenText : colors.disabledGreenText }]}>
-                                    $3
-                                </Text>
-                                <Text style={styles.helperText}>
-                                    Played 7 cash games
-                                </Text>
-                            </View>
-                        </Animated.View>
-                        :
-                        <></>
-                }
+
+                <AccordionContent 
+                    isOpen={isOpen} 
+                    totalTaskCompleted={item.task}
+                />
             </View>
         )
     }
@@ -148,8 +183,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     taskWrapper: {
-        flexDirection: 'row',
-        marginHorizontal: normalize(20)
+        // flexDirection: 'row',
+        width: normalize(110),
+        marginHorizontal: normalize(10)
     },
     helperLine: { 
         marginLeft: normalize(10), 
@@ -166,7 +202,8 @@ const styles = StyleSheet.create({
     },
     helperContainer: { 
         paddingHorizontal: normalize(6), 
-        paddingVertical: normalize(15) 
+        paddingVertical: normalize(10),
+        alignSelf: 'flex-start'
     },
     taskText: {
         borderRadius: normalize(50),
