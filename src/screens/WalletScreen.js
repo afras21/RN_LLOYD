@@ -23,6 +23,7 @@ import MainHeader from '../components/header/MainHeader';
 import ListAccordion from '../components/ListAccordion';
 import { icons, images, strings } from '../constants';
 import { colors, fonts, metrics } from '../theme';
+import { useSelector } from 'react-redux';
 
 const WALLETS = [
     {
@@ -198,7 +199,7 @@ const TermsAndCondition = () => {
 
 const WalletScreen = ({ navigation }) => {
 
-    
+    const user = useSelector(state => state.user);
     const[wallets, setWallets] = useState(WALLETS);
     const[withDrawAmountSelected, setWithDrawAmountSelected] = useState('$5');
     const[connectWalletIsOpen, setConnectWalletIsOpen] = useState(false);
@@ -305,7 +306,7 @@ const WalletScreen = ({ navigation }) => {
                                 Balance
                             </Text>
                             <Text style={styles.amountText}>
-                                $500
+                                {user.walletAmount}
                             </Text>
                         </View>
                     </View>
