@@ -2,6 +2,7 @@ import React from 'react'
 import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground, Image, FlatList, ScrollView } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
+import { useSelector } from 'react-redux';
 import TriviaView from '../components/TriviaView';
 import { icons, strings } from '../constants';
 import { data } from '../mock/basketBallTrivia';
@@ -10,6 +11,7 @@ import { colors, fonts } from '../theme';
 const TriviaScreen = ({ navigation, route }) => {
     const { item } = route.params;
     const { plays, image, name } = item || {};
+    const user = useSelector(state => state.user);
     return (
         <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
             <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
@@ -19,7 +21,7 @@ const TriviaScreen = ({ navigation, route }) => {
                     }}
                     colors={['#383838','#2F2F2F']}
                 >
-                <Header bg={image} plays={plays} name={name} onClose={()=>{navigation.goBack()}}/>
+                <Header bg={image} user={user} plays={plays} name={name} onClose={()=>{navigation.goBack()}}/>
                 <ListContainer data={data} navigation={navigation} />
                 </LinearGradient>
             </SafeAreaView>
@@ -27,7 +29,7 @@ const TriviaScreen = ({ navigation, route }) => {
     )
 }
 
-const Header = ({ bg, plays, name, onClose }) => {
+const Header = ({ bg, plays, name, onClose, user }) => {
     const imgSource = { uri: bg }
 
     return (
@@ -41,7 +43,7 @@ const Header = ({ bg, plays, name, onClose }) => {
                         <Text style={styles.triviNameStyle}>{name}</Text>
                     </View>
 
-                    <Wallet />
+                    <Wallet user={user} />
                 </View>
                 <Text style={styles.playStyles}>{`${plays} Plays`}</Text>
             </View>
@@ -61,7 +63,7 @@ const ListContainer = ({ data, navigation }) => {
     )
 }
 
-const Wallet = () => (
+const Wallet = ({ user }) => (
     <View style={styles.walletWrapper}>
         <Image
             source={icons.WALLET}
@@ -69,7 +71,7 @@ const Wallet = () => (
             resizeMode='contain'
         />
         <Text style={styles.walletAmount}>
-            {strings.WALLET_AMOUNT}
+            {user.walletAmount}
         </Text>
     </View>
 )

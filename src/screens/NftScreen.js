@@ -18,8 +18,9 @@ import NftList from '../components/nftScreen/NftList';
 import { icons, strings } from '../constants';
 import { nftList } from '../mock/nft';
 import { colors, fonts } from '../theme';
+import { TouchableOpacity } from 'react-native';
 
-const Header = ({ user }) => {
+const Header = ({ user, walletHandler }) => {
     return (
         <Animated.View  style={[styles.headerWrapper]}>
             <View style={styles.headerTop}>
@@ -51,15 +52,18 @@ const Header = ({ user }) => {
                         style={styles.notificationImage}
                         resizeMode='contain'
                     />
-                    <View style={styles.walletWrapper}>
+                    <TouchableOpacity 
+                        style={styles.walletWrapper}
+                        onPress={walletHandler}
+                    >
                         <Image
                             source={icons.WALLET}
                             style={styles.walletImage}
                         />
                         <Text style={styles.walletAmount}>
-                            {strings.WALLET_AMOUNT}
+                            {user.walletAmount}
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.headerBottom}>
@@ -86,6 +90,10 @@ const NftScreen = ({ navigation, user }) => {
         setActiveIndex(index);
     }
 
+    const walletHandler = () => {
+        navigation.navigate('WalletScreen');
+    }
+
     return (
             <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
                 <StatusBar backgroundColor={colors.bottomTabBgColor} />
@@ -93,7 +101,7 @@ const NftScreen = ({ navigation, user }) => {
                 title={"All Nft's"}
                 navigation={navigation}
             /> */}
-                <Header user={user} />
+                <Header user={user} walletHandler={walletHandler} />
 
                 <ScrollView
                     style={styles.scrollContainer}

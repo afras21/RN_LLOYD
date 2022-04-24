@@ -1,9 +1,9 @@
+import { PixelRatio } from 'react-native'; 
 import metrics from './metrics';
-
 const { screenWidth } = metrics;
 
 const calculateFontSize = (size) => {
-    return screenWidth * (size / 365);
+    return Math.round(PixelRatio.roundToNearestPixel(screenWidth * (size / 365)));
 }
 
 const size = {

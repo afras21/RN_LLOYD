@@ -52,7 +52,17 @@ const REFER_AND_EARN_GAME = require('../assets/icons/referAndEarn/game.png');
 const REFER_AND_EARN_WALLET = require('../assets/icons/referAndEarn/wallet.png');
 
 const RIGHT_ARROW = require('../assets/icons/rightArrow.png');
-
+const BOTTOM_ARROW = require('../assets/icons/bottomArrow.png');
+const TOP_ARROW = require('../assets/icons/topArrow.png');
+const WALLET_BONUS = require('../assets/icons/walletBonus.png');
+const WALLET_DEPOSIT_MONEY = require('../assets/icons/walletDepositeMoney.png');
+const WALLET_EARN_MONEY = require('../assets/icons/walletEarnMore.png');
+const USER_ROUND = require('../assets/icons/userRound.png');
+const STRIPE = require('../assets/icons/stripe.png');
+const META_MASK = require('../assets/icons/metaMask.png');
+const PORTIS = require('../assets/icons/portis.png');
+const COIN_BASE = require('../assets/icons/coinbase.png');
+const DISCOUNT = require('../assets/icons/Discount.png')
 export default {
     LOGO,
     GOOGLE_LOGO,
@@ -101,5 +111,16 @@ export default {
     REFER_AND_EARN_DOWNLOAD,
     REFER_AND_EARN_GAME,
     REFER_AND_EARN_WALLET,
-    RIGHT_ARROW
+    RIGHT_ARROW,
+    BOTTOM_ARROW,
+    TOP_ARROW,
+    WALLET_BONUS,
+    WALLET_DEPOSIT_MONEY,
+    WALLET_EARN_MONEY,
+    USER_ROUND,
+    STRIPE,
+    META_MASK,
+    PORTIS,
+    COIN_BASE,
+    DISCOUNT
 }

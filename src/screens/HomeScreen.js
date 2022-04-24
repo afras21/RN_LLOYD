@@ -40,7 +40,7 @@ const allPages = {
     HOME: 'home'
 }
 
-const Header = ({ user, onLayout }) => {
+const Header = ({ user, onLayout, walletHandler }) => {
     return (
         <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
@@ -72,15 +72,18 @@ const Header = ({ user, onLayout }) => {
                         style={styles.notificationImage}
                         resizeMode='contain'
                     />
-                    <View style={styles.walletWrapper}>
+                    <TouchableOpacity 
+                        style={styles.walletWrapper}
+                        onPress={walletHandler}
+                    >
                         <Image
                             source={icons.WALLET}
                             style={styles.walletImage}
                         />
                         <Text style={styles.walletAmount}>
-                            {strings.WALLET_AMOUNT}
+                            {user.walletAmount}
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.headerBottom}>
@@ -99,7 +102,7 @@ const Header = ({ user, onLayout }) => {
     )
 }
 
-const StickyHeader = ({ onLayout, user }) => {
+const StickyHeader = ({ onLayout, user, walletHandler }) => {
     const [selectSuggestion, setSelectSuggestion] = useState('All');
     return (
         <Animated.View onLayout={onLayout} style={[styles.stickyHeaderWrapper]}>
@@ -134,15 +137,18 @@ const StickyHeader = ({ onLayout, user }) => {
                                 style={styles.notificationImage}
                                 resizeMode='contain'
                             />
-                            <View style={styles.walletWrapper}>
+                            <TouchableOpacity 
+                                style={styles.walletWrapper}
+                                onPress={walletHandler}
+                            >
                                 <Image
                                     source={icons.WALLET}
                                     style={styles.walletImage}
                                 />
                                 <Text style={styles.walletAmount}>
-                                    {strings.WALLET_AMOUNT}
+                                    {user.walletAmount}
                                 </Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -186,7 +192,7 @@ const StickyHeader = ({ onLayout, user }) => {
     )
 }
 
-const AnimatedHeader = ({ animatedValue, user }) => {
+const AnimatedHeader = ({ animatedValue, user, walletHandler }) => {
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
         inputRange: [0, HEADER_HEIGHT + insets.top],
@@ -204,9 +210,9 @@ const AnimatedHeader = ({ animatedValue, user }) => {
         >
             {
                 viewHeight >= 120 ? 
-                    <Header onLayout={onLayout} viewHeight={viewHeight} user={user} />   
+                    <Header onLayout={onLayout} walletHandler={walletHandler} viewHeight={viewHeight} user={user} />   
                 :
-                    <StickyHeader onLayout={onLayout} user={user} />
+                    <StickyHeader onLayout={onLayout} walletHandler={walletHandler} user={user} />
 
             } 
         </Animated.View>
@@ -238,6 +244,10 @@ const HomeScreen = ({ user, navigation }) => {
     const onChangeSlider1 = (index) => {
         setActiveIndex(index)
     };
+
+    const walletHandler = () => {
+        navigation.navigate('WalletScreen');
+    }
 
     const renderQuizItem = ({ index, item }) => {
         return (
@@ -351,7 +361,7 @@ const HomeScreen = ({ user, navigation }) => {
         <SafeAreaProvider>
             <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
                 {/* <StatusBar backgroundColor={colors.bottomTabBgColor} /> */}
-                <AnimatedHeader animatedValue={offset} user={user} />
+                <AnimatedHeader walletHandler={walletHandler} animatedValue={offset} user={user} />
                 <ScrollView 
                     nestedScrollEnabled={true} 
                     showsVerticalScrollIndicator={false} 

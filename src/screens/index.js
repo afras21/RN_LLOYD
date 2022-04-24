@@ -8,6 +8,8 @@ import NftScreen from './NftScreen';
 import HelpScreen from './HelpScreen';
 import TriviaScreen from './TriviaScreen';
 import JoinTriviaScreen  from './JoinTriviaScreen';
+import MyReferralScreen from './MyReferralScreen';
+import WalletScreen from './WalletScreen';
 
 export {
     SplashScreen,
@@ -19,5 +21,7 @@ export {
     NftScreen,
     HelpScreen,
     TriviaScreen,
-    JoinTriviaScreen
+    JoinTriviaScreen,
+    MyReferralScreen,
+    WalletScreen
 }

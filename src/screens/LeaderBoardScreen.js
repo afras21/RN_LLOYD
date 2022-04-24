@@ -202,6 +202,22 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundColor
     },
+    leaderBoardWinnerPositionText: {
+        color: colors.white,
+        fontFamily: fonts.type.soraSemiBold,
+        fontSize: fonts.size.font14,
+        alignSelf: 'center',
+        marginTop: 3
+    },
+    leaderBoardWinnerPositionWrapper: {
+        width: normalize(33),
+        height: normalize(33),
+        borderRadius: normalize(40),
+        textAlign: 'center',
+        alignSelf: 'center',
+        marginTop: -normalize(22),
+        alignItems: 'center'
+    },
     index: {
         color: colors.white,
         fontFamily: fonts.type.soraRegular,

@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation, saveUser }) => {
      * @todo remove later - using to skip google and fb login
      */
     const tempLoginHandler = () => {
-        storeUserDataToStore({accessToken: TEMP_AUTH_TOKEN})
+        storeUserDataToStore({accessToken: TEMP_AUTH_TOKEN, walletAmount: '500'})
     }
 
     // const googleLoginHandler = async () => {

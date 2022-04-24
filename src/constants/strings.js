@@ -223,6 +223,13 @@ const REFER_EARN_LIST_ACCORDION = [
     { title: "Third Element", content: "Lorem ipsum dolor sit amet" }
 ];
 
+const CONNECT_CRYPTO_WALLETS = 'Connect Crypto Wallet';
+
+const CRYPTO_WALLETS = 'Crypto Wallets';
+
+const MY_WALLET = 'My Wallet';
+const WITH_DRAW_MONEY = 'Withdraw';
+const DEPOSIT_MONEY = 'Deposit'
 const WALLET_AMOUNT = 500;
 
 export default{
@@ -259,5 +266,10 @@ export default{
     HEADER_HEIGHT,
     YOUR_REFERRAL,
     REFER_EARN_LIST_ACCORDION,
+    CONNECT_CRYPTO_WALLETS,
+    CRYPTO_WALLETS,
+    MY_WALLET,
+    WITH_DRAW_MONEY,
+    DEPOSIT_MONEY,
     WALLET_AMOUNT
 }

@@ -20,5 +20,11 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1201315480611641</string>
+	<key>FacebookClientToken</key>
+	<string>e1b50600992c200039b010d5e54c320f</string>
+	<key>FacebookDisplayName</key>
+	<string>RR_NLYOD</string>
 </dict>
 </plist>
