@@ -3,7 +3,7 @@ import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import TriviaView from '../components/TriviaView';
-import { icons } from '../constants';
+import { icons, strings } from '../constants';
 import { data } from '../mock/basketBallTrivia';
 import { colors, fonts } from '../theme';
 
@@ -69,7 +69,7 @@ const Wallet = () => (
             resizeMode='contain'
         />
         <Text style={styles.walletAmount}>
-            500
+            {strings.WALLET_AMOUNT}
         </Text>
     </View>
 )
