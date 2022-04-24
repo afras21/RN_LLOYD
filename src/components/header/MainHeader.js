@@ -7,10 +7,14 @@ import {
     StyleSheet
 } from 'react-native';
 import normalize from 'react-native-normalize';
+import { useSelector } from 'react-redux';
 import { icons, strings } from '../../constants';
 import { colors, fonts } from '../../theme';
 
 function MainHeader({ title, navigation, isNotificationVisible = true, isWalletVisible = true, marginBottom = 20  }) {
+    
+    const user = useSelector(state => state.user)
+
     const goBackHandler = () => {
         navigation.goBack();
     }
