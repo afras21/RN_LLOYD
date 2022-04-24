@@ -16,7 +16,7 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
     const user = useSelector(state => state.user)
 
     const goBackHandler = () => {
-        navigation.goBack();
+        navigation.pop();
     }
 
     const walletHandler = () => {
@@ -28,7 +28,7 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
             <View style={styles.headerInnerContainer}>
                 <TouchableOpacity
                     style={styles.goBackContainer}
-                    // onPress={goBackHandler}
+                    onPress={goBackHandler}
                 >
                     <Image
                         source={icons.BACK_BUTTON}

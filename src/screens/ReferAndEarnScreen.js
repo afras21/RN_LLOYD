@@ -68,35 +68,23 @@ const Points = ({ iconNumber, icon, title, primaryText }) => {
 
 const LeaderBoardWinnerPosition = ({ position, color }) => {
     return(
-        <View
-            style={{
-                width: normalize(25),
-                height: normalize(25),
-                backgroundColor: color,
-                borderRadius: normalize(40),
-                textAlign: 'center',
-                alignSelf: 'center',
-                marginTop: -normalize(16),
-                alignItems: 'center'
-            }}
-        >
-        <Text
-            style={{
-                color: colors.white,
-                fontFamily: fonts.type.soraSemiBold,
-                fontSize: fonts.size.font10,
-                alignSelf: 'center',
-                marginTop: 3
-            }}
-        >
-            {position}
-        </Text>
+        <View style={[styles.positionWrapper, { backgroundColor: color }]}>
+            <Text style={styles.textPosition}>
+                {position}
+            </Text>
         </View>
     )
 }
 
 
 const ReferAndEarnScreen = ({ navigation, user }) => {
+    
+    const viewFullLeaderboardHandler = () => {
+        navigation.push('BottomTab',{
+            screen: 'LeaderBoardScreen'
+        })
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <MainHeader
@@ -250,7 +238,7 @@ const ReferAndEarnScreen = ({ navigation, user }) => {
                     colors={['#F2B01C', '#EBCE2C']}
                 >
                     <TouchableOpacity
-                        onPress={() => {}}
+                        onPress={viewFullLeaderboardHandler}
                     >
                         <Text style={styles.viewFullLeaderBoardText}>
                             View Full Leaderboard
@@ -293,6 +281,22 @@ const styles = StyleSheet.create({
         width: '70%',
         alignSelf: 'center',
         marginBottom: normalize(10)
+    },
+    textPosition: {
+        color: colors.white,
+        fontFamily: fonts.type.soraSemiBold,
+        fontSize: fonts.size.font10,
+        alignSelf: 'center',
+        marginTop: 3
+    },
+    positionWrapper: {
+        width: normalize(25),
+        height: normalize(25),
+        borderRadius: normalize(40),
+        textAlign: 'center',
+        alignSelf: 'center',
+        marginTop: -normalize(16),
+        alignItems: 'center'
     },
     leaderBoardName: {
         color: colors.white,
