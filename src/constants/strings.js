@@ -228,6 +228,8 @@ const CONNECT_CRYPTO_WALLETS = 'Connect Crypto Wallet';
 const CRYPTO_WALLETS = 'Crypto Wallets';
 
 const MY_WALLET = 'My Wallet';
+const WITH_DRAW_MONEY = 'Withdraw';
+const DEPOSIT_MONEY = 'Deposit'
 
 export default{
     STATUS_BAR_STYLE,
@@ -265,5 +267,7 @@ export default{
     REFER_EARN_LIST_ACCORDION,
     CONNECT_CRYPTO_WALLETS,
     CRYPTO_WALLETS,
-    MY_WALLET
+    MY_WALLET,
+    WITH_DRAW_MONEY,
+    DEPOSIT_MONEY
 }

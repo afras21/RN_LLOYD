@@ -11,6 +11,7 @@ const REFER_FRIEND_BG = require('../assets/images/referFriendBg.png');
 const LEADER_BOARD = require('../assets/images/leaderBoard.png'); 
 const LEADER_BOARD_3D = require('../assets/images/leaderBoard3D.png');
 const MY_REFERRAL = require('../assets/images/myReferral.png');
+const CONNECT_WALLET_BANNER1 = require('../assets/images/walletCryptoBanner1.png');
 
 export default{
     ON_BOARDING_IMAGE1,
@@ -25,5 +26,6 @@ export default{
     REFER_FRIEND_BG,
     LEADER_BOARD,
     LEADER_BOARD_3D,
-    MY_REFERRAL
+    MY_REFERRAL,
+    CONNECT_WALLET_BANNER1
 }

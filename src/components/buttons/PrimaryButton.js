@@ -1,12 +1,12 @@
-import colors from 'native-base/lib/typescript/theme/base/colors';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { 
     TouchableOpacity,
     Text
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
-import { fonts } from '../../theme';
+import { colors, fonts } from '../../theme';
 
 const PrimaryButton = ({ 
     text, 
@@ -16,22 +16,32 @@ const PrimaryButton = ({
     customTextStyle={} 
 }) => {
     return (
-        <TouchableOpacity
-            style={[styles.buttonWrapper, customButtonStyle]}
-            onPress={onPress}
-            disabled={disabled}
+        <LinearGradient
+                style={[styles.linearGradient, customButtonStyle]}
+                colors={['#F2B01C', '#EBCE2C']}
         >
-            <Text style={[styles.buttonText, customTextStyle]}>
-                {text}
-            </Text>
-        </TouchableOpacity>
+            <TouchableOpacity
+                style={[ styles.buttonWrapper ]}
+                onPress={onPress}
+                disabled={disabled}
+            >
+                
+                <Text style={[styles.buttonText, customTextStyle]}>
+                    {text}
+                </Text>
+            </TouchableOpacity>
+        </LinearGradient>
     )
 }
 
 const styles = StyleSheet.create({
-    buttonWrapper:{
-        backgroundColor: colors.primary,
+    linearGradient: {
         width: '92%',
+        alignSelf: 'center',
+        borderRadius: normalize(8)
+    },
+    buttonWrapper:{
+        width: '100%',
         alignSelf: 'center',
         padding: normalize(14),
         borderRadius: normalize(8)
