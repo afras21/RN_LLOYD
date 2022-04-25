@@ -12,6 +12,11 @@ const TriviaScreen = ({ navigation, route }) => {
     const { item } = route.params;
     const { plays, image, name } = item || {};
     const user = useSelector(state => state.user);
+
+    const walletHandler = () => {
+        navigation.navigate('WalletScreen');
+    }
+
     return (
         <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
             <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
@@ -21,7 +26,14 @@ const TriviaScreen = ({ navigation, route }) => {
                     }}
                     colors={['#383838','#2F2F2F']}
                 >
-                <Header bg={image} user={user} plays={plays} name={name} onClose={()=>{navigation.goBack()}}/>
+                <Header 
+                    bg={image} 
+                    user={user} 
+                    plays={plays} 
+                    name={name} 
+                    onClose={()=>{navigation.goBack()}}
+                    walletHandler={walletHandler}
+                />
                 <ListContainer data={data} navigation={navigation} />
                 </LinearGradient>
             </SafeAreaView>
@@ -29,7 +41,7 @@ const TriviaScreen = ({ navigation, route }) => {
     )
 }
 
-const Header = ({ bg, plays, name, onClose, user }) => {
+const Header = ({ bg, plays, name, onClose, user, walletHandler }) => {
     const imgSource = { uri: bg }
 
     return (
@@ -43,7 +55,7 @@ const Header = ({ bg, plays, name, onClose, user }) => {
                         <Text style={styles.triviNameStyle}>{name}</Text>
                     </View>
 
-                    <Wallet user={user} />
+                    <Wallet user={user} walletHandler={walletHandler} />
                 </View>
                 <Text style={styles.playStyles}>{`${plays} Plays`}</Text>
             </View>
@@ -63,8 +75,11 @@ const ListContainer = ({ data, navigation }) => {
     )
 }
 
-const Wallet = ({ user }) => (
-    <View style={styles.walletWrapper}>
+const Wallet = ({ user, walletHandler }) => (
+    <TouchableOpacity 
+        style={styles.walletWrapper}
+        onPress={walletHandler}
+    >
         <Image
             source={icons.WALLET}
             style={styles.walletImage}
@@ -73,7 +88,7 @@ const Wallet = ({ user }) => (
         <Text style={styles.walletAmount}>
             {user.walletAmount}
         </Text>
-    </View>
+    </TouchableOpacity>
 )
 
 export default TriviaScreen;

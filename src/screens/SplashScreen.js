@@ -18,9 +18,9 @@ const SplashScreen = ({ navigation }) => {
     const initialHelperFunction = async () => {
         const token = await AsyncStorage.getItem('token');
         if (token === null) {
-            navigation.navigate('LoginScreen');
+            navigation.replace('LoginScreen')
         } else {
-            navigation.navigate('BottomTab');
+            navigation.replace('BottomTab');
         }
     };
 

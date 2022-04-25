@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
+import { useSelector } from 'react-redux';
 import { icons } from '../constants';
 import { colors, fonts, metrics } from '../theme';
 
@@ -59,6 +60,7 @@ const data = {
 const JoinTriviaScreen = ({ navigation, route }) => {
 
     const [selected, setSelected] = useState('details');
+    const user = useSelector(state => state.user);
 
     const { trivia } = route.params;
     const NameCard = ({ user, backgroundColor }) => (
@@ -101,6 +103,10 @@ const JoinTriviaScreen = ({ navigation, route }) => {
         })
     }
 
+    const walletHandler = () => {
+        navigation.navigate('WalletScreen')
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -124,16 +130,19 @@ const JoinTriviaScreen = ({ navigation, route }) => {
                         style={styles.notificationIcon}
                         resizeMode={'contain'}
                     />
-                    <View style={styles.walletWrapper}>
+                    <TouchableOpacity 
+                        style={styles.walletWrapper}
+                        onPress={walletHandler}
+                    >
                         <Image
                             source={icons.WALLET}
                             style={styles.walletIcon}
                             resizeMode={'contain'}
                         />
                         <Text style={styles.text}>
-                            500
+                            {user.walletAmount}
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
 
