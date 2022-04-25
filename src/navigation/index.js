@@ -6,7 +6,9 @@ import {
     TriviaScreen,
     JoinTriviaScreen,
     MyReferralScreen,
-    WalletScreen
+    WalletScreen,
+    TransactionScreen,
+    NotificationScreen
 } from '../screens';
 import BottomTab from './BottomTabNavigationStack';
 import Drawer from './DrawerNavigationStack';
@@ -53,6 +55,16 @@ const MainStackNavigation = () => {
                 options={{ headerShown: false }}
                 name='WalletScreen'
                 component={WalletScreen}
+            />
+            <MainStack.Screen
+                options={{ headerShown: false }}
+                name='TransactionScreen'
+                component={TransactionScreen}
+            />
+            <MainStack.Screen
+                options={{ headerShown: false }}
+                name='NotificationScreen'
+                component={NotificationScreen}
             />
             {/* <MainStack.Screen
                 options={{ headerShown: false }}

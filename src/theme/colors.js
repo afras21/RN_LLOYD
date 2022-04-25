@@ -1,4 +1,3 @@
-import { linear } from "react-native/Libraries/Animated/Easing";
 
 const colors = {
 
@@ -30,7 +29,8 @@ const colors = {
     activeGreen: '#A4D6A3',
     disabledGreen: '#374137',
     activeGreenText: '#136111',
-    disabledGreenText: '#1B2A1A'
+    disabledGreenText: '#1B2A1A',
+    alertRed: '#F14336'
 }
 
 export default colors;

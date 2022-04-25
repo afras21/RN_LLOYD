@@ -299,7 +299,7 @@ const WalletScreen = ({ navigation }) => {
             >
                 <TouchableOpacity
                     style={styles.viewTransactionButton}
-                // onPress={}
+                    onPress={() => navigation.navigate('TransactionScreen')}
                 >
                     <Text style={styles.viewTransactionText}>
                         View Transaction

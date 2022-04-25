@@ -23,6 +23,10 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
         navigation.navigate('WalletScreen');
     }
 
+    const notificationHandler = () => {
+        navigation.navigate('NotificationScreen');
+    }
+
     return (
         <View style={[styles.headerContainer, { marginBottom: normalize(marginBottom) }]}>
             <View style={styles.headerInnerContainer}>
@@ -41,7 +45,11 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
                 </Text>
                 <View style={[styles.notificationAndWalletWrapper]}>
 
-                    <TouchableOpacity disabled={!isNotificationVisible} style={styles.notificationWrapper}>
+                    <TouchableOpacity 
+                        disabled={!isNotificationVisible} 
+                        style={styles.notificationWrapper}
+                        onPress={notificationHandler}
+                    >
                         {
                             isNotificationVisible &&
                             <Image
