@@ -20,7 +20,7 @@ import { nftList } from '../mock/nft';
 import { colors, fonts } from '../theme';
 import { TouchableOpacity } from 'react-native';
 
-const Header = ({ user, walletHandler }) => {
+const Header = ({ user, walletHandler, notificationHandler }) => {
     return (
         <Animated.View  style={[styles.headerWrapper]}>
             <View style={styles.headerTop}>
@@ -47,11 +47,15 @@ const Header = ({ user, walletHandler }) => {
                 {/* headerTopPart3 */}
 
                 <View style={styles.headerTopPart3}>
-                    <Image
-                        source={icons.NOTIFICATION}
-                        style={styles.notificationImage}
-                        resizeMode='contain'
-                    />
+                    <TouchableOpacity
+                        onPress={notificationHandler}
+                    >
+                        <Image
+                            source={icons.NOTIFICATION}
+                            style={styles.notificationImage}
+                            resizeMode='contain'
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.walletWrapper}
                         onPress={walletHandler}
@@ -93,6 +97,9 @@ const NftScreen = ({ navigation, user }) => {
     const walletHandler = () => {
         navigation.navigate('WalletScreen');
     }
+    const notificationHandler = () => {
+        navigation.navigate('NotificationScreen');
+    }
 
     return (
             <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
@@ -101,7 +108,7 @@ const NftScreen = ({ navigation, user }) => {
                 title={"All Nft's"}
                 navigation={navigation}
             /> */}
-                <Header user={user} walletHandler={walletHandler} />
+                <Header notificationHandler={notificationHandler} user={user} walletHandler={walletHandler} />
 
                 <ScrollView
                     style={styles.scrollContainer}
