@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { 
     SafeAreaView, 
     StyleSheet,
@@ -9,17 +10,11 @@ import {
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import MainHeader from '../components/header/MainHeader';
+import Notification from '../components/notification/Notification';
 import { icons } from '../constants';
 import { alertColors, notifications } from '../mock/notifications';
 import { fonts, metrics } from '../theme';
 import colors from '../theme/colors';
-
-const getDescription = (str) => {
-    if(str.length >= 32){
-        return `${str.substring(0, 32)}...`
-    }
-    return str;
-}
 
 const ifNewNotificationIsAvailable = (data) => {
     for(let i = 0; i < data.length; i++){
@@ -34,37 +29,10 @@ const Notifications = ({ data }) => {
 
     const renderNotification = ({ item, index }) => {
         return(
-            <View style={styles.notificationWrapper}>
-                <View
-                    style={[
-                        styles.alertWrapper,
-                        {
-                            backgroundColor: alertColors[index % alertColors.length],
-                        }
-                    ]}
-                >
-                    {
-                        item.isNew === true && <View style={[styles.alert, styles.alertInNotification]} />
-                    }
-                    
-                    <Image
-                        source={icons.ALERT}
-                        style={styles.alertIcon}
-                        resizeMode={'center'}
-                    />
-                </View>
-                <View style={styles.titleWrapper}>
-                    <Text style={styles.titleText}>
-                        {item.title}
-                    </Text>
-                    <Text style={styles.descriptionText}>
-                        {getDescription(item.description)}
-                    </Text>
-                </View>
-                <Text style={styles.timeText}>
-                    {item.time}
-                </Text>
-            </View>
+            <Notification 
+                item={item}
+                index={index}
+            />
         )
     }
 
@@ -144,11 +112,6 @@ const styles = StyleSheet.create({
     flatListSeparator: { 
         height: normalize(10) 
     },
-    alertInNotification: { 
-        position: 'absolute', 
-        top: normalize(-2), 
-        right: normalize(-5) 
-    },
     separator: {
         height: normalize(15, 'height'),
         backgroundColor: colors.black,
@@ -156,11 +119,6 @@ const styles = StyleSheet.create({
     },
     flatList: {
         backgroundColor: '#131313'
-    },
-    descriptionText: {
-        fontFamily: fonts.type.soraMedium,
-        fontSize: fonts.size.font12,
-        color: '#8C8B9C'
     },
     alert: {
         backgroundColor: colors.alertRed,
@@ -183,45 +141,8 @@ const styles = StyleSheet.create({
         marginTop: normalize(8),
         alignItems: 'center'
     },
-    timeText: {
-        fontFamily: fonts.type.soraLight,
-        fontSize: fonts.size.font10,
-        color: '#8C8B9C',
-        opacity: .6
-    },
     flatListWrapper: {
         flex: 1
-    },
-    titleText: {
-        fontFamily: fonts.type.soraMedium,
-        fontSize: fonts.size.font12,
-        color: colors.white
-    },
-    notificationWrapper: {
-        width: '96%',
-        alignSelf: 'center',
-        borderRadius: normalize(5),
-        backgroundColor: '#26262A',
-        marginVertical: normalize(8),
-        flexDirection: 'row',
-        padding: normalize(10)
-    },
-    titleWrapper: {
-        flexDirection: 'column',
-        justifyContent: 'space-evenly'
-    },
-    alertWrapper: {
-        width: normalize(49),
-        height: normalize(46, 'height'),
-        elevation: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: normalize(5),
-        marginRight: normalize(10)
-    },
-    alertIcon: {
-        flex: .5,
-        alignSelf: 'center'
     }
 })
 
