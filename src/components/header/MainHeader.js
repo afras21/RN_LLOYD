@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { icons, strings } from '../../constants';
 import { colors, fonts } from '../../theme';
 
-function MainHeader({ title, navigation, isNotificationVisible = true, isWalletVisible = true, marginBottom = 20  }) {
+function MainHeader({ title, navigation, isNotificationVisible = true, isWalletVisible = true, marginBottom = 20, isBottomTabScreen = false  }) {
     
     const user = useSelector(state => state.user)
 
@@ -30,16 +30,21 @@ function MainHeader({ title, navigation, isNotificationVisible = true, isWalletV
     return (
         <View style={[styles.headerContainer, { marginBottom: normalize(marginBottom) }]}>
             <View style={styles.headerInnerContainer}>
-                <TouchableOpacity
-                    style={styles.goBackContainer}
-                    onPress={goBackHandler}
-                >
-                    <Image
-                        source={icons.BACK_BUTTON}
-                        style={styles.backButton}
-                        resizeMode={'contain'}
-                    />
-                </TouchableOpacity>
+                {
+                    isBottomTabScreen === false &&
+                    <TouchableOpacity
+                        style={styles.goBackContainer}
+                        onPress={goBackHandler}
+                    >
+                        <Image
+                            source={icons.BACK_BUTTON}
+                            style={styles.backButton}
+                            resizeMode={'contain'}
+                        />
+                    </TouchableOpacity>
+                }
+                
+                
                 <Text style={styles.title}>
                     {title}
                 </Text>
@@ -94,21 +99,21 @@ const styles = StyleSheet.create({
     headerInnerContainer: {
         alignItems: 'center',
         flexDirection: 'row',
-        width: '98%',
+        width: '85%',
         alignSelf: 'center'
     },
     goBackContainer: {
         width: normalize(30),
         height: normalize(30),
-        alignItems: 'center',
-        flex: .14,
-        alignSelf: 'center',
+        // alignItems: 'baseline',
+        // flex: .14,
+        paddingHorizontal: 20,
         marginTop: normalize(11)
     },
     backButton: {
         width: normalize(20),
-        height: normalize(21),
-        padding: normalize(10),
+        height: normalize(16, 'height'),
+        position: 'absolute'
     },
     title: {
         color: colors.white,
@@ -118,24 +123,27 @@ const styles = StyleSheet.create({
     },
     notificationAndWalletWrapper: {
         flexDirection: 'row',
-        flex: .5,
-        justifyContent: 'space-evenly'
+        flex: .4,
+        justifyContent: 'flex-end'
     },
     notificationWrapper: {
-        marginRight: normalize(10)
+        marginRight: normalize(20)
     },
     notificationIcon: {
         height: normalize(20),
         width: normalize(20)
+        
     },
     walletWrapper: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     walletNumber: {
         color: colors.white,
         fontSize: fonts.size.font12,
         fontFamily: fonts.type.soraRegular,
-        marginLeft: normalize(7)
+        marginLeft: normalize(7),
+        marginTop: 2
     },
     scrollContainer: {
         flex: 1

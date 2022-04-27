@@ -110,7 +110,7 @@ const ActionSheetChildren = ({
                     <Image
                         source={headerIcon}
                         style={styles.userRound}
-                        resizeMode={'contain'}
+                        resizeMode={'center'}
                     />
                     <Text style={styles.actionSheetTitle}>
                         {title}
@@ -121,6 +121,7 @@ const ActionSheetChildren = ({
                     >
                         <Image
                             source={icons.CLOSE}
+                            resizeMode={'contain'}
                             style={[styles.userRound, { width: normalize(25) }]}
                         />
                     </TouchableOpacity>
@@ -285,7 +286,7 @@ const WalletScreen = ({ navigation }) => {
     
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
+            <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
             <MainHeader 
                 navigation={navigation}
                 title={'Wallet'}
@@ -895,6 +896,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.type.soraSemiBold,
         fontSize: fonts.size.font18,
         color: colors.white,
+        marginTop: normalize(3),
         marginLeft: normalize(12),
         flex: 1
     },

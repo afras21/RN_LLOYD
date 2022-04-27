@@ -15,7 +15,7 @@ import PrimaryButton from '../components/buttons/PrimaryButton';
 import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 import MainHeader from '../components/header/MainHeader';
 import ListAccordion from '../components/ListAccordion';
-import { icons, images } from '../constants';
+import { icons, images, strings } from '../constants';
 import { myReferral } from '../mock/myReferral';
 import { colors, fonts } from '../theme';
 
@@ -42,7 +42,7 @@ const MyReferralScreen = ({ navigation, user }) => {
     
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
+            <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
             <MainHeader
                 navigation={navigation}
                 title={'My Referrals'}

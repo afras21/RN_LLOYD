@@ -14,7 +14,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import { useSelector } from 'react-redux';
-import { icons } from '../constants';
+import PrimaryButton from '../components/buttons/PrimaryButton';
+import { icons, strings } from '../constants';
 import { colors, fonts, metrics } from '../theme';
 
 const data = {
@@ -110,7 +111,7 @@ const JoinTriviaScreen = ({ navigation, route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.backgroundColor} />
+            <StatusBar backgroundColor={colors.backgroundColor} barStyle={strings.STATUS_BAR_STYLE} />
             <View style={styles.navigationHeaderWrapper}>
                 <TouchableOpacity
                     style={styles.backButton}
@@ -304,15 +305,12 @@ const JoinTriviaScreen = ({ navigation, route }) => {
                     }
                 </View>
                 <View style={styles.joinUsButtonWrapper}>
-                    <TouchableOpacity
-                        style={styles.joinUsButton}
+                    <PrimaryButton
+                        text={`Join Contest $${data.entryFee}`}
                         onPress={joinContestHandler}
-                    >
-                        <Text style={styles.joinUsText}>
-                            Join Contest ${data.entryFee}
-                        </Text>
-                    </TouchableOpacity>
+                    />
                 </View>
+            
 
                 <Actionsheet
                     isOpen={actionSheet.isOpen}
@@ -467,7 +465,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: colors.white,
         fontSize: fonts.size.font12,
-        fontWeight: '200',
         fontFamily: fonts.type.soraLight
     },
     applyCouponTitle: {
@@ -475,7 +472,6 @@ const styles = StyleSheet.create({
         color: colors.primary,
         width: '92%',
         alignSelf: 'center',
-        fontWeight: 'bolder',
         fontFamily: fonts.type.soraRegular
     },
     applyCouponTextInputWrapper: {
@@ -666,15 +662,15 @@ const styles = StyleSheet.create({
     },
     notificationIcon: {
         width: normalize(20),
-        height: normalize(22)
+        height: normalize(21)
     },
     walletWrapper: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     walletIcon: {
-        width: normalize(24),
-        height: normalize(25),
+        width: normalize(22),
+        height: normalize(22),
         marginRight: 10
     },
     linearGradientWrapper: {

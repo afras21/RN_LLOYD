@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#3B3B3A',
-        fntSize: fonts.size.font10,
+        fontSize: fonts.size.font10,
         fontFamily: fonts.type.soraRegular
     },
     youWonText: {

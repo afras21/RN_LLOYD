@@ -91,6 +91,7 @@ const NotificationScreen = ({ navigation }) => {
                 isNotificationVisible={false}
                 isWalletVisible={false}
                 marginBottom={0}
+                isBottomTabScreen={false}
             />
                 <UnReadNotification 
                     isNewNotificationExist={isNewNotificationExist}

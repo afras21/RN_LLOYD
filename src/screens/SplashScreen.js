@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
         fontSize: fonts.size.font12,
         lineHeight: normalize(15.2),
         marginTop: normalize(18),
-        fontWeight: fonts.weight.semi,
         fontFamily: fonts.type.soraSemiBold
     }
     

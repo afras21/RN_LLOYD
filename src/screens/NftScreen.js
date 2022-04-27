@@ -12,7 +12,6 @@ import {
 import HeaderScreenTextInput from '../components/textInputs/HomeScreenTextInput';
 import normalize from 'react-native-normalize';
 import { connect } from 'react-redux';
-import MainHeader from '../components/header/MainHeader';
 import Slider1 from '../components/homeScreenSlider/Slider1';
 import NftList from '../components/nftScreen/NftList';
 import { icons, strings } from '../constants';
@@ -116,7 +115,7 @@ const NftScreen = ({ navigation, user }) => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
+            <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
             {/* <MainHeader
                 title={"All Nft's"}
                 navigation={navigation}

@@ -12,7 +12,7 @@ import {
 import normalize from 'react-native-normalize';
 import { connect } from 'react-redux';
 import TriviaView from '../components/TriviaView';
-import { icons } from '../constants';
+import { icons, strings } from '../constants';
 import { colors, fonts } from '../theme';
 import { completed, live } from '../mock/activity';
 import MainHeader from '../components/header/MainHeader';
@@ -40,8 +40,12 @@ const ActivityScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container} >
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
-            <MainHeader title={'Activity'} navigation={navigation} />
+            <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
+            <MainHeader 
+                title={'Activity'} 
+                navigation={navigation} 
+                isBottomTabScreen={true}
+            />
             <View style={styles.selectedActivityContainer}>
                 <TouchableOpacity
                     style={[

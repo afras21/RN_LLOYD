@@ -113,6 +113,7 @@ const LeaderBoardScreen = ({ navigation }) => {
                 isNotificationVisible={false} 
                 isWalletVisible={true} 
                 marginBottom={1}
+                isBottomTabScreen={true}
             />
              <ScrollView 
                     nestedScrollEnabled={true} 

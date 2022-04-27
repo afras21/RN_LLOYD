@@ -397,9 +397,9 @@ const HomeScreen = ({ user, navigation }) => {
 
 
     return (
-        <SafeAreaProvider>
-            <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
-                <StatusBar backgroundColor={colors.bottomTabBgColor} />
+        <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
+            <SafeAreaProvider>
+                <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
                 <AnimatedHeader 
                     notificationHandler={notificationHandler} 
                     walletHandler={walletHandler} 
@@ -450,8 +450,8 @@ const HomeScreen = ({ user, navigation }) => {
                     }
                     
                 </ScrollView>
-            </SafeAreaView>
-        </SafeAreaProvider>
+            </SafeAreaProvider>
+        </SafeAreaView>
     )
 }
 
@@ -592,23 +592,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     notificationImage: {
-        width: normalize(23),
-        height: normalize(23)
+        width: normalize(20),
+        height: normalize(20)
     },
     walletWrapper: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     walletImage: {
-        width: normalize(23),
-        height: normalize(23),
+        width: normalize(20),
+        height: normalize(20),
         backgroundColor: colors.bottomTabBgColor
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: fonts.size.font10,
+        fontSize: fonts.size.font12,
         color: colors.white,
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraRegular,
+        marginTop: normalize(2)
     },
     headerBottom: {
         width: '100%',
