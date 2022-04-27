@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
         marginLeft: normalize(10),
         fontSize: fonts.size.font10,
         color: colors.white,
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraRegular
     },
     headerBottom: {
         width: '100%',
