@@ -238,9 +238,10 @@ const styles = StyleSheet.create({
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: fonts.size.font10,
+        fontSize: fonts.size.font12,
         color: colors.white,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        marginTop: normalize(3)
     },
     headerBottom: {
         width: '100%',
