@@ -62,7 +62,8 @@ const STRIPE = require('../assets/icons/stripe.png');
 const META_MASK = require('../assets/icons/metaMask.png');
 const PORTIS = require('../assets/icons/portis.png');
 const COIN_BASE = require('../assets/icons/coinbase.png');
-const DISCOUNT = require('../assets/icons/Discount.png')
+const DISCOUNT = require('../assets/icons/Discount.png');
+const ALERT = require('../assets/icons/alert.png');
 export default {
     LOGO,
     GOOGLE_LOGO,
@@ -122,5 +123,6 @@ export default {
     META_MASK,
     PORTIS,
     COIN_BASE,
-    DISCOUNT
+    DISCOUNT,
+    ALERT
 }

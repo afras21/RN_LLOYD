@@ -10,6 +10,8 @@ import TriviaScreen from './TriviaScreen';
 import JoinTriviaScreen  from './JoinTriviaScreen';
 import MyReferralScreen from './MyReferralScreen';
 import WalletScreen from './WalletScreen';
+import TransactionScreen from './TransactionScreen';
+import NotificationScreen from './NotificationScreen'
 
 export {
     SplashScreen,
@@ -23,5 +25,7 @@ export {
     TriviaScreen,
     JoinTriviaScreen,
     MyReferralScreen,
-    WalletScreen
+    WalletScreen,
+    TransactionScreen,
+    NotificationScreen
 }

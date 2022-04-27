@@ -40,7 +40,7 @@ const allPages = {
     HOME: 'home'
 }
 
-const Header = ({ user, onLayout, walletHandler }) => {
+const Header = ({ user, onLayout, walletHandler, notificationHandler }) => {
     return (
         <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
@@ -67,11 +67,15 @@ const Header = ({ user, onLayout, walletHandler }) => {
                 {/* headerTopPart3 */}
 
                 <View style={styles.headerTopPart3}>
-                    <Image
-                        source={icons.NOTIFICATION}
-                        style={styles.notificationImage}
-                        resizeMode='contain'
-                    />
+                    <TouchableOpacity
+                        onPress={notificationHandler}
+                    >
+                        <Image
+                            source={icons.NOTIFICATION}
+                            style={styles.notificationImage}
+                            resizeMode='contain'
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.walletWrapper}
                         onPress={walletHandler}
@@ -102,7 +106,7 @@ const Header = ({ user, onLayout, walletHandler }) => {
     )
 }
 
-const StickyHeader = ({ onLayout, user, walletHandler }) => {
+const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler }) => {
     const [selectSuggestion, setSelectSuggestion] = useState('All');
     return (
         <Animated.View onLayout={onLayout} style={[styles.stickyHeaderWrapper]}>
@@ -132,11 +136,16 @@ const StickyHeader = ({ onLayout, user, walletHandler }) => {
                         {/* headerTopPart3 */}
 
                         <View style={styles.headerTopPart3}>
-                            <Image
-                                source={icons.NOTIFICATION}
-                                style={styles.notificationImage}
-                                resizeMode='contain'
-                            />
+                            <TouchableOpacity
+                                onPress={notificationHandler}
+                            >
+                                <Image
+                                    source={icons.NOTIFICATION}
+                                    style={styles.notificationImage}
+                                    resizeMode='contain'
+                                />
+                            </TouchableOpacity>
+                            
                             <TouchableOpacity 
                                 style={styles.walletWrapper}
                                 onPress={walletHandler}
@@ -192,7 +201,7 @@ const StickyHeader = ({ onLayout, user, walletHandler }) => {
     )
 }
 
-const AnimatedHeader = ({ animatedValue, user, walletHandler }) => {
+const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandler }) => {
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
         inputRange: [0, HEADER_HEIGHT + insets.top],
@@ -210,9 +219,9 @@ const AnimatedHeader = ({ animatedValue, user, walletHandler }) => {
         >
             {
                 viewHeight >= 120 ? 
-                    <Header onLayout={onLayout} walletHandler={walletHandler} viewHeight={viewHeight} user={user} />   
+                    <Header onLayout={onLayout} walletHandler={walletHandler} viewHeight={viewHeight} user={user} notificationHandler={notificationHandler} />   
                 :
-                    <StickyHeader onLayout={onLayout} walletHandler={walletHandler} user={user} />
+                    <StickyHeader onLayout={onLayout} walletHandler={walletHandler} user={user} notificationHandler={notificationHandler} />
 
             } 
         </Animated.View>
@@ -247,6 +256,10 @@ const HomeScreen = ({ user, navigation }) => {
 
     const walletHandler = () => {
         navigation.navigate('WalletScreen');
+    }
+    
+    const notificationHandler = () => {
+        navigation.navigate('NotificationScreen');
     }
 
     const renderQuizItem = ({ index, item }) => {
@@ -361,7 +374,7 @@ const HomeScreen = ({ user, navigation }) => {
         <SafeAreaProvider>
             <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
                 {/* <StatusBar backgroundColor={colors.bottomTabBgColor} /> */}
-                <AnimatedHeader walletHandler={walletHandler} animatedValue={offset} user={user} />
+                <AnimatedHeader notificationHandler={notificationHandler} walletHandler={walletHandler} animatedValue={offset} user={user} />
                 <ScrollView 
                     nestedScrollEnabled={true} 
                     showsVerticalScrollIndicator={false} 
