@@ -3,7 +3,7 @@ import { TextInput } from 'react-native'
 import normalize from 'react-native-normalize'
 import { colors, fonts } from '../../theme'
 
-const HomeScreenTextInput = ({ placeholder, onChangeText }) => {
+const HomeScreenTextInput = ({ placeholder, onChangeText, value }) => {
     return (
         <TextInput
             style={{
@@ -21,6 +21,7 @@ const HomeScreenTextInput = ({ placeholder, onChangeText }) => {
             onChangeText={onChangeText}
             placeholderTextColor={colors.progressGray}
             maxLength={40}
+            value={value}
         />
     )
 }

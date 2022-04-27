@@ -3,6 +3,7 @@ import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import { useSelector } from 'react-redux';
+import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 import TriviaView from '../components/TriviaView';
 import { icons, strings } from '../constants';
 import { data } from '../mock/basketBallTrivia';
@@ -70,6 +71,7 @@ const ListContainer = ({ data, navigation }) => {
                 data={data}
                 renderItem={({item}) => <TriviaView item={item} navigation={navigation} />}
                 keyExtractor={(item) => item.id}
+                ListEmptyComponent={<MainEmptyComponent emptyText={'No Search Results found...'} />}
             />
         </View>
     )
@@ -94,8 +96,12 @@ const Wallet = ({ user, walletHandler }) => (
 export default TriviaScreen;
 
 const styles = StyleSheet.create({
-    root: {
+    scrollContainer: {
         flex: 1,
+        backgroundColor: colors.footer
+    },
+    root: {
+        flex: 1
     },
     image: {
         flex: 1,

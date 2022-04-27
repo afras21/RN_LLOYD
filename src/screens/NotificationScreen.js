@@ -9,6 +9,7 @@ import {
     Image
 } from 'react-native';
 import normalize from 'react-native-normalize';
+import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 import MainHeader from '../components/header/MainHeader';
 import Notification from '../components/notification/Notification';
 import { icons } from '../constants';
@@ -41,6 +42,7 @@ const Notifications = ({ data }) => {
             data={data}
             style={styles.flatList}
             renderItem={renderNotification}
+            ListEmptyComponent={<MainEmptyComponent emptyText={'No Search Results found...'} />}
             keyExtractor={item => item.id}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={<View style={styles.flatListSeparator} />}

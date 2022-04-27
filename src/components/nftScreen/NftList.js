@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { colors, fonts } from '../../theme';
 import normalize from 'react-native-normalize';
+import MainEmptyComponent from '../emptyComponent/MainEmptyComponent';
 
 function NftList({ data }) {
 
@@ -39,6 +40,7 @@ function NftList({ data }) {
                 ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
+                ListEmptyComponent={<MainEmptyComponent emptyText={'No Search Results found...'} />}
             />
             <View style={styles.bottomSpace} />
         </View>

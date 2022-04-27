@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { 
+import {
     StatusBar,
-    SafeAreaView, 
+    SafeAreaView,
     StyleSheet,
     ScrollView,
     Animated,
@@ -20,14 +20,14 @@ import { nftList } from '../mock/nft';
 import { colors, fonts } from '../theme';
 import { TouchableOpacity } from 'react-native';
 
-const Header = ({ user, walletHandler, notificationHandler }) => {
+const Header = ({ user, walletHandler, notificationHandler, value, changeText }) => {
     return (
-        <Animated.View  style={[styles.headerWrapper]}>
+        <Animated.View style={[styles.headerWrapper]}>
             <View style={styles.headerTop}>
 
                 {/* headerTopPart1 */}
                 <Image
-                    source={ user.avatar ? { uri: user.avatar } : icons.USER_ICON}
+                    source={user.avatar ? { uri: user.avatar } : icons.USER_ICON}
                     style={styles.headerUserAvatar}
                     resizeMode={'contain'}
                 />
@@ -56,7 +56,7 @@ const Header = ({ user, walletHandler, notificationHandler }) => {
                             resizeMode='contain'
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.walletWrapper}
                         onPress={walletHandler}
                     >
@@ -78,17 +78,30 @@ const Header = ({ user, walletHandler, notificationHandler }) => {
                 />
                 <HeaderScreenTextInput
                     placeholder={'Search Nfts'}
-                    onChangeText={() => { }}
+                    onChangeText={changeText}
+                    value={value}
+
                 />
             </View>
         </Animated.View>
     )
 }
-  
+
 
 const NftScreen = ({ navigation, user }) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [value, setValue] = useState('');
+    const [nfts, setNfts] = useState(nftList);
+
+    const changeText = (text) => {
+        setValue(text);
+        if (text.length === 0) {
+            setNfts(nftList)
+        } else {
+            setNfts([])
+        }
+    }
 
     const onChangeSlider1 = (index) => {
         setActiveIndex(index);
@@ -102,36 +115,46 @@ const NftScreen = ({ navigation, user }) => {
     }
 
     return (
-            <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
-                <StatusBar backgroundColor={colors.bottomTabBgColor} />
-                {/* <MainHeader
+        <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
+            <StatusBar backgroundColor={colors.bottomTabBgColor} />
+            {/* <MainHeader
                 title={"All Nft's"}
                 navigation={navigation}
             /> */}
-                <Header notificationHandler={notificationHandler} user={user} walletHandler={walletHandler} />
+            <Header
+                notificationHandler={notificationHandler}
+                user={user}
+                walletHandler={walletHandler}
+                changeText={changeText}
+                value={value}
+            />
 
-                <ScrollView
-                    style={styles.scrollContainer}
-                    nestedScrollEnabled={true}
-                    showsVerticalScrollIndicator={false}
-                >
-                    <Slider1
-                        data={strings.HOME_SLIDER1}
-                        activeIndex={activeIndex}
-                        changeIndex={onChangeSlider1}
-                    />
+            <ScrollView
+                style={styles.scrollContainer}
+                nestedScrollEnabled={true}
+                showsVerticalScrollIndicator={false}
+            >
+                {
+                    nfts.length > 0 &&
+                    <>
+                        <Slider1
+                            data={strings.HOME_SLIDER1}
+                            activeIndex={activeIndex}
+                            changeIndex={onChangeSlider1}
+                        />
+                        <Text style={styles.nftTitle}>
+                            All Nfts
+                        </Text>
+                        <Text style={styles.nftSubTitle}>
+                            You can purchase our NFTs on NFT.lootmogul.com
+                        </Text>
+                    </>
+                }
 
-                    <Text style={styles.nftTitle}>
-                        All Nfts
-                    </Text>
-                    <Text style={styles.nftSubTitle}>
-                        You can purchase our NFTs on NFT.lootmogul.com
-                    </Text>
+                <NftList data={nfts} />
+            </ScrollView>
 
-                    <NftList data={nftList} />
-                </ScrollView>
-
-            </SafeAreaView>
+        </SafeAreaView>
     )
 }
 
@@ -162,7 +185,7 @@ const styles = StyleSheet.create({
         width: '90%',
         fontFamily: fonts.type.soraRegular,
         alignSelf: 'center'
-    },  
+    },
     headerTop: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -170,9 +193,7 @@ const styles = StyleSheet.create({
     },
     headerUserAvatar: {
         height: normalize(35),
-        width: normalize(35),
-        // borderRadius: normalize(30),
-        // backgroundColor: colors.white
+        width: normalize(35)
     },
     headerDashBoardIcon: {
         width: 15,
@@ -236,7 +257,7 @@ const styles = StyleSheet.create({
     },
 })
 const mapStateToProps = state => {
-    return{
+    return {
         user: state.user
     }
 }
