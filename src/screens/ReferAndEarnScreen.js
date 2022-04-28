@@ -80,7 +80,7 @@ const LeaderBoardWinnerPosition = ({ position, color }) => {
 const ReferAndEarnScreen = ({ navigation, user }) => {
     
     const viewFullLeaderboardHandler = () => {
-        navigation.push('BottomTab',{
+        navigation.navigate('BottomTab',{
             screen: 'LeaderBoardScreen'
         })
     }
@@ -90,6 +90,7 @@ const ReferAndEarnScreen = ({ navigation, user }) => {
             <MainHeader
                 navigation={navigation}
                 title={'Refer & Earn'}
+                isBottomTabScreen={true}
             />
             <ScrollView
                 showsVerticalScrollIndicator={false}

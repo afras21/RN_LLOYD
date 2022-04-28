@@ -32,6 +32,7 @@ import { data } from '../mock/slider2'
 import Button from '../components/homeScreenSlider/Button';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRef } from 'react';
+import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 
 const HEADER_HEIGHT = strings.HEADER_HEIGHT;
 
@@ -40,7 +41,7 @@ const allPages = {
     HOME: 'home'
 }
 
-const Header = ({ user, onLayout, walletHandler, notificationHandler }) => {
+const Header = ({ user, onLayout, walletHandler, notificationHandler, onChangeText, value }) => {
     return (
         <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
@@ -98,7 +99,8 @@ const Header = ({ user, onLayout, walletHandler, notificationHandler }) => {
                 />
                 <HeaderScreenTextInput
                     placeholder={'Search Games'}
-                    onChangeText={() => { }}
+                    value={value}
+                    onChangeText={onChangeText}
                 />
             </View>
 
@@ -201,7 +203,7 @@ const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler }) =>
     )
 }
 
-const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandler }) => {
+const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandler, onChangeText, inputValue }) => {
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
         inputRange: [0, HEADER_HEIGHT + insets.top],
@@ -219,9 +221,23 @@ const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandle
         >
             {
                 viewHeight >= 120 ? 
-                    <Header onLayout={onLayout} walletHandler={walletHandler} viewHeight={viewHeight} user={user} notificationHandler={notificationHandler} />   
+                    <Header 
+                        onLayout={onLayout} 
+                        walletHandler={walletHandler} 
+                        viewHeight={viewHeight} 
+                        user={user} 
+                        notificationHandler={notificationHandler} 
+                         
+                        onChangeText={onChangeText}
+                        value={inputValue}
+                    />   
                 :
-                    <StickyHeader onLayout={onLayout} walletHandler={walletHandler} user={user} notificationHandler={notificationHandler} />
+                    <StickyHeader 
+                        onLayout={onLayout} 
+                        walletHandler={walletHandler} 
+                        user={user} 
+                        notificationHandler={notificationHandler}
+                    />
 
             } 
         </Animated.View>
@@ -249,6 +265,7 @@ const HomeScreen = ({ user, navigation }) => {
 
     const [pageState, setPageState] = useState(allPages.HOME);
     const [selectedTrivia, setSelectedTrivia] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     const onChangeSlider1 = (index) => {
         setActiveIndex(index)
@@ -369,12 +386,28 @@ const HomeScreen = ({ user, navigation }) => {
         // setSelectedTrivia('');
     }
 
+    const inputValueHandler = (text) => {
+        if(text.length === 0){
+
+        }else{
+
+        }
+        setInputValue(text);
+    }
+
 
     return (
-        <SafeAreaProvider>
-            <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
-                {/* <StatusBar backgroundColor={colors.bottomTabBgColor} /> */}
-                <AnimatedHeader notificationHandler={notificationHandler} walletHandler={walletHandler} animatedValue={offset} user={user} />
+        <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
+            <SafeAreaProvider>
+                <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
+                <AnimatedHeader 
+                    notificationHandler={notificationHandler} 
+                    walletHandler={walletHandler} 
+                    animatedValue={offset} 
+                    user={user} 
+                    onChangeText={inputValueHandler}
+                    inputValue={inputValue}
+                />
                 <ScrollView 
                     nestedScrollEnabled={true} 
                     showsVerticalScrollIndicator={false} 
@@ -385,29 +418,40 @@ const HomeScreen = ({ user, navigation }) => {
                       { useNativeDriver: false }
                     )}
                 >
-                    <Header user={user} />
+                    {
+                        inputValue.length === 0 ?
+                            <>
+                                <Header user={user} />
+                                <Slider1
+                                    data={strings.HOME_SLIDER1}
+                                    activeIndex={activeIndex}
+                                    changeIndex={onChangeSlider1}
+                                />
 
-                    <Slider1
-                        data={strings.HOME_SLIDER1}
-                        activeIndex={activeIndex}
-                        changeIndex={onChangeSlider1}
-                    />
+                                <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
 
-                    <Slider2 data={data} handleTrendTriviaSelection={handleTrendTriviaSelection} />
+                                <TriviaCategory
+                                    data={strings.HOME_SCREEN_BUTTONS}
+                                    setActiveButtonIndex={setActiveButtonIndex}
+                                    activeButtonIndex={activeButtonIndex}
+                                />
 
-                    <TriviaCategory
-                        data={strings.HOME_SCREEN_BUTTONS}
-                        setActiveButtonIndex={setActiveButtonIndex}
-                        activeButtonIndex={activeButtonIndex}
-                    />
+                                <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
+                                <RenderQuizItems data={strings.HOME_SLIDER2} />
 
-                    <Text style={styles.allTriviaHeader} >{allTriviaHeaderText}</Text>
-                    <RenderQuizItems data={strings.HOME_SLIDER2} />
-
-                    <RenderFooter />
+                                <RenderFooter />
+                            </>
+                            :
+                            <View style={styles.emptyContentWrapper}>
+                                <MainEmptyComponent
+                                    emptyText={'No Search Results found...'}
+                                />
+                            </View>
+                    }
+                    
                 </ScrollView>
-            </SafeAreaView>
-        </SafeAreaProvider>
+            </SafeAreaProvider>
+        </SafeAreaView>
     )
 }
 
@@ -444,6 +488,9 @@ const styles = StyleSheet.create({
         padding: normalize(6),
         paddingHorizontal: normalize(10),
         fontFamily: fonts.type.soraMedium
+    },
+    emptyContentWrapper: {
+        marginTop: normalize(150)
     },
     searchChipWrapper: {
         padding: 5,
@@ -545,23 +592,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     notificationImage: {
-        width: normalize(23),
-        height: normalize(23)
+        width: normalize(20),
+        height: normalize(20)
     },
     walletWrapper: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     walletImage: {
-        width: normalize(23),
-        height: normalize(23),
+        width: normalize(20),
+        height: normalize(20),
         backgroundColor: colors.bottomTabBgColor
     },
     walletAmount: {
         marginLeft: normalize(10),
-        fontSize: fonts.size.font10,
+        fontSize: fonts.size.font12,
         color: colors.white,
-        fontFamily: fonts.type.soraLight
+        fontFamily: fonts.type.soraRegular,
+        marginTop: normalize(2)
     },
     headerBottom: {
         width: '100%',

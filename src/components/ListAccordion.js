@@ -22,9 +22,11 @@ const getTaskColor = (currTask, totalTaskCompleted, type) => {
 
 const renderTaskHorizontal = (item, totalTaskCompleted) => {
     return(
-        <Text style={[styles.taskText, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg'), color: getTaskColor(item.id, totalTaskCompleted, 'text') }]}>
-                {item.task}
-        </Text>
+        <View style={[styles.taskTextWrapper, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg')} ]}>
+            <Text style={[styles.taskText, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg'), color: getTaskColor(item.id, totalTaskCompleted, 'text') }]}>
+                    {item.task}
+            </Text>
+        </View>
     )
 }
 
@@ -35,10 +37,11 @@ const MyReferralTaskWrapper = ({ isOpen, totalTaskCompleted }) => {
         <View style={styles.taskWrapper}>
              <FlatList
                 style={styles.taskWrapper}
+                contentContainerStyle={styles.taskWrapperContainer}
                 data={strings.MY_REFERRAL_TASKS}
                 keyExtractor={item => item.task}
                 horizontal={true}
-                ItemSeparatorComponent={({leadingItem}) => <Text style={[{ marginTop: 2, color: getTaskColor(leadingItem.id - 1, totalTaskCompleted - 2, 'bg') }]}>- - -</Text>}
+                ItemSeparatorComponent={({leadingItem}) => <Text style={[{ marginTop: 2, color: getTaskColor(leadingItem.id - 1, totalTaskCompleted - 2, 'bg') }]}>- -</Text>}
                 renderItem={({ item }) => renderTaskHorizontal(item, totalTaskCompleted)}
             />
         </View>
@@ -67,9 +70,12 @@ const ArrowButton = ({ isOpen }) => {
 const renderTaskVertical = (item, totalTaskCompleted) => {
     return(
         <View style={styles.helperWrapper}>
-            <Text style={[styles.taskText, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg'), color: getTaskColor(item.id, totalTaskCompleted, 'text') }]}>
-                {item.task}
-            </Text>
+            <View style={[styles.taskTextWrapper, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg') }]}>
+                <Text style={[styles.taskText, { backgroundColor: getTaskColor(item.id, totalTaskCompleted, 'bg'), color: getTaskColor(item.id, totalTaskCompleted, 'text') }]}>
+                    {item.task}
+                </Text>
+            </View>
+            
             <Text style={styles.helperText}>
                 {item.title}
             </Text>
@@ -128,10 +134,11 @@ const ListAccordion = ({
                         isOpen={isOpen}
                         totalTaskCompleted={item.task}
                     />
-                    
-                    <Text style={styles.earnedText}>
-                        {item.earned}
-                    </Text>
+                    <View style={styles.earnedTextWrapper}>
+                        <Text style={styles.earnedText}>
+                            {item.earned}
+                        </Text>
+                    </View>
                     <TouchableOpacity
                         style={styles.bottomArrowButton}
                         onPress={toggleListAccordion}
@@ -201,19 +208,28 @@ const styles = StyleSheet.create({
         fontFamily: fonts.type.soraRegular
     },
     helperContainer: { 
-        paddingHorizontal: normalize(6), 
+        paddingHorizontal: normalize(2), 
         paddingVertical: normalize(10),
         alignSelf: 'flex-start'
     },
-    taskText: {
+    taskTextWrapper:{
         borderRadius: normalize(50),
-        fontFamily: fonts.type.soraBold,
-        fontSize: fonts.size.font10,
-        color: '#136111',
         width: normalize(20),
         height: normalize(20),
+        alignSelf: 'center',
+        alignItems: 'center'
+    },
+    earnedTextWrapper: {
+        backgroundColor: '#136111',
+        width: normalize(40),
+        borderRadius: normalize(20)
+    },
+    taskText: {
+        fontFamily: fonts.type.soraBold,
+        fontSize: fonts.size.font10,
         textAlign: 'center',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: 3.5
     },  
     helperWrapper: {
         flexDirection: 'row'
@@ -222,11 +238,8 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontFamily: fonts.type.soraBold,
         fontSize: fonts.size.font10,
-        backgroundColor: '#136111',
-        width: normalize(40),
         textAlign: 'center',
-        padding: normalize(5),
-        borderRadius: normalize(20)
+        padding: normalize(5)
     },
     avatar: {
         width: normalize(30),
@@ -235,6 +248,9 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: colors.white,
         marginRight: normalize(5)
+    },
+    taskWrapperContainer: {
+        alignItems: 'center'
     },
     nameText: {
         color: colors.white,

@@ -50,7 +50,7 @@ const HomeTabBarIcon = ({ focused, src, onPress }) => {
                     <Image
                         source={src}
                         resizeMode='contain'
-                        style={styles.homeButton, focused === true ? [styles.tabBarIconStyleFocussed, styles.tabBarIconStyleFocussedHomeButton] : [styles.tabBarIconStyleUnFocussed, styles.tabBarIconStyleUnFocussedHomeButton]}
+                        style={focused === true ? [styles.tabBarIconStyleFocussed, styles.tabBarIconStyleFocussedHomeButton] : [styles.tabBarIconStyleUnFocussed, styles.tabBarIconStyleUnFocussedHomeButton]}
                     />
                 </TouchableOpacity>
             </View>
@@ -117,19 +117,20 @@ const BottomTabNavigationStack = () => {
 
 const styles = StyleSheet.create({
     curveBottomTab: {
-        height: normalize(70),
-        width: normalize(70),
+        height: '135%',
+        width:'100%',
         backgroundColor: colors.bottomTabBgColor,
-        transform: [{ rotate: '45deg' }], bottom: 34,
-        borderTopLeftRadius: 40,
+        transform: [{ rotate: '45deg' }], bottom: normalize(29),
+        borderTopLeftRadius: normalize(40),
+        shadowOpacity: .2,
         borderBottomLeftRadius: 0,
         borderTopRightRadius: 0,
-        borderBottomRightRadius: 40,
+        borderBottomRightRadius: normalize(40),
     },
     tabBarStyle: {
         backgroundColor: colors.bottomTabBgColor,
         borderTopColor: colors.bottomTabBgColor,
-        height: normalize(65)
+        height: normalize(85)
     },
     tabBarIconStyleFocussed: {
         width: normalize(28),
@@ -142,17 +143,16 @@ const styles = StyleSheet.create({
         tintColor: colors.progressGray
     },
     tabBarLabelStyleFocused: {
-
-        marginBottom: normalize(10),
-        fontSize: normalize(12),
+        fontSize: fonts.size.font10,
         color: colors.primary,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        zIndex: 1
     },
     tabBarLabelStyleUnFocused: {
-        marginBottom: normalize(10),
-        fontSize: normalize(12),
+        fontSize: fonts.size.font10,
         color: colors.progressGray,
-        fontFamily: fonts.type.soraRegular
+        fontFamily: fonts.type.soraRegular,
+        zIndex: 1
     },
     homeButtonWrapper: {
         flex: 1,
@@ -164,14 +164,14 @@ const styles = StyleSheet.create({
         top: -normalize(30),
         zIndex: 1,
         backgroundColor: colors.bottomTabBgColor,
-        width: normalize(90),
-        borderRadius: 70,
+        // width: normalize(90),
+        borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: normalize(20)
+        padding: normalize(15)
     },
     homeButton: {
-        borderWidth: 8,
+        borderWidth: 7,
         borderRadius: normalize(70),
         width: normalize(70),
         alignItems: 'center',
@@ -184,8 +184,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F2B01C',
         shadowColor: '#F2B01C',
         borderColor: colors.backgroundColor,
-        shadowOpacity: 20,
-        elevation: 20
+        shadowOpacity: .5,
+        elevation: 1
     },
     homeButtonUnFocused: {
         borderColor: colors.progressGray,

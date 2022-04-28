@@ -12,6 +12,7 @@ const LEADER_BOARD = require('../assets/images/leaderBoard.png');
 const LEADER_BOARD_3D = require('../assets/images/leaderBoard3D.png');
 const MY_REFERRAL = require('../assets/images/myReferral.png');
 const CONNECT_WALLET_BANNER1 = require('../assets/images/walletCryptoBanner1.png');
+const NO_RESULT_FOUND = require('../assets/images/noResultFound.png');
 
 export default{
     ON_BOARDING_IMAGE1,
@@ -27,5 +28,6 @@ export default{
     LEADER_BOARD,
     LEADER_BOARD_3D,
     MY_REFERRAL,
-    CONNECT_WALLET_BANNER1
+    CONNECT_WALLET_BANNER1,
+    NO_RESULT_FOUND
 }

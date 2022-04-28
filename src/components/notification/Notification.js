@@ -13,16 +13,6 @@ import { alertColors } from '../../mock/notifications';
 import { colors, fonts } from '../../theme';
 
 
-const getDescription = (str, isOpen) => {
-    if(isOpen === true){
-        return str;
-    }
-    if(str.length >= 32){
-        return `${str.substring(0, 32)}...`
-    }
-    return str;
-}
-
 const Button = ({ title, onPress, type }) => {
     return(
         <TouchableOpacity
@@ -89,8 +79,9 @@ const Notification = ({ item, index }) => {
                 <Text style={styles.titleText}>
                     {state.title}
                 </Text>
-                <Text style={styles.descriptionText}>
-                    {getDescription(state.description, state.isOpen)}
+                {/* numberOfLines = 0 to display entire description text when opened */}
+                <Text numberOfLines={state.isOpen === true ? 0 : 1} style={styles.descriptionText}>
+                    {state.description}
                 </Text>
                 {
                     state.isNew && state.isOpen && 

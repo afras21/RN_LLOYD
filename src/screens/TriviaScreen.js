@@ -3,6 +3,7 @@ import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text, ImageBackground
 import LinearGradient from 'react-native-linear-gradient';
 import normalize from 'react-native-normalize';
 import { useSelector } from 'react-redux';
+import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 import TriviaView from '../components/TriviaView';
 import { icons, strings } from '../constants';
 import { data } from '../mock/basketBallTrivia';
@@ -18,26 +19,26 @@ const TriviaScreen = ({ navigation, route }) => {
     }
 
     return (
-        <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-            <SafeAreaView nestedScrollEnabled={true} styles={styles.root}>
+        <SafeAreaView style={styles.root}>
+            <ScrollView nestedScrollEnabled={true} style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 <LinearGradient
                     style={{
                         flex: 1
                     }}
-                    colors={['#383838','#2F2F2F']}
+                    colors={['#383838', '#2F2F2F']}
                 >
-                <Header 
-                    bg={image} 
-                    user={user} 
-                    plays={plays} 
-                    name={name} 
-                    onClose={()=>{navigation.goBack()}}
-                    walletHandler={walletHandler}
-                />
-                <ListContainer data={data} navigation={navigation} />
+                    <Header
+                        bg={image}
+                        user={user}
+                        plays={plays}
+                        name={name}
+                        onClose={() => { navigation.goBack() }}
+                        walletHandler={walletHandler}
+                    />
+                    <ListContainer data={data} navigation={navigation} />
                 </LinearGradient>
-            </SafeAreaView>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -70,6 +71,7 @@ const ListContainer = ({ data, navigation }) => {
                 data={data}
                 renderItem={({item}) => <TriviaView item={item} navigation={navigation} />}
                 keyExtractor={(item) => item.id}
+                ListEmptyComponent={<MainEmptyComponent emptyText={'No Search Results found...'} />}
             />
         </View>
     )
@@ -94,8 +96,13 @@ const Wallet = ({ user, walletHandler }) => (
 export default TriviaScreen;
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        flex: 1,
+        backgroundColor: colors.footer
+    },
     root: {
         flex: 1,
+        backgroundColor: colors.footer
     },
     image: {
         flex: 1,
@@ -129,7 +136,6 @@ const styles = StyleSheet.create({
     },
     playStyles: {
         color: colors.white,
-        fontWeight: '400',
         fontSize: fonts.size.font12,
         lineHeight: 18,
         opacity: 0.8,

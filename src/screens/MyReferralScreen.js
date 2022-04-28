@@ -12,9 +12,10 @@ import {
 import normalize from 'react-native-normalize';
 import { connect } from 'react-redux';
 import PrimaryButton from '../components/buttons/PrimaryButton';
+import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 import MainHeader from '../components/header/MainHeader';
 import ListAccordion from '../components/ListAccordion';
-import { icons, images } from '../constants';
+import { icons, images, strings } from '../constants';
 import { myReferral } from '../mock/myReferral';
 import { colors, fonts } from '../theme';
 
@@ -41,7 +42,7 @@ const MyReferralScreen = ({ navigation, user }) => {
     
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.bottomTabBgColor} />
+            <StatusBar backgroundColor={colors.bottomTabBgColor} barStyle={strings.STATUS_BAR_STYLE} />
             <MainHeader
                 navigation={navigation}
                 title={'My Referrals'}
@@ -65,17 +66,21 @@ const MyReferralScreen = ({ navigation, user }) => {
             </View>
 
             <View style={styles.listWrapper}>
-                <View style={styles.listHeadingWrapper}>
-                    <Text style={styles.listHeading}>
-                        Invited to
-                    </Text>
-                    <Text style={[styles.listHeading, { marginLeft: 30 }]}>
-                        Task
-                    </Text>
-                    <Text style={styles.listHeading}>
-                        Earned
-                    </Text>
-                </View>
+                {
+                    myReferral.length > 0 &&
+                    <View style={styles.listHeadingWrapper}>
+                        <Text style={styles.listHeading}>
+                            Invited to
+                        </Text>
+                        <Text style={[styles.listHeading, { marginLeft: 30 }]}>
+                            Task
+                        </Text>
+                        <Text style={styles.listHeading}>
+                            Earned
+                        </Text>
+                    </View>
+                }
+
                 <View style={{flex:1}}>
                 <FlatList
                     data={myReferral}
@@ -85,6 +90,7 @@ const MyReferralScreen = ({ navigation, user }) => {
                     showsVerticalScrollIndicator={false}
                     renderItem={renderItemMyReferrals}
                     keyExtractor={item => item.id}
+                    ListEmptyComponent={<MainEmptyComponent emptyText={'No Search Results found...'} />}
                     ListFooterComponent={() => <View style={{height: normalize(35, 'height')}} />}
                 />
                 </View>

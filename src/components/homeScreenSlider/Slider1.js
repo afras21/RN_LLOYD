@@ -43,6 +43,12 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
                 loop={true}
                 onSnapToItem={changeIndex}
             />
+            <View
+                style={{
+                    width: '17%',
+                    alignSelf: 'center'
+                }}
+            >
             <Pagination
                 dotsLength={data.length}
                 activeDotIndex={activeIndex}
@@ -53,6 +59,7 @@ const Slider1 = ({ data, activeIndex, changeIndex }) => {
                 inactiveDotOpacity={.7}
                 inactiveDotScale={1}
             />
+            </View>
         </View>
     )
 }
@@ -71,17 +78,17 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     dotStyle: {
-        width: 30,
+        width: 27,
         height: 7,
         borderRadius: 5,
-        marginHorizontal: -5,
+        marginHorizontal: 1.5,
         backgroundColor: colors.white,
         marginTop: -normalize(7)
     },
     inActiveDotStyle: {
         backgroundColor: colors.progressGray,
-        marginHorizontal: -5,
-        width: 14
+        marginHorizontal: 1.5,
+        width: 15
     },
     image: {
         height: '100%',
