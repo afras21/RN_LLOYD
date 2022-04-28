@@ -409,6 +409,8 @@ const HomeScreen = ({ user, navigation }) => {
                     inputValue={inputValue}
                 />
                 <ScrollView 
+                    // To disable pull to refresh kind of gesture.
+                    bounces={false}
                     nestedScrollEnabled={true} 
                     showsVerticalScrollIndicator={false} 
                     style={styles.scrollContainer}
