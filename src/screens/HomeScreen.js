@@ -41,17 +41,21 @@ const allPages = {
     HOME: 'home'
 }
 
-const Header = ({ user, onLayout, walletHandler, notificationHandler, onChangeText, value }) => {
+const Header = ({ user, onLayout, walletHandler, notificationHandler, onChangeText, value, openDrawerHandler }) => {
     return (
         <Animated.View onLayout={onLayout} style={[styles.headerWrapper, {flex: 1}]}>
             <View style={styles.headerTop}>
 
                 {/* headerTopPart1 */}
-                <Image
-                    source={ user.avatar ? { uri: user.avatar } : icons.USER_ICON}
-                    style={styles.headerUserAvatar}
-                    resizeMode={'contain'}
-                />
+                <TouchableOpacity
+                    onPress={openDrawerHandler}
+                >
+                    <Image
+                        source={user.avatar}
+                        style={styles.headerUserAvatar}
+                        resizeMode={'contain'}
+                    />
+                </TouchableOpacity>
                 <Image
                     source={icons.DASHBOARD}
                     style={styles.headerDashBoardIcon}
@@ -108,7 +112,7 @@ const Header = ({ user, onLayout, walletHandler, notificationHandler, onChangeTe
     )
 }
 
-const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler }) => {
+const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler, openDrawerHandler }) => {
     const [selectSuggestion, setSelectSuggestion] = useState('All');
     return (
         <Animated.View onLayout={onLayout} style={[styles.stickyHeaderWrapper]}>
@@ -117,11 +121,15 @@ const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler }) =>
                     <View style={styles.headerTop}>
 
                         {/* headerTopPart1 */}
-                        <Image
-                            source={user.avatar ? { uri: user.avatar } : icons.USER_ICON}
-                            style={styles.headerUserAvatar}
-                            resizeMode={'contain'}
-                        />
+                        <TouchableOpacity
+                            onPress={openDrawerHandler}
+                        >
+                            <Image
+                                source={user.avatar}
+                                style={styles.headerUserAvatar}
+                                resizeMode={'contain'}
+                            />
+                        </TouchableOpacity>
                         <Image
                             source={icons.DASHBOARD}
                             style={styles.headerDashBoardIcon}
@@ -203,7 +211,7 @@ const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler }) =>
     )
 }
 
-const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandler, onChangeText, inputValue }) => {
+const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandler, onChangeText, inputValue, openDrawerHandler }) => {
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
         inputRange: [0, HEADER_HEIGHT + insets.top],
@@ -230,12 +238,14 @@ const AnimatedHeader = ({ animatedValue, user, walletHandler, notificationHandle
                          
                         onChangeText={onChangeText}
                         value={inputValue}
+                        openDrawerHandler={openDrawerHandler}
                     />   
                 :
                     <StickyHeader 
                         onLayout={onLayout} 
                         walletHandler={walletHandler} 
                         user={user} 
+                        openDrawerHandler={openDrawerHandler}
                         notificationHandler={notificationHandler}
                     />
 
@@ -377,7 +387,6 @@ const HomeScreen = ({ user, navigation }) => {
         // setPageState(allPages.TREND_TRIVIA)
         navigation.navigate('TriviaScreen', {item: item});
     }
-
     /**
      * on Clicking back button in trivia page
      */
@@ -395,6 +404,9 @@ const HomeScreen = ({ user, navigation }) => {
         setInputValue(text);
     }
 
+    const openDrawerHandler = () => {
+        navigation.toggleDrawer();
+    }
 
     return (
         <SafeAreaView  style={styles.container} forceInset={{ top: 'always' }}>
@@ -407,6 +419,7 @@ const HomeScreen = ({ user, navigation }) => {
                     user={user} 
                     onChangeText={inputValueHandler}
                     inputValue={inputValue}
+                    openDrawerHandler={openDrawerHandler}
                 />
                 <ScrollView 
                     // To disable pull to refresh kind of gesture.
