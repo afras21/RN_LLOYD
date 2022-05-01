@@ -51,7 +51,7 @@ const Header = ({ user, onLayout, walletHandler, notificationHandler, onChangeTe
                     onPress={openDrawerHandler}
                 >
                     <Image
-                        source={user.avatar}
+                        source={{uri: user.avatar}}
                         style={styles.headerUserAvatar}
                         resizeMode={'contain'}
                     />
@@ -125,7 +125,7 @@ const StickyHeader = ({ onLayout, user, walletHandler, notificationHandler, open
                             onPress={openDrawerHandler}
                         >
                             <Image
-                                source={user.avatar}
+                                source={{uri: user.avatar}}
                                 style={styles.headerUserAvatar}
                                 resizeMode={'contain'}
                             />

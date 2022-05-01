@@ -54,7 +54,7 @@ const CustomDrawer = (props) => {
                     </View>
                     <View style={styles.headerInnerContainer}>
                         <Image
-                            source={user.avatar}
+                            source={{uri: user.avatar}}
                             style={styles.userIcon}
                             resizeMode={'contain'}
                         />

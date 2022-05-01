@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation, saveUser }) => {
             name: 'Abhishek kumar', 
             accessToken: TEMP_AUTH_TOKEN, 
             walletAmount: strings.WALLET_AMOUNT,
-            avatar: icons.USER_ICON
+            avatar: 'https://fupping.com/wp-content/uploads/2018/06/Personal.png'
         })
     }
 
