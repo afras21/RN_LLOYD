@@ -16,13 +16,12 @@
 		33B190F62B9B479F88F3A7CA /* Sora-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6E57C5D1BE2426FB6073E69 /* Sora-ExtraLight.ttf */; };
 		434BCF5608573869BEC08579 /* libPods-base-baseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F12FAD3082EF6735779D04 /* libPods-base-baseTests.a */; };
 		62C682B26A994A2E9B0D0558 /* Sora-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA5AAA2634CB46578C4B2DC6 /* Sora-ExtraBold.ttf */; };
-		6B246EF728056EA000EF9B60 /* libGoogleSignIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B246EF628056EA000EF9B60 /* libGoogleSignIn.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AD171F75BC70E5CA28261F7D /* libPods-base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083BB68CB85A35F3CCFB5A0 /* libPods-base.a */; };
 		CBC4A265F5F340BCA8E16053 /* Sora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52007FBB82764928937E8FD4 /* Sora-Bold.ttf */; };
 		CECA9F8CB5824B978EF6536F /* Sora-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76D17540CFCD4A2B9AC81BD3 /* Sora-Light.ttf */; };
 		E7540E4164E04BFEB35F9E4F /* Sora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E619B6807AD648B4872F9238 /* Sora-Medium.ttf */; };
 		F7F020749F6B4571881FDB1F /* Sora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC2C050603485581D1F2A5 /* Sora-Regular.ttf */; };
-		FCA219EFA856FEDF65F0B7CE /* libPods-base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5083BB68CB85A35F3CCFB5A0 /* libPods-base.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B246EF728056EA000EF9B60 /* libGoogleSignIn.a in Frameworks */,
-				FCA219EFA856FEDF65F0B7CE /* libPods-base.a in Frameworks */,
+				AD171F75BC70E5CA28261F7D /* libPods-base.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = base/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -545,7 +543,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = base;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -570,6 +568,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = base;
+				SWIFT_OPTIMIZATION_LEVEL = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -605,7 +604,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";

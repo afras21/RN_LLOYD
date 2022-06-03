@@ -38,6 +38,11 @@ const MainStackNavigation = () => {
             />
             <MainStack.Screen
                 options={{ headerShown: false }}
+                name='Drawer'
+                component={Drawer}
+            />
+            <MainStack.Screen
+                options={{ headerShown: false }}
                 name='TriviaScreen'
                 component={TriviaScreen}
             />

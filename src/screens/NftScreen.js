@@ -26,7 +26,7 @@ const Header = ({ user, walletHandler, notificationHandler, value, changeText })
 
                 {/* headerTopPart1 */}
                 <Image
-                    source={user.avatar ? { uri: user.avatar } : icons.USER_ICON}
+                    source={{ uri: user.avatar }}
                     style={styles.headerUserAvatar}
                     resizeMode={'contain'}
                 />
