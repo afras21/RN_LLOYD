@@ -41,7 +41,7 @@ const MyReferralTaskWrapper = ({ isOpen, totalTaskCompleted }) => {
                 data={strings.MY_REFERRAL_TASKS}
                 keyExtractor={item => item.task}
                 horizontal={true}
-                ItemSeparatorComponent={({leadingItem}) => <Text style={[{ marginTop: 2, color: getTaskColor(leadingItem.id - 1, totalTaskCompleted - 2, 'bg') }]}>- -</Text>}
+                ItemSeparatorComponent={({leadingItem}) => <Text style={[ styles.itemSeparator, {color: getTaskColor(leadingItem.id - 1, totalTaskCompleted - 2, 'bg') }]}>- -</Text>}
                 renderItem={({ item }) => renderTaskHorizontal(item, totalTaskCompleted)}
             />
         </View>
@@ -283,6 +283,9 @@ const styles = StyleSheet.create({
     rightArrowIcon: {
         width: normalize(15),
         height: normalize(15)
+    },
+    itemSeparator: {
+        marginTop: 2
     },
     listAccordionText: {
         color: '#C4C4C4',

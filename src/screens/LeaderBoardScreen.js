@@ -223,14 +223,14 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontFamily: fonts.type.soraRegular,
         fontSize: fonts.size.font12,
-        width: 30
+        width: 20
     },
     leaderBoardWinnerText: {
         color: colors.white,
         fontFamily: fonts.type.soraSemiBold,
         fontSize: fonts.size.font10,
         alignSelf: 'center',
-        marginTop: 3
+        // marginTop: 3
     },
     leaderBoardWinnerContainer: {
         width: normalize(28),
@@ -239,7 +239,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignSelf: 'center',
         marginTop: -normalize(22),
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     medal: {
         height: normalize(17),

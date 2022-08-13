@@ -30,7 +30,10 @@ const colors = {
     disabledGreen: '#374137',
     activeGreenText: '#136111',
     disabledGreenText: '#1B2A1A',
-    alertRed: '#F14336'
+    alertRed: '#F14336',
+    drawerBackgroundColor: '#EBCE2C',
+    drawerHeaderColor: '#F3DD7F',
+    drawerText: '#233F78'
 }
 
 export default colors;

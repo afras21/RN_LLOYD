@@ -15,6 +15,7 @@ import normalize from 'react-native-normalize';
 import { colors, fonts } from '../theme';
 import { useSelector } from 'react-redux';
 import { transactions } from '../mock/transaction';
+import MainEmptyComponent from '../components/emptyComponent/MainEmptyComponent';
 
 const Balance = ({ balance }) => {
     return (
@@ -74,27 +75,8 @@ const FilterList = ({ filterSelected, updateFilter }) => {
 const Button = ({ type }) => {
    
     return(
-        <View
-            style={{
-                backgroundColor: '#D0FFDB',
-                borderRadius: normalize(5),
-                padding: normalize(10),
-                width: normalize(34),
-                height: normalize(34, 'height'),
-                alignItems: 'center'
-            }}
-        >
-            <Text 
-                style={{
-                    fontSize: normalize(34),
-                    fontFamily: fonts.type.soraBold,
-                    position: 'absolute',
-                    zIndex: 1,
-                    top: -8,
-                    left: normalize(7),
-                    color: '#00B92B'
-                }}
-            >
+        <View style={[styles.buttonBackground, { backgroundColor: type === 'added' ?  '#D0FFDB' : '#FFB8B8' }]}>
+            <Text style={[styles.buttonText, { color: type === 'added' ? '#00B92B' : '#FF1B1B' }]}>
                 +
             </Text>
         </View>
@@ -105,36 +87,31 @@ const TransactionList = ({ data }) => {
 
     const renderTransaction = ({ item }) => {
         return(
-            <View 
+            <View
                 key={item.id}
-                style={{
-                    padding: normalize(10)
-                }}
+                style={styles.renderTransactionWrapper}
             >
-                <Button />
-                <View
-                    style={{
-                        flexDirection: 'column'
-                    }}
-                >
-                    <Text>
+                <Button
+                    type={item.type}
+                />
+                <View style={styles.renderTransactionTitleWrapper}>
+                    <Text style={styles.titleText}>
                         {item.title}
                     </Text>
-                    <Text>
-                        Closing Bal
-                        <Text>{item.totalBalance}</Text>
+                    <Text style={styles.closingBalText}>
+                        (Closing Bal. {' '}
+                        <Text style={styles.totalBalanceText}>
+                            ${item.totalBalance}
+                        </Text>
+                        )
                     </Text>
                 </View>
-                <View
-                    style={{
-                        flexDirection: 'column'
-                    }}
-                >
-                    <Text>
-                        +$5.00
+                <View style={styles.amountDateWrapper}>
+                    <Text style={[styles.amountAddedText, { color: item.type === 'added' ? '#5BFF7F' : '#FF3C3C' }]}>
+                        {item.type === 'added' ? '+' : '-' }${item.amount}
                     </Text>
-                    <Text>
-                        +$5.00
+                    <Text style={styles.dateText}>
+                        {item.date}
                     </Text>
                 </View>
             </View>
@@ -142,11 +119,14 @@ const TransactionList = ({ data }) => {
     }
 
     return(
-        <View>
+        <View style={styles.transactionWrapper}>
             <FlatList
                 data={data}
+                style={styles.transactionFlatlist}
                 renderItem={renderTransaction}
                 showsVerticalScrollIndicator={false}
+                keyExtractor={item => `${item.id}`}
+                ListEmptyComponent={() => <MainEmptyComponent      emptyText={'No Search Results found...'}/>}
             />
         </View>
     )
@@ -154,11 +134,18 @@ const TransactionList = ({ data }) => {
 
 const TransactionScreen = ({ navigation }) => {
 
-    const user = useSelector(state => state.user);
+    // const user = useSelector(state => state.user);
     const [filterSelected, setSelectedFilter] = useState('All');
+    const [data, setData] = useState(transactions);
+    const balance = transactions[0].totalBalance || 0;
 
     const updateFilter = (newFilter) => {
-        setSelectedFilter(newFilter)
+        setSelectedFilter(newFilter);
+        if(newFilter === 'All'){
+            setData([...transactions]);
+            return;
+        }
+        setData(transactions.filter(item => item.category === newFilter));
     }
 
     return (
@@ -170,18 +157,17 @@ const TransactionScreen = ({ navigation }) => {
                 isWalletVisible={false}
             />
             <Balance
-                balance={user.walletAmount}
+                balance={balance}
             />
             {/* TODO: To be done */}
-            {/* <FilterList 
+            <FilterList 
                 filterSelected={filterSelected}
                 updateFilter={updateFilter}
-            /> */}
+            /> 
 
-            {/* <TransactionList 
-            
-                data={transactions}
-            /> */}
+            <TransactionList 
+                data={data}
+            />
 
         </SafeAreaView>
     )
@@ -192,12 +178,77 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundColor
     },
+    buttonText: {
+        fontSize: normalize(34),
+        fontFamily: fonts.type.soraBold,
+        position: 'absolute',
+        zIndex: 1,
+        top: normalize(-3),
+        left: normalize(8),
+        color: '#00B92B'
+    },
+    amountAddedText: {
+        color: '#5BFF7F',
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraBold
+    },
+    amountDateWrapper: {
+        flexDirection: 'column'
+    },
+    totalBalanceText: {
+        color: colors.white,
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraSemiBold
+    },
+    transactionWrapper: {
+        flex: 1
+    },
+    titleText: {
+        fontSize: fonts.size.font12,
+        color: colors.white,
+        fontFamily: fonts.type.soraSemiBold,
+        marginBottom: normalize(5)
+    },
+    dateText: {
+        color: '#979797',
+        fontSize: fonts.size.font10,
+        fontFamily: fonts.type.soraRegular,
+        marginTop: normalize(5)
+    },
+    closingBalText: {
+        color: '#979797',
+        fontFamily: fonts.type.soraRegular,
+        fontSize: fonts.size.font10
+    },
+    renderTransactionTitleWrapper: {
+        flexDirection: 'column',
+        marginLeft: normalize(10),
+        alignSelf: 'flex-end',
+        flex: 1
+    },
+    renderTransactionWrapper: {
+        flexDirection: 'row',
+        marginVertical: normalize(15),
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
     balanceText: {
         color: colors.white,
         fontFamily: fonts.type.soraSemiBold,
         fontSize: fonts.size.font10
     },
-
+    buttonBackground: {
+        backgroundColor: '#D0FFDB',
+        borderRadius: normalize(5),
+        width: normalize(35),
+        height: normalize(35),
+        alignItems: 'center'
+    },
+    transactionFlatlist: {
+        width: '90%',
+        flex:1,
+        alignSelf: 'center'
+    },
     chip: {
         padding: normalize(4),
         alignSelf: 'center',

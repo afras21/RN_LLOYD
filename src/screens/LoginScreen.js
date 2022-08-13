@@ -14,7 +14,7 @@ import normalize from 'react-native-normalize';
 import CustomSwiper from '../components/swipper/index'
 import FacebookButton from '../components/buttons/FacebookButton';
 import GoogleButton from '../components/buttons/GoogleButton';
-import { strings } from '../constants';
+import { icons, strings } from '../constants';
 // import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { 
     AccessToken,
@@ -39,14 +39,19 @@ const LoginScreen = ({ navigation, saveUser }) => {
     const storeUserDataToStore = async(userData) => {
         await AsyncStorage.setItem('token', userData.accessToken);
         saveUser(userData);
-        navigation.navigate('BottomTab');
+        navigation.replace('Drawer');
     }
 
     /**
      * @todo remove later - using to skip google and fb login
      */
     const tempLoginHandler = () => {
-        storeUserDataToStore({accessToken: TEMP_AUTH_TOKEN, walletAmount: '500'})
+        storeUserDataToStore({
+            name: 'Abhishek kumar', 
+            accessToken: TEMP_AUTH_TOKEN, 
+            walletAmount: strings.WALLET_AMOUNT,
+            avatar: 'https://fupping.com/wp-content/uploads/2018/06/Personal.png'
+        })
     }
 
     // const googleLoginHandler = async () => {

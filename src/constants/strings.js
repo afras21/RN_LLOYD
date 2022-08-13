@@ -190,7 +190,7 @@ const SLIDER2_IMAGE = 'https://miro.medium.com/max/1400/1*wwNz9v_JYs0ej59W3LhA-w
 const SLIDER2_HEADING = 'Trending Trivia Quiz';
 const SLIDER2_VIEW_MORE = 'View all';
 
-const SUGGESTIONS_SEARCH = ['', 'All', 'Influencer Trivia', 'Advance Premium', 'Free Trivia'];
+const SUGGESTIONS_SEARCH = ['', 'All', 'Influencer Trivia', 'Advance Premium', 'Free Trivia', 'Bonus'];
 const HEADER_HEIGHT = 150;
 const HOME_SCREEN_BUTTONS = [
     {
@@ -230,7 +230,7 @@ const CRYPTO_WALLETS = 'Crypto Wallets';
 const MY_WALLET = 'My Wallet';
 const WITH_DRAW_MONEY = 'Withdraw';
 const DEPOSIT_MONEY = 'Deposit'
-const WALLET_AMOUNT = 500;
+const WALLET_AMOUNT = '500';
 const MY_REFERRAL_TASKS = [
     {
         id: 1,
@@ -248,6 +248,8 @@ const MY_REFERRAL_TASKS = [
         title: 'Played 7 cash games'
     }
 ]
+
+const VERSION = 'Version 1.0.0'
 
 export default{
     STATUS_BAR_STYLE,
@@ -289,5 +291,6 @@ export default{
     WITH_DRAW_MONEY,
     DEPOSIT_MONEY,
     WALLET_AMOUNT,
-    MY_REFERRAL_TASKS
+    MY_REFERRAL_TASKS,
+    VERSION
 }

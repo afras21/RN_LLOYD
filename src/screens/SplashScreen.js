@@ -20,7 +20,7 @@ const SplashScreen = ({ navigation }) => {
         if (token === null) {
             navigation.replace('LoginScreen')
         } else {
-            navigation.replace('BottomTab');
+            navigation.replace('Drawer');
         }
     };
 

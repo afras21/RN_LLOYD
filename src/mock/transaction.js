@@ -1,99 +1,66 @@
 const transactions = [
     {
         id: 1,
-        title: 'Trivia Quiz Refund',
+        title: 'Bonus Credited',
         totalBalance: 300,
         date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
+        amount: 80,
+        type: 'added', 
+        category: 'Bonus'
     },
     {
         id: 2,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
+        title: 'Joined Trivia Quiz',
+        totalBalance: 220,
         date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
+        amount: 40,
+        type: 'withdraw', 
+        category: 'Influencer Trivia'
     },
     {
         id: 3,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
+        title: 'Bonus Credited',
+        totalBalance: 260,
         date: '10 Jan',
         amount: 10,
-        type: 'winningMoney' 
-    },
-    {
-        id: 4,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
-        date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
-    },
-    {
-        id: 5,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
-        date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
-    },
-    {
-        id: 6,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
-        date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
-    },
-    {
-        id: 7,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
-        date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
-    },
-    {
-        id: 8,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
-        date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
+        type: 'added', 
+        category: 'Bonus'
     },
     {
         id: 9,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
-        date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
+        title: 'Free Trivia',
+        totalBalance: 250,
+        date: '12 Jan',
+        amount: 20,
+        type: 'added', 
+        category: 'Free Trivia'
     },
     {
         id: 10,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
+        title: 'Joined Trivia Quiz',
+        totalBalance: 230,
         date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
+        amount: 30,
+        type: 'withdraw', 
+        category: 'Influencer Trivia'
     },
     {
         id: 11,
-        title: 'Trivia Quiz Refund',
-        totalBalance: 300,
+        title: 'Joined Trivia Quiz',
+        totalBalance: 270,
         date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney' 
+        amount: 30,
+        type: 'withdraw', 
+        category: 'Influencer Trivia'
     },
     {
         id: 12,
-        title: 'Trivia Quiz Refund',
+        title: 'Bonus Credited',
         totalBalance: 300,
         date: '10 Jan',
-        amount: 10,
-        type: 'winningMoney'
+        amount: 300,
+        type: 'added', 
+        category: 'Bonus'
     }
 ]
 
